@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { useEffect } from "react";
 import { useAppStore } from "../store";
 
-const PrivateRoute = () => {
+const ProfilePage = () => {
   const { hydrated, authUser } = useAppStore.authStore((state) => ({
     hydrated: state.hydrated,
     authUser: state.authUser,
@@ -10,13 +9,11 @@ const PrivateRoute = () => {
 
   const { getUser } = useAppStore.authStore.getState();
 
-  useEffect(() => {
-    if (!hydrated) {
-      getUser(); // Try to load user from localStorage
-    }
-  }, [hydrated, getUser]);
-
-  return hydrated ? <Outlet /> : <Navigate to="/signin" replace />;
+  return (
+    <div>
+      <h1>Profile Page</h1>
+    </div>
+  );
 };
 
-export default PrivateRoute;
+export default ProfilePage;
