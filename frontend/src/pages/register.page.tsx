@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useStore from "../store";
+import { useAppStore } from "../store";
 import { object, string, TypeOf } from "zod";
 import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -25,58 +25,48 @@ export type RegisterInput = TypeOf<typeof registerSchema>;
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const store = useStore();
+  const store = useAppStore.authStore();
+  const API_BASE_URL = import.meta.env.VITE_SERVER_ENDPOINT;
+
+  const extractErrorMessages = (error: any): string[] => {
+    if (Array.isArray(error?.error)) {
+      return error.error.map((e: any) => e.message);
+    }
+    if (error?.message) return [error.message];
+    return ["Something went wrong"];
+  };
 
   const registerUser = async (data: RegisterInput) => {
-    const VITE_SERVER_ENDPOINT = import.meta.env.VITE_SERVER_ENDPOINT;
     const param = {
       email: data.email,
       first_name: data.first_name,
       password: data.password,
-    }
-    try {
-      store.setRequestLoading(true);
+    };
 
-      const response = await fetch(
-        `${VITE_SERVER_ENDPOINT}/auth/register`,
-        {
-          method: "POST",
-          credentials: "include",
-          body: JSON.stringify(param),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    try {
+      store?.setRequestLoading?.(true);
+
+      const response = await fetch(`${API_BASE_URL}/auth/register`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(param),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       if (!response.ok) {
         throw await response.json();
       }
 
-      toast.success("Account created successfully", {
-        position: "top-right",
-      });
+      toast.success("Account created successfully", { position: "top-right" });
       store.setRequestLoading(false);
       navigate("/signin");
     } catch (error: any) {
       store.setRequestLoading(false);
-      if (error.error) {
-        error.error.forEach((err: any) => {
-          toast.error(err.message, {
-            position: "top-right",
-          });
-        });
-        return;
-      }
-      const resMessage =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      toast.error(resMessage, {
-        position: "top-right",
-      });
+      extractErrorMessages(error).forEach((msg) =>
+        toast.error(msg, { position: "top-right" })
+      );
     }
   };
 
@@ -91,12 +81,9 @@ const RegisterPage = () => {
     formState: { isSubmitSuccessful, errors },
   } = methods;
 
-  // useEffect(() => {
-  //   if (isSubmitSuccessful) {
-  //     reset();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [isSubmitSuccessful]);
+  useEffect(() => {
+    if (isSubmitSuccessful) reset();
+  }, [isSubmitSuccessful, reset]);
 
   const onSubmitHandler: SubmitHandler<RegisterInput> = (values) => {
     registerUser(values);
@@ -110,26 +97,29 @@ const RegisterPage = () => {
             <div className="mb-6">
               <input
                 type="text"
+                autoComplete="name"
                 className="form-control block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Name"
                 {...register("first_name")}
               />
               {errors.first_name && (
                 <p className="text-red-700 text-sm mt-1">
-                  {errors.first_name?.message}
+                  {errors.first_name.message}
                 </p>
               )}
             </div>
+
             <div className="mb-6">
               <input
                 type="email"
+                autoComplete="email"
                 className="form-control block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Email address"
                 {...register("email")}
               />
               {errors.email && (
                 <p className="text-red-700 text-sm mt-1">
-                  {errors.email?.message}
+                  {errors.email.message}
                 </p>
               )}
             </div>
@@ -137,13 +127,14 @@ const RegisterPage = () => {
             <div className="mb-6">
               <input
                 type="password"
+                autoComplete="new-password"
                 className="form-control block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Password"
                 {...register("password")}
               />
               {errors.password && (
                 <p className="text-red-700 text-sm mt-1">
-                  {errors.password?.message}
+                  {errors.password.message}
                 </p>
               )}
             </div>
@@ -151,24 +142,28 @@ const RegisterPage = () => {
             <div className="mb-6">
               <input
                 type="password"
+                autoComplete="new-password"
                 className="form-control block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Confirm Password"
                 {...register("passwordConfirm")}
               />
               {errors.passwordConfirm && (
                 <p className="text-red-700 text-sm mt-1">
-                  {errors.passwordConfirm?.message}
+                  {errors.passwordConfirm.message}
                 </p>
               )}
             </div>
 
             <button
               type="submit"
-              className="inline-block px-7 py-4 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color="light"
+              disabled={store?.requestLoading}
+              className={`inline-block px-7 py-4 ${
+                store?.requestLoading
+                  ? "bg-blue-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700"
+              } text-white font-medium text-sm leading-snug uppercase rounded shadow-md focus:shadow-lg focus:outline-none active:shadow-lg transition duration-150 ease-in-out w-full`}
             >
-              Sign up
+              {store?.requestLoading ? "Signing up..." : "Sign up"}
             </button>
           </form>
         </div>

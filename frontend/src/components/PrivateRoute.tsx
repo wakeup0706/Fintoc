@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import useStore from '../store';
+import { useAppStore } from "../store";
 
 const PrivateRoute = () => {
-  const store = useStore();
+  const store = useAppStore.authStore();
 
   useEffect(() => {
     if (!store.hydrated) {
