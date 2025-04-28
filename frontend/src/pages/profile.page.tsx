@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useAppStore } from "../store";
-import { FintocWidget } from "../components/Fintoc";
 
 const ProfilePage = () => {
   const { getUser, loginWithToken, authUser } = useAppStore.authStore.getState();
@@ -25,7 +24,6 @@ const ProfilePage = () => {
   return (
     <div>
       <h1>Profile Page</h1>
-      <FintocWidget />
     </div>
   );
 };
