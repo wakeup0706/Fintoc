@@ -1,22 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAppStore } from "../store";
+import { useAppStore } from '../store';
+import { useLocation } from "react-router-dom";
 
 const PrivateRoute = () => {
-  const { hydrated, authUser } = useAppStore.authStore((state) => ({
-    hydrated: state.hydrated,
-    authUser: state.authUser,
-  }));
+  const { search } = useLocation();
 
-  const { getUser } = useAppStore.authStore.getState();
+  const { getUser, loginWithToken} = useAppStore.authStore.getState();
+  const [hasToken, setHasToken] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (!hydrated) {
-      getUser(); // Try to load user from localStorage
-    }
-  }, [hydrated, getUser]);
+    // when login in with gmail....
+    const params = new URLSearchParams(search);
+    const gmailToken = params.get("token");
 
-  return hydrated ? <Outlet /> : <Navigate to="/signin" replace />;
+    if (gmailToken) {
+      loginWithToken(gmailToken);
+    }
+
+    const token = getUser();
+    setHasToken(!!token);
+  }, []);
+
+  if (hasToken === null) {
+    return <div>Loading...</div>;
+  }
+
+  return hasToken ? <Outlet /> : <Navigate to="/signin" replace />;
 };
 
 export default PrivateRoute;

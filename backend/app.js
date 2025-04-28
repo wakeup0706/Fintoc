@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const db = require('./models');
 const authRoutes = require('./routes/auth.routes');
+const fintocFoutes = require('./routes/fintoc.routes');
 const googleRoutes = require('./routes/google.routes');
 
 require('./config/google');
@@ -30,6 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', authRoutes);
+app.use('/fintoc', fintocFoutes);
 app.use('/auth/google', googleRoutes);
 
 db.sequelize.authenticate()

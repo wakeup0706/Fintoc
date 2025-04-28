@@ -19,7 +19,6 @@
 //   return `${rootUrl}?${qs.toString()}`;
 // };
 
-
 export const signInWithGoogle = () => {
   window.open("http://localhost:5000/auth/google", "_self", 'toolbar=no, scrollbars=yes, resizable=no, width=1000, height=auto')
 };

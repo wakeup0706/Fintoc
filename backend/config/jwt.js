@@ -26,3 +26,5 @@ passport.use(new Strategy(options, async (payload, done) => {
     return done(err, false); // Error occurred while retrieving user
   }
 }));
+
+// this is not used.. instead of passport startegy, I am using jsonwebtoken

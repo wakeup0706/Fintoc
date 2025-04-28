@@ -19,16 +19,18 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/log
     maxAge: 24 * 60 * 60 * 1000,
   });
 
-  res.status(200).json({
-    token,
-    user: {
-      id: req.user.id,
-      email: req.user.email,
-      first_name: req.user.first_name,
-      last_name: req.user.last_name,
-      roleId: req.user.roleId,
-    },
-  });
+  // res.status(200).json({
+  //   token,
+  //   user: {
+  //     id: req.user.id,
+  //     email: req.user.email,
+  //     first_name: req.user.first_name,
+  //     last_name: req.user.last_name,
+  //     roleId: req.user.roleId,
+  //   },
+  // });
+
+  res.redirect(`http://localhost:3000/profile?token=${token}`);
 });
 
 router.get('/login/success', (req, res) => {

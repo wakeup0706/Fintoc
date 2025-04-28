@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home.page";
-import LoginPage from "./pages/login.page";
+import LoginPage from "./pages/auth/login.page";
 import ProfilePage from "./pages/profile.page";
-import RegisterPage from "./pages/register.page";
+import Dashboard from "./pages/dashboard.page";
+import RegisterPage from "./pages/auth/register.page";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
     </Routes>
   );

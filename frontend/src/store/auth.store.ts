@@ -3,17 +3,15 @@ import { jwtDecode } from "jwt-decode";
 import { IUser } from "./types";
 interface AuthState {
   authUser: IUser | null;
-  hydrated: boolean;
   requestLoading: boolean;
   loginWithToken: (token: string) => void;
-  getUser: () => void;
+  getUser: () => any;
   logout: () => void;
   setRequestLoading: (isLoading: boolean) => void;
 }
 export const authStore = create<AuthState>((set) => ({
   authUser: null,
   requestLoading: false,
-  hydrated: false,
   loginWithToken: (token: string) => {
     try {
       const decoded = jwtDecode(token) as any;
@@ -27,34 +25,29 @@ export const authStore = create<AuthState>((set) => ({
         verified: decoded.verified,
       };
       localStorage.setItem("auth_token", token);
-      set({ authUser: user, hydrated: true });
+      set({ authUser: user });
     } catch {
       localStorage.removeItem("auth_token");
-      set({ authUser: null, hydrated: false });
+      set({ authUser: null });
     }
   },
   getUser: () => {
     const token = localStorage.getItem("auth_token");
     if (!token) {
-      set({ hydrated: true });
-      return;
+      return null;
     }
-    try {
-      const decoded = jwtDecode(token) as any;
-      const user = {
-        id: decoded.id,
-        name: decoded.name,
-        email: decoded.email,
-        role: decoded.role,
-        photo: decoded.photo,
-        provider: decoded.provider,
-        verified: decoded.verified,
-      };
-      set({ authUser: user, hydrated: true });
-    } catch {
-      localStorage.removeItem("auth_token");
-      set({ authUser: null, hydrated: true });
-    }
+    const decoded = jwtDecode(token) as any;
+    const user = {
+      id: decoded.id,
+      name: decoded.name,
+      email: decoded.email,
+      role: decoded.role,
+      photo: decoded.photo,
+      provider: decoded.provider,
+      verified: decoded.verified,
+    };
+    set({ authUser: user });
+    return token;
   },
   logout: () => {
     localStorage.removeItem("auth_token");
@@ -62,3 +55,4 @@ export const authStore = create<AuthState>((set) => ({
   },
   setRequestLoading: (isLoading: boolean) => set({ requestLoading: isLoading }),
 }));
+

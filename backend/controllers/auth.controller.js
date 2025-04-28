@@ -1,6 +1,7 @@
 const { User, Role } = require('../models');
 const jwt = require('jsonwebtoken');
 const { hashPassword, verifyPassword } = require('../utils/hash');
+const { use } = require('../routes/auth.routes');
 
 exports.register = async (req, res) => {
   const { email, password, first_name } = req.body;
@@ -65,10 +66,10 @@ exports.login = async (req, res) => {
     const valid = await verifyPassword(password, user.password);
     if (!valid) return res.status(400).json({ message: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: req.user.id, email: req.user.email, first_name: req.user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
+    const token = jwt.sign({ id: user.id, email: user.email, first_name: user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
       expiresIn: '1d',
     });
-    console.log({ token, user });
+    console.log( 'here' );
     res.json({ token, user });
   } catch (err) {
     res.status(500).json({ message: 'Login failed', error: err.message });
