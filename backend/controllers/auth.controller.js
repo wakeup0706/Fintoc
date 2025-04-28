@@ -5,7 +5,7 @@ const { use } = require('../routes/auth.routes');
 
 exports.register = async (req, res) => {
   const { email, password, first_name } = req.body;
-
+  
   try {
     // Check if user already exists
     const existing = await User.findOne({ where: { email } });

@@ -74,10 +74,10 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<LoginInput> = (values) => {
     loginUser(values);
   };
-
+  
   return (
     <div className="min-h-screen flex flex-col justify-center items-center relative bg-white px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[140px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-10 bg-white z-20 relative mb-[130px] sm:mb-[200px]">
+      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[100px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-10 bg-white z-20 relative mb-[130px] sm:mb-[150px]">
         <div className="flex justify-center items-center gap-4 sm:gap-6 mt-6">
           <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]">
             <svg width="100%" height="100%" viewBox="0 0 154 156" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -149,7 +149,7 @@ const LoginPage = () => {
 
       <div className="w-full bg-primary text-white py-1 sm:py-16 absolute bottom-0 left-0 z-10">
         <div className="w-full max-w-[700px] mx-auto px-4 sm:px-0 mt-8 sm:mt-20">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-0">
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-6 sm:gap-0">
             <div className="flex flex-col gap-2 justify-center items-center">
               <p className="text-base sm:text-xl font-bold text-white">¿Necesitas ayuda?</p>
               <p className="text-base sm:text-xl text-[#AEE8FF] font-bold">Contáctanos</p>

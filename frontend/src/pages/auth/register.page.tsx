@@ -8,7 +8,7 @@ import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
 
 const signupSchema = object({
-  name: string().min(1, "Name is required"),
+  first_name: string().min(1, "Name is required"),
   email: string().min(1, "Email is required").email("Invalid email"),
   password: string()
     .min(1, "Password is required")
@@ -41,14 +41,18 @@ const SignupPage = () => {
   });
 
   const signupUser = async (data: SignupInput) => {
+    const signupData = {
+      first_name: data.first_name,
+      email: data.email,
+      password: data.password
+    }
     try {
       setRequestLoading(true);
       const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
-      console.log(endpoint);
-      const res = await fetch(`${endpoint}/auth/signup`, {
+      const res = await fetch(`${endpoint}/auth/register`, {
         method: "POST",
         credentials: "include",
-        body: JSON.stringify(data),
+        body: JSON.stringify(signupData),
         headers: { "Content-Type": "application/json" },
       });
 
@@ -57,7 +61,7 @@ const SignupPage = () => {
       if (!res.ok) throw result;
 
       loginWithToken(result.token);
-      navigate('/profile');
+      navigate('/signin');
     } catch (error: any) {
       setRequestLoading(false);
 
@@ -82,7 +86,7 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center sm:px-6 relative bg-white">
-      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[140px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-10 bg-white z-20 relative mb-[130px] sm:mb-[200px]">
+      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[140px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-10 bg-white z-20 relative mb-[130px] sm:mb-[150px]">
         <div className="flex justify-center items-center gap-6 mt-[50px]">
           <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]">
             <svg width="100%" height="100%" viewBox="0 0 154 156" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,10 +105,10 @@ const SignupPage = () => {
           type="text"
           placeholder="Nombre completo*"
           className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[30px] sm:mt-[32px] p-7 text-base sm:text-1xl"
-          {...register("name")}
+          {...register("first_name")}
         />
-        {errors.name && (
-          <p className="text-red-500 text-xl mt-2">{errors.name.message}</p>
+        {errors.first_name && (
+          <p className="text-red-500 text-xl mt-2">{errors.first_name.message}</p>
         )}
 
         <input
