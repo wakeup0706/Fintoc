@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function SubscriptionList( { lists } : { lists : any[] } ) {
   return (
     <div className="bg-white rounded-2xl shadow-lg p-5 w-full max-w-xs md:max-w-md mx-auto">

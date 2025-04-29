@@ -20,3 +20,4 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ image, name, text }) 
 };
 
 export default TestimonialCard;
+  

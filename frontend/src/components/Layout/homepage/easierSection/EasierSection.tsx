@@ -1,4 +1,3 @@
-import React from 'react';
 import Loop from "../../../../assets/loop.svg";
 import Detencion1 from "../../../../assets/detencion(1).svg";
 import Detencion2 from "../../../../assets/detencion(2).svg";
@@ -7,7 +6,7 @@ import Netflix from "../../../../assets/Netflix.svg";
 import Uber from "../../../../assets/Uber.svg";
 import Spotify from "../../../../assets/Spotify.svg";
 import SmartFit from "../../../../assets/SmartFit.svg";
-import WOM from "../../../../assets/WOM.svg";
+import WOM from "../../../../assets/Wom.svg";
 import MercadoLibre from "../../../../assets/MercadoLibre.svg";
 import Step from './Step';
 
@@ -46,7 +45,7 @@ const EasierSection= () => {
           </div>
 
           <div className="relative w-full md:w-1/2 flex justify-center">
-            <img src={Loop} alt="Netflix" />
+            <img src={Loop} alt="Netflix" className="w-96" />
           </div>
         </div>
 

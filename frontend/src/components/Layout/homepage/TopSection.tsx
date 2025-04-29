@@ -1,4 +1,3 @@
-import React from 'react';
 import Profile_first from "../../../assets/profile_first.svg";
 import Descubre from "../../../assets/descubre.jpg";
 const TopSection = () => {
@@ -29,9 +28,12 @@ const TopSection = () => {
               alt="Phone and coffee"
               className="rounded-lg max-w-full h-auto"
             />
-            <div className="absolute top-20 left-0"><img src={Descubre} alt="Descubre" className="rounded-br-[80px] rounded-tl-[80px] max-w-full h-auto" /></div>
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-4 border-white rounded-full translate-x-6 translate-y-6"></div>
-            <div className="absolute top-10 right-10 w-16 h-16 border-4 border-white rounded-full"></div>
+            <div className="absolute inset-1/2 max-w-md w-full" >
+              <img src={Descubre} alt="Descubre" className="rounded-br-[80px] -translate-y-1/2 -translate-x-1/2 rounded-tl-[80px] max-w-full h-auto" />
+              <div className="absolute -top-64 -left-64 w-28 h-28 border-[22px] border-white rounded-full translate-x-6 translate-y-6"></div>
+              <div className="absolute -bottom-48 left-28 w-16 h-16 border-[14px] border-white rounded-full translate-x-6 translate-y-6"></div>
+              <div className="absolute -bottom-32 left-44 w-28 h-28 border-4 border-[22px] border-white rounded-full"></div>
+              </div>
           </div>
         </div>
 

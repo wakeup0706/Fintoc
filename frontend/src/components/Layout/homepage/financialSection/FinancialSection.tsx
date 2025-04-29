@@ -1,4 +1,3 @@
-import React from "react";
 import SmartPhon from "../../../../assets/Smartphone1.png"
 import PriceList from "./PriceList";
 
@@ -51,7 +50,7 @@ export default function FinancialSection() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-12 md:gap-6 max-w-6xl mx-auto">
+        <div className="flex flex-col sm:flex-row justify-center sm:items-center gap-12 md:gap-6 max-w-6xl mx-auto">
           <div className="relative z-10 sm:mt-0">
             <PriceList lists={subscriptions2} />
           </div>

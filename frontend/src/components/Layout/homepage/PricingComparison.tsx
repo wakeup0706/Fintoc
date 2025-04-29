@@ -1,4 +1,3 @@
-import React from 'react';
 import { Check, X } from 'lucide-react';
 import ArrowIco from '../../../assets/icons/arrow1.svg';
 
@@ -67,7 +66,7 @@ export default function PricingComparison() {
       <p className="text-center text-primary font-semibold mb-6 text-2xl max-w-[600px] mx-auto">Compara y elige el plan que más te conviene <img src={ArrowIco} alt="ArrowIco" className='w-8 h-8 float-right' /></p>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border-t">
+        <table className="min-w-full table-auto">
           <thead>
             <tr className="text-left text-2xl font-semibold text-ct-grey">
               <th className="p-4">Funciones</th>
