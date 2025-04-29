@@ -86,7 +86,7 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center sm:px-6 relative bg-white">
-      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[140px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-10 bg-white z-20 relative mb-[130px] sm:mb-[150px]">
+      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[140px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-10 bg-white z-20 relative mb-[130px] sm:mb-[200px]">
         <div className="flex justify-center items-center gap-6 mt-[50px]">
           <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]">
             <svg width="100%" height="100%" viewBox="0 0 154 156" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +108,7 @@ const SignupPage = () => {
           {...register("first_name")}
         />
         {errors.first_name && (
-          <p className="text-red-500 text-xl mt-2">{errors.first_name.message}</p>
+          <p className="text-red-500 text-xl mt-2">Se requiere nombre</p>
         )}
 
         <input
@@ -118,7 +118,7 @@ const SignupPage = () => {
           {...register("email")}
         />
         {errors.email && (
-          <p className="text-red-500 text-xl mt-2">{errors.email.message}</p>
+          <p className="text-red-500 text-xl mt-2">Se requiere correo electrónico</p>
         )}
 
         <input
@@ -128,7 +128,7 @@ const SignupPage = () => {
           {...register("password")}
         />
         {errors.password && (
-          <p className="text-red-500 text-xl mt-2">{errors.password.message}</p>
+          <p className="text-red-500 text-xl mt-2">Se requiere contraseña</p>
         )}
 
         <input
@@ -138,7 +138,7 @@ const SignupPage = () => {
           {...register("confirmPassword")}
         />
         {errors.confirmPassword && (
-          <p className="text-red-500 text-xl mt-2">{errors.confirmPassword.message}</p>
+          <p className="text-red-500 text-xl mt-2">Confirme su contraseña</p>
         )}
 
         <div className="flex flex-row w-full gap-3 justify-between items-center mt-[32px]">

@@ -99,7 +99,7 @@ const LoginPage = () => {
           {...register("email")}
         />
         {errors.email && (
-          <p className="text-red-500 text-sm sm:text-xl mt-2">{errors.email.message}</p>
+          <p className="text-red-500 text-sm sm:text-xl mt-2">Se requiere correo electrónico</p>
         )}
 
         <input
@@ -109,7 +109,7 @@ const LoginPage = () => {
           {...register("password")}
         />
         {errors.password && (
-          <p className="text-red-500 text-sm sm:text-xl mt-2">{errors.password.message}</p>
+          <p className="text-red-500 text-sm sm:text-xl mt-2">Se requiere contraseña</p>
         )}
 
         <div className="flex flex-col sm:flex-row w-full gap-3 justify-between items-start sm:items-center mt-4 sm:mt-[32px]">
