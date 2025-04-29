@@ -14,18 +14,21 @@ require('../config/jwt');
 const app = express();
 
 // CORS configuration
-const whitelist = ["http://localhost:3000"];
+const whitelist = ['http://localhost:3000'];  // Your frontend URL
+
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
+      callback(null, true); // Allow requests from localhost:3000
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(new Error('Not allowed by CORS'));  // Reject other origins
     }
   },
-  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // Allowed methods
+  credentials: true,  // Allow cookies and headers like Authorization
 };
 
+// Apply CORS middleware globally
 app.use(cors(corsOptions));
 
 app.use(cookieSession({
@@ -41,6 +44,8 @@ app.use(passport.session());
 
 app.use('/auth', authRoutes);
 app.use('/auth/google', googleRoutes);
+
+app.options('*', cors(corsOptions));
 
 // Database connection and serverless export
 db.sequelize.authenticate()
