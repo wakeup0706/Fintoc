@@ -2,10 +2,9 @@
   "name": "oauth2.0",
   "version": "1.0.0",
   "description": "",
-  "main": "api/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node api/index.js",
-    "dev": "nodemon app.js"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +18,7 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^3.14.0",
+    "nodemon": "^2.0.15",
     "oauth2.0": "file:",
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
