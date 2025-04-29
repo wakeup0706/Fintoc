@@ -17,15 +17,15 @@ const app = express();
 
 // CORS Configuration
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' ? 'https://your-production-url.com' : 'http://localhost:3000',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,  // For legacy browsers
+  origin: process.env.NODE_ENV === 'production' ? 'https://fintoc.vercel.app' : 'http://localhost:3000', // Adjust to production URL
+  credentials: true, // Allow cookies to be sent
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow these methods
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'], // Specify allowed headers
+  preflightContinue: false, // Ensure preflight requests are handled by Express
+  optionsSuccessStatus: 204, // Handle legacy browsers' issues
 };
 
-// Apply CORS middleware
+// Apply CORS middleware globally
 app.use(cors(corsOptions));
 
 // Body Parsing Middleware
