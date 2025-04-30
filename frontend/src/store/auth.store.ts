@@ -53,6 +53,8 @@ export const authStore = create<AuthState>((set) => ({
     localStorage.removeItem("auth_token");
     set({ authUser: null });
   },
-  setRequestLoading: (isLoading: boolean) => set({ requestLoading: isLoading }),
+  setRequestLoading: (isLoading: boolean) => {
+    set({ requestLoading: isLoading });
+  },
 }));
 

@@ -1,4 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GoogleLogo from "../../assets/google.svg";
 import { signInWithGoogle } from "../../utils/getGoogleUrl";
 import { object, string, TypeOf } from "zod";
@@ -20,13 +21,10 @@ export type LoginInput = TypeOf<typeof loginSchema>;
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = (location.state as any)?.from?.pathname || "/profile";
+  const [requestLoading, setRequestLoading] = useState(false);
 
   const {
-    setRequestLoading,
     loginWithToken,
-    requestLoading,
   } = useAppStore.authStore.getState();
 
   const {
@@ -57,6 +55,7 @@ const LoginPage = () => {
       navigate('/profile');
     } catch (error: any) {
       setRequestLoading(false);
+      console.log("herer=>", requestLoading)
       if (error?.error) {
         error.error.forEach((e: any) =>
           toast.error(e.message, { position: "top-right" })
@@ -75,10 +74,10 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<LoginInput> = (values) => {
     loginUser(values);
   };
-  
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[10px] mb-[160px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-3 bg-white z-20 relative sm:mt-[50px] sm:mb-[200px]">
+      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mb-[100px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-3 bg-white z-20 relative sm:mt-[50px] sm:mb-[200px]">
         <div className="flex justify-center items-center gap-4 sm:gap-6 mt-6">
           <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]">
             <svg width="100%" height="100%" viewBox="0 0 154 156" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,9 +125,9 @@ const LoginPage = () => {
           onClick={handleSubmit(onSubmit)}
           className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[30px]"
         >
-          {requestLoading && <LoadingSpinner styles="flex justify-center items-center h-8 w-8 absolute left-10"/>}
-          Iniciar sesión
+          {requestLoading ? <LoadingSpinner /> : "Iniciar sesión"}
         </button>
+
 
         <div className="flex items-center w-full mt-2 sm:mt-4 mb-2 sm:mb-4">
           <div className="flex-1 border-t border-gray-300"></div>

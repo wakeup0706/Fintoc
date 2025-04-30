@@ -35,14 +35,14 @@ export default function FinancialSection() {
         <div className="text-center mb-8 sm:mb-20 px-4">
           <div className="relative w-full flex justify-center">
             <div className="w-[486px] md:w-[724px]">
-              <div className="absolute z-20 w-40 sm:w-52 md:w-72 left-24 sm:left-auto">
+              <div className="absolute z-20 w-40 sm:w-52 md:w-72 left-24 sm:left-auto sm:block hidden">
                 <img
                   src={SmartPhon}
                   alt="Phone"
                   className="w-full h-auto rounded-xl shadow-xl"
                 />
               </div>
-              <div className="relative left-0 sm:left-24 md:left-32 z-10 mt-80 sm:mt-0 md:mt-24">
+              <div className="relative left-0 sm:left-24 md:left-32 z-10 mt-0 sm:mt-0 md:mt-24">
                 <PriceList lists={subscriptions} />
               </div>
             </div>

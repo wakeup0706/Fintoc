@@ -1,4 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GoogleLogo from "../../assets/google.svg";
 import { signInWithGoogle } from "../../utils/getGoogleUrl";
 import { object, string, TypeOf } from "zod";
@@ -25,13 +26,10 @@ export type SignupInput = TypeOf<typeof signupSchema>;
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = (location.state as any)?.from?.pathname || "/profile";
+  const [requestLoading, setRequestLoading] = useState(false);
 
   const {
-    setRequestLoading,
     loginWithToken,
-    requestLoading,
   } = useAppStore.authStore.getState();
 
   const {
@@ -154,8 +152,7 @@ const SignupPage = () => {
           onClick={handleSubmit(onSubmit)}
           className="bg-primary text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[30px]"
         >
-          {requestLoading && <LoadingSpinner styles="flex justify-center items-center h-8 w-8 absolute left-10"/>}
-          Registrarse
+          {requestLoading ? <LoadingSpinner /> : "Registrarse"}
         </button>
 
         <div className="flex items-center w-full mt-2 sm:mt-4 mb-2 sm:mb-4">
