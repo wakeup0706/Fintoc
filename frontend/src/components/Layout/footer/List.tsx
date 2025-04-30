@@ -2,10 +2,10 @@ const List = ({ title, items } : {title: String, items: any[]}) => {
   return (
     <div>
       <h3 className="font-bold text-xl mb-4">{title}</h3>
-      <ul className="space-y-2 text-lg">
+      <ul className="space-y-2 text-sm">
         {items.map((item, index) => (
-          <li key={index}>
-            <a href={item.href} className={`hover:underline ${item.bold ? 'font-semibold' : ''}`}>
+          <li key={index} className="pt-2">
+            <a href={item.href} className={`hover:underline ${item.bold ? 'font-semibold text-[#AEE8FF]' : ''}`}>
               {item.label}
             </a>
           </li>

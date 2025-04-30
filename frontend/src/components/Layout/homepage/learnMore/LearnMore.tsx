@@ -39,14 +39,14 @@ const FAQs = [
 ]
 const LearnMore = () => {
   return (
-    <section className="px-4 py-16 max-w-6xl mx-auto rounded-tr-[70px] rounded-bl-[70px]">
+    <section className="px-4 py-16 max-w-4xl mx-auto rounded-tr-[70px] rounded-bl-[70px]">
       <div className="text-center mb-4">
         <h2 className="text-3xl md:text-4xl text-ct-grey font-bold mb-4">Conoce más sobre nosotros</h2>
       </div>
-      <p className="text-primary text-2xl font-semibold text-center mb-16 md:text-4xl">
+      <p className="text-primary text-xl font-semibold mt-16 mb-6 md:text-2xl text-center">
         Preguntas Frecuentes
       </p>
-      <div className="max-w-6xl mx-auto mt-10">
+      <div className="max-w-6xl mx-auto">
         {
         FAQs.map((con, index)=>(
           <FAQItem

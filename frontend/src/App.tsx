@@ -5,6 +5,7 @@ import ProfilePage from "./pages/profile.page";
 import Dashboard from "./pages/dashboard.page";
 import RegisterPage from "./pages/auth/register.page";
 import PrivateRoute from "./components/PrivateRoute";
+import AllowPage from "./pages/auth/allow";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/signin" element={<LoginPage />} />
       <Route path="/signup" element={<RegisterPage />} />
+      <Route path="/allow" element={<AllowPage />} />
 
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />

@@ -27,13 +27,12 @@ const subscriptions2 = [
 
 export default function FinancialSection() {
   return (
-    <section className="bg-[#f8f8f8] py-16 px-4">
-      <h2 className="text-3xl md:text-4xl font-bold text-ct-grey mb-8 text-center">
+    <section className="relative py-12 px-4 overflow-hidden">
+      <h2 className="relative text-2xl md:text-4xl font-bold text-ct-grey text-center z-20">
         Gestiona convierte el caos financiero <br /> en claridad y control
       </h2>
-      <div className=" relative mt-20">
-      <div className=" absolute w-full xl:w-11/12 inset-1/2 -translate-y-2/4 -translate-x-2/4 h-[1100px] sm:h-[500px] md:h-[740px] mt-40 bg-secondary rounded-tl-[70px] rounded-br-[70px] z-1"></div>
-        <div className="text-center mb-20 px-4">
+      <div className="mt-10">
+        <div className="text-center mb-8 sm:mb-20 px-4">
           <div className="relative w-full flex justify-center">
             <div className="w-[486px] md:w-[724px]">
               <div className="absolute z-20 w-40 sm:w-52 md:w-72 left-24 sm:left-auto">
@@ -55,15 +54,16 @@ export default function FinancialSection() {
             <PriceList lists={subscriptions2} />
           </div>
           <div className="text-center md:text-right max-w-md z-10">
-            <h3 className="text-primary font-bold text-3xl mb-2">
+            <h3 className="text-primary font-bold text-xl sm:text-3xl mb-2">
               Con Gestiona, reduce tus cuentas de celular, TV o Internet.
             </h3>
-            <p className="text-ct-grey text-xl font-bold pl-0 sm:pl-40">
+            <p className="text-ct-grey text-lg sm:text-xl font-bold pl-0 sm:pl-40">
               Permítenos administrar tus boletas y conseguir el mejor descuento.
             </p>
           </div>
         </div>
       </div>
+      <div className=" absolute w-full xl:w-11/12 inset-1/2 -translate-y-2/4 -translate-x-2/4 h-[1430px] sm:h-[500px] md:h-full bg-secondary rounded-tl-[70px] rounded-br-[70px] z-0"></div>
     </section>
   );
 }

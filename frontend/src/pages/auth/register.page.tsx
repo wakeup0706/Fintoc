@@ -85,9 +85,9 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center sm:px-6 relative bg-white">
-      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[140px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-10 bg-white z-20 relative mb-[130px] sm:mb-[200px]">
-        <div className="flex justify-center items-center gap-6 mt-[50px]">
+    <div className="min-h-screen flex flex-col justify-center items-center sm:px-6 relative">
+      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[10px] mb-[150px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-3 bg-white z-20 relative sm:mt-[50px] sm:mb-[120px]">
+        <div className="flex justify-center items-center gap-4 sm:gap-6 mt-6">
           <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]">
             <svg width="100%" height="100%" viewBox="0 0 154 156" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M153.201 28.5342C153.201 12.8016 140.404 0 124.672 0C108.94 0 96.1433 12.8016 96.1433 28.5342C96.1433 44.2668 108.942 57.0684 124.672 57.0684C128.323 57.0684 131.803 56.3537 135.016 55.0971C139.05 65.4837 145.023 88.0868 132.383 110.347C122.047 128.547 100.814 138.945 76.5557 138.769L76.5499 151.81C76.7372 151.81 78.2931 151.81 78.4804 151.81C107.309 151.81 131.072 139.063 143.721 116.785C160.352 87.496 150.809 58.4892 145.98 47.4398C150.458 42.3993 153.201 35.7881 153.201 28.5313V28.5342ZM109.182 28.5342C109.182 19.9921 116.132 13.0408 124.672 13.0408C133.212 13.0408 140.162 19.9921 140.162 28.5342C140.162 37.0763 133.215 44.0276 124.672 44.0276C116.129 44.0276 109.182 37.0792 109.182 28.5342Z" fill="#361BD0"/>
@@ -99,12 +99,12 @@ const SignupPage = () => {
           <p className="text-[2rem] sm:text-[2rem] font-bold text-[#3A3A3A]">gestiona</p>
         </div>
 
-        <p className="text-[1.5rem] font-bold text-primary mt-6 mb-4 sm:mt-[47px]">¡Crea tu cuenta!</p>
+        <p className="text-[1.5rem] font-bold text-primary mt-3 sm:mt-[30px]">¡Crea tu cuenta!</p>
 
         <input
           type="text"
           placeholder="Nombre completo*"
-          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[30px] sm:mt-[32px] p-7 text-base sm:text-1xl"
+          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[10px] sm:rounded-[15px] sm:mt-[15px] px-4 sm:p-7 text-base sm:text-1xl"
           {...register("first_name")}
         />
         {errors.first_name && (
@@ -114,7 +114,7 @@ const SignupPage = () => {
         <input
           type="email"
           placeholder="Correo electrónico*"
-          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[30px] mt-4 sm:mt-[32px] p-7 text-base sm:text-1xl"
+          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[32px] px-4 sm:p-7 text-base sm:text-1xl"
           {...register("email")}
         />
         {errors.email && (
@@ -124,7 +124,7 @@ const SignupPage = () => {
         <input
           type="password"
           placeholder="Contraseña*"
-          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[30px] mt-4 sm:mt-[32px] p-7 text-base sm:text-1xl"
+          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[32px] p-7 text-base sm:text-1xl"
           {...register("password")}
         />
         {errors.password && (
@@ -134,28 +134,28 @@ const SignupPage = () => {
         <input
           type="password"
           placeholder="Confirmar contraseña*"
-          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[30px] mt-4 sm:mt-[32px] p-7 text-base sm:text-1xl"
+          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[32px] p-7 text-base sm:text-1xl"
           {...register("confirmPassword")}
         />
         {errors.confirmPassword && (
           <p className="text-red-500 text-xl mt-2">Confirme su contraseña</p>
         )}
 
-        <div className="flex flex-row w-full gap-3 justify-between items-center mt-[32px]">
-          <label className="text-1xl font-bold flex items-center gap-2">
-            <input type="checkbox" className="w-4 h-4 accent-primary"/>
+        <div className="flex flex-col sm:flex-row w-full gap-3 justify-between items-start sm:items-center mt-4 sm:mt-[20px]">
+          <label className="text-base sm:text-1xl font-bold flex items-center gap-2">
+            <input type="checkbox" className="w-4 h-4 sm:w-6 sm:h-6 accent-primary"/>
             Mostrar Contraseña
           </label>
         </div>
 
         <button
           onClick={handleSubmit(onSubmit)}
-          className="bg-primary text-white text-base sm:text-xl font-bold rounded-[27px] sm:rounded-[54px] w-full h-[60px] sm:h-[70px] mt-4 sm:mt-[30px]"
+          className="bg-primary text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[40px] sm:h-[50px] mt-4 sm:mt-[30px]"
         >
           Registrarse
         </button>
 
-        <div className="flex items-center w-full mt-8 mb-8">
+        <div className="flex items-center w-full mt-2 sm:mt-4 mb-2 sm:mb-4">
           <div className="flex-1 border-t border-gray-300"></div>
           <span className="px-4 text-ct-grey text-xl">o</span>
           <div className="flex-1 border-t border-gray-300"></div>
@@ -163,18 +163,18 @@ const SignupPage = () => {
 
         <button
           onClick={signInWithGoogle}
-          className="flex items-center justify-center gap-4 border-2 border-gray-300 text-base sm:text-xl font-bold rounded-[27px] sm:rounded-[54px] w-full h-[60px] sm:h-[70px] hover:bg-gray-50 transition-colors"
+          className="flex items-center justify-center gap-4 border-2 border-grey-300 text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] sm:h-[50px] hover:bg-gray-50 transition-colors"
         >
           <img src={GoogleLogo} alt="Google Logo" className="w-8 h-8" />
           Continuar con Google
         </button>
 
-        <p className="text-ct-grey text-base sm:text-xl mt-6 sm:mt-[47.5px] mb-8 sm:mb-[62.5px] font-bold text-center">
+        <p className="text-ct-grey text-base sm:text-xl mt-6 sm:mt-[28px] mb-8 sm:mb-[15px] font-bold text-center">
           ¿Ya tienes una cuenta? <span className="text-primary cursor-pointer hover:underline" onClick={() => navigate('/signin')}>Inicia sesión</span>
         </p>
       </div>
-      <div className="flex h-[280px] justify-center items-center bg-primary w-full text-white absolute bottom-0 z-0">
-        <div className="md:w-[1039.58px] pt-[110px] w-full flex justify-center">
+      <div className="flex h-[140px] md:h-[200px] justify-center items-center bg-primary w-full text-white absolute bottom-0 z-0">
+        <div className="md:w-[1039.58px] pt-[25px] md:pt-[60px] w-full flex justify-center">
           <p className="text-1xl sm:text-xl font-bold text-white">¿Ya tienes cuenta? Inicia sesión aquí.</p>
         </div>
       </div>

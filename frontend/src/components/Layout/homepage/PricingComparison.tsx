@@ -36,12 +36,12 @@ const features = [
 
 export default function PricingComparison() {
   return (
-    <section className="px-4 py-16 max-w-6xl mx-auto">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl text-ct-grey font-bold mb-4">Conoce nuestros planes y gestiona<br/> tus pagos y suscripciones</h2>
+    <section className="px-4 py-12 sm:py-16 max-w-4xl mx-auto">
+      <div className="text-center mb-6 sm:mb-12">
+        <h2 className="text-2xl md:text-4xl text-ct-grey font-bold mb-4">Conoce nuestros planes y gestiona<br/> tus pagos y suscripciones</h2>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-6 sm:mb-12">
         <div className="bg-secondary rounded-2xl p-6 text-center w-full h-full md:w-1/3">
           <h3 className="text-2xl font-bold text-primary mb-2">Únete gratis</h3>
           <p className=" text-gray-700 mb-4 text-lg w-50 font-bold">Gestiona fácil, rápido y sin complicaciones.</p>
@@ -62,13 +62,12 @@ export default function PricingComparison() {
           <button className="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">Prueba gratis por 7 días</button>
         </div>
       </div>
-
-      <p className="text-center text-primary font-semibold mb-6 text-2xl max-w-[600px] mx-auto">Compara y elige el plan que más te conviene <img src={ArrowIco} alt="ArrowIco" className='w-8 h-8 float-right' /></p>
+      <p className="text-center text-primary font-semibold mb-6 text-xl sm:text-2xl max-w-[600px] mx-auto">Compara y elige el plan que más te conviene <img src={ArrowIco} alt="ArrowIco" className='w-6 sm:w-8 h-6 sm:h-8 float-right' /></p>
 
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
           <thead>
-            <tr className="text-left text-2xl font-semibold text-ct-grey">
+            <tr className="text-left text-xl sm:text-2xl font-semibold text-ct-grey">
               <th className="p-4">Funciones</th>
               <th className="p-4 text-center">Gratis</th>
               <th className="p-4 text-center">Pro</th>
@@ -78,14 +77,14 @@ export default function PricingComparison() {
           <tbody>
             {features.map((feature, index) => (
               <tr key={index} className="border-t border-gray-400 text-sm">
-                <td className="p-4 font-semibold text-ct-grey text-xl align-top w-1/4">{feature.title}</td>
-                <td className="p-4 text-center w-1/12">
+                <td className="py-4 px-2 font-semibold text-ct-grey text-base align-top w-1/4">{feature.title}</td>
+                <td className="py-4 px-2 text-center w-1/12">
                   {feature.free ? <Check className="text-primary mx-auto" /> : <X className="text-red-500 mx-auto" />}
                 </td>
-                <td className="p-4 text-center w-1/12">
+                <td className="py-4 px-2 text-center w-1/12">
                   {feature.pro ? <Check className="text-primary mx-auto" /> : <X className="text-red-500 mx-auto" />}
                 </td>
-                <td className="p-4 text-ct-grey w-1/2 text-lg">{feature.description}</td>
+                <td className="py-4 px-2 text-ct-grey w-1/2 text-sm">{feature.description}</td>
               </tr>
             ))}
           </tbody>

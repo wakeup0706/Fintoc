@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImonialCard from './ImonialSlider';
 import ArticleAvatar from '../../../../assets/articel_avatar.jpg';
 import nextArrow from '../../../../assets/icons/arrow2.svg';
@@ -27,7 +27,13 @@ const cardes = [
 
 const ImonialSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const cardWidth = 420;
+  const [cardWidth, setCardWidth] = useState(420);
+
+  const getCardWidth = () => {
+    const width = window.innerWidth;
+    if (width < 376) return 100;
+    return 420;
+  }
 
   const handleNext = () => {
     if (currentIndex < cardes.length - 1-1) {
@@ -37,12 +43,21 @@ const ImonialSlider = () => {
     }
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setCardWidth(getCardWidth());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <section className="px-4 py-16 max-w-6xl mx-auto bg-secondary rounded-tr-[70px] rounded-bl-[70px]">
+    <section className="px-4 pr-12 py-8 sm:py-16 max-w-6xl mx-auto bg-secondary rounded-tr-[70px] rounded-bl-[70px]">
       <div className="text-center mb-4">
-        <h2 className="text-3xl md:text-4xl text-ct-grey font-bold mb-4">Miles de personas ya están<br/> ahorrando con Gestiona</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl text-ct-grey font-bold mb-4">Miles de personas ya están<br className='hidden sm:block'/> ahorrando con Gestiona</h2>
       </div>
-      <p className="text-primary text-xl max-w-[500px] text-center mx-auto p-3 bg-[#AEE8FF] font-semibold mb-16 md:text-2xl">Invertimos pagos por suscripciones</p>
+      <p className="text-primary text-lg sm:text-xl max-w-[500px] text-center mx-auto p-1 sm:p-3 bg-[#AEE8FF] font-semibold mb-16 md:text-2xl">¡Comienza hoy totalmente gratis!</p>
       <div className=" relative w-full max-w-[52rem] mx-auto mr-40">
         <div className="overflow-hidden relative">
           <div
@@ -54,7 +69,7 @@ const ImonialSlider = () => {
             ))}
           </div>
         </div>
-        <div className=" absolute -right-14 top-2/3 -translate-y-full">
+        <div className=" absolute -right-14 top-[195px] -translate-y-full">
           <button
             onClick={handleNext}
             className=" rounded-full px-3 py-2 transition"

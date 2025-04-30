@@ -29,16 +29,18 @@ const HomePage = () => {
   })
 
   return (
-    <div>
+    <>
       <Header />
-      <TopSection />
-      <EasierSection />
-      <FinancialSection />
-      <PricingComparison />
-      <Imonials />
-      <LearnMore />
+      <div className="max-w-6xl sm:mx-auto mx-6">
+        <TopSection />
+        <EasierSection />
+        <FinancialSection />
+        <PricingComparison />
+        <Imonials />
+        <LearnMore />
+      </div>
       <Footer />
-    </div>
+      </>
   );
 };
 
