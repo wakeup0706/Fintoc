@@ -9,7 +9,6 @@ require('dotenv').config();
 const db = require('./models');
 const authRoutes = require('./routes/auth.routes');
 const googleRoutes = require('./routes/google.routes');
-const adminRoutes = require('./routes/admin.route');
 
 require('./config/google');
 require('./config/jwt');
@@ -17,48 +16,48 @@ require('./config/jwt');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ CORS Configuration
+// ✅ CORS Configuration: allow local and deployed frontend
+const allowedOrigins = ['http://localhost:3000', 'https://fintoc-oa6c-beta.vercel.app'];
+
 const corsOptions = {
-  origin: 'https://fintoc.onrender.com', // frontend URL
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
-// ✅ Apply CORS middleware
+// ✅ Apply CORS
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // preflight support
 
-// ✅ Parse cookies and JSON
-app.use(cookieParser());
+// ✅ Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// ✅ Cookie session
+app.use(cookieParser());
 app.use(cookieSession({
   name: 'session',
-  keys: [process.env.SESSION_SECRET || 'defaultsecret'],
-  maxAge: 24 * 60 * 60 * 1000, // 1 day
+  keys: [process.env.COOKIE_KEY || 'default_key'],
+  maxAge: 24 * 60 * 60 * 1000 // 1 day
 }));
-
-// ✅ Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 // ✅ Routes
 app.use('/auth', authRoutes);
-app.use('/google', googleRoutes);
-app.use('/admin', adminRoutes);
+app.use('/auth/google', googleRoutes);
 
+// ✅ Root route
 app.get('/', (req, res) => {
   res.send('Server started here!');
 });
 
-// ✅ Sequelize DB Sync
-db.sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
-}).catch((err) => {
-  console.error('DB connection failed:', err);
+// ✅ Start server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
