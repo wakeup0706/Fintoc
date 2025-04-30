@@ -27,11 +27,14 @@ const cardes = [
 
 const ImonialSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardWidth, setCardWidth] = useState(420);
+  const [cardWidth, setCardWidth] = useState(() => {
+    const width = window.innerWidth;
+    return width < 376 ? 270 : 420;
+  });
 
   const getCardWidth = () => {
     const width = window.innerWidth;
-    if (width < 376) return 100;
+    if (width < 376) return 270;
     return 420;
   }
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useAppStore } from "../store";
-import Header from "../components/Layout/Header";
+import Header from "../components/Layout/header/Header";
 import Footer from "../components/Layout/footer/Footer";
 import TopSection from "../components/Layout/homepage/TopSection";
 import EasierSection from "../components/Layout/homepage/easierSection/EasierSection";
@@ -31,7 +31,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div className="max-w-6xl sm:mx-auto mx-6">
+      <div className="max-w-6xl md:mx-auto mx-6">
         <TopSection />
         <EasierSection />
         <FinancialSection />

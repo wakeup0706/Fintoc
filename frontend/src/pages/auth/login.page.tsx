@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const loginSchema = object({
   email: string().min(1, "Email is required").email("Invalid email"),
@@ -56,7 +57,6 @@ const LoginPage = () => {
       navigate('/profile');
     } catch (error: any) {
       setRequestLoading(false);
-
       if (error?.error) {
         error.error.forEach((e: any) =>
           toast.error(e.message, { position: "top-right" })
@@ -78,7 +78,7 @@ const LoginPage = () => {
   
   return (
     <div className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[10px] mb-[210px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-3 bg-white z-20 relative sm:mt-[50px] sm:mb-[200px]">
+      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[10px] mb-[160px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-3 bg-white z-20 relative sm:mt-[50px] sm:mb-[200px]">
         <div className="flex justify-center items-center gap-4 sm:gap-6 mt-6">
           <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]">
             <svg width="100%" height="100%" viewBox="0 0 154 156" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +96,7 @@ const LoginPage = () => {
         <input
           type="email"
           placeholder="Correo electrónico*"
-          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[10px] sm:rounded-[15px] sm:mt-[15px] px-4 sm:p-7 text-base sm:text-1xl"
+          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[10px] sm:rounded-[15px] mt-[15px] px-4 sm:p-7 text-base sm:text-1xl"
           {...register("email")}
         />
         {errors.email && (
@@ -124,8 +124,9 @@ const LoginPage = () => {
 
         <button
           onClick={handleSubmit(onSubmit)}
-          className="bg-primary text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[40px] sm:h-[50px] mt-4 sm:mt-[30px]"
+          className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[30px]"
         >
+          {requestLoading && <LoadingSpinner styles="flex justify-center items-center h-8 w-8 absolute left-10"/>}
           Iniciar sesión
         </button>
 
@@ -149,9 +150,9 @@ const LoginPage = () => {
       </div>
 
       <div className="w-full bg-primary text-white py-1 sm:py-16 absolute bottom-0 left-0 z-10">
-        <div className="w-full max-w-[700px] mx-auto px-4 sm:px-0 mt-8 sm:mt-20">
-          <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-6 sm:gap-0 pb-4">
-            <div className="flex flex-col gap-2 justify-center items-center">
+        <div className="w-full max-w-[700px] mx-auto px-4 sm:px-0 mt-16 sm:mt-20">
+          <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3 sm:gap-0 pb-4">
+            <div className="flex flex-col gap-0 justify-center items-center">
               <p className="text-base sm:text-xl font-bold text-white">¿Necesitas ayuda?</p>
               <p className="text-base sm:text-xl text-[#AEE8FF] font-bold">Contáctanos</p>
             </div>

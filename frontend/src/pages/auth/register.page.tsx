@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const signupSchema = object({
   first_name: string().min(1, "Name is required"),
@@ -30,6 +31,7 @@ const SignupPage = () => {
   const {
     setRequestLoading,
     loginWithToken,
+    requestLoading,
   } = useAppStore.authStore.getState();
 
   const {
@@ -85,8 +87,8 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center sm:px-6 relative">
-      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[10px] mb-[150px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-3 bg-white z-20 relative sm:mt-[50px] sm:mb-[120px]">
+    <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 relative">
+      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mt-[10px] mb-[100px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-3 bg-white z-20 relative sm:mt-[50px] md:mb-[120px]">
         <div className="flex justify-center items-center gap-4 sm:gap-6 mt-6">
           <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]">
             <svg width="100%" height="100%" viewBox="0 0 154 156" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +106,7 @@ const SignupPage = () => {
         <input
           type="text"
           placeholder="Nombre completo*"
-          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[10px] sm:rounded-[15px] sm:mt-[15px] px-4 sm:p-7 text-base sm:text-1xl"
+          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[10px] sm:rounded-[15px] mt-[15px] px-4 sm:p-7 text-base sm:text-1xl"
           {...register("first_name")}
         />
         {errors.first_name && (
@@ -150,8 +152,9 @@ const SignupPage = () => {
 
         <button
           onClick={handleSubmit(onSubmit)}
-          className="bg-primary text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[40px] sm:h-[50px] mt-4 sm:mt-[30px]"
+          className="bg-primary text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[30px]"
         >
+          {requestLoading && <LoadingSpinner styles="flex justify-center items-center h-8 w-8 absolute left-10"/>}
           Registrarse
         </button>
 

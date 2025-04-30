@@ -12,7 +12,7 @@ const FAQItem = ({ question, answer } : { question:string, answer:string }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full text-left py-2 px-8 flex justify-between items-center bg-gray-100 hover:bg-gray-200 transition"
       >
-        <span className="text-lg font-bold text-ct-grey">{question}</span>
+        <span className="text-base sm:text-lg font-bold text-ct-grey">{question}</span>
         { <img src={isOpen ? ArrowUp : ArrowDown} alt="" className='w-8' /> }
       </button>
       {isOpen && (
