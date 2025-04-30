@@ -16,9 +16,13 @@ require('./config/jwt');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://fintoc-oa6c-beta.vercel.app/'],
+  credentials: true
+}));
 
 app.use(cors());
+
 app.use(cookieSession({
   name: 'authSession',
   keys: [process.env.SESSION_KEY || 'secret'],
