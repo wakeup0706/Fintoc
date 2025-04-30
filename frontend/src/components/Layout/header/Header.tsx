@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Logo from "../../../assets/logo.svg";
-import Menu from "./menuButton";
+import Menu from "./MenuButton"
 
 const Header = () => {
   const [menubutton, setCardWidth] = useState(() => {
