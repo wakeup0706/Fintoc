@@ -30,7 +30,7 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/log
   //   },
   // });
 
-  res.redirect(`http://localhost:3000/profile?token=${token}`);
+  res.redirect(`https://fintoc-oa6c-beta.vercel.app/profile?token=${token}`);
 });
 
 router.get('/login/success', (req, res) => {
