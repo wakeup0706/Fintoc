@@ -2,9 +2,9 @@
   "name": "oauth2.0",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon api/app.js"
   },
   "author": "",
   "license": "ISC",
