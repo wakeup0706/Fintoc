@@ -16,31 +16,47 @@ require('./config/jwt');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://fintoc-oa6c-beta.vercel.app/'],
-  credentials: true
-}));
+// ✅ CORS Configuration
+const corsOptions = {
+  origin: 'http://localhost:3000', // frontend URL
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
-app.use(cors());
+// ✅ Apply CORS middleware
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // preflight support
 
-app.use(cookieSession({
-  name: 'authSession',
-  keys: [process.env.SESSION_KEY || 'secret'],
-  maxAge: 24 * 60 * 60 * 1000,
-}));
-
-app.use(bodyParser.json());
+// ✅ Parse cookies and JSON
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// ✅ Cookie session
+app.use(cookieSession({
+  name: 'session',
+  keys: [process.env.SESSION_SECRET || 'defaultsecret'],
+  maxAge: 24 * 60 * 60 * 1000, // 1 day
+}));
+
+// ✅ Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
+// ✅ Routes
 app.use('/auth', authRoutes);
-app.use('/auth/google', googleRoutes);
+app.use('/google', googleRoutes);
 
-db.sequelize.authenticate()
-  .then(() => {
-    console.log('Database connected');
-  })
-    .catch(err => console.error('DB connection failed:', err));
+app.get('/', (req, res) => {
+  res.send('Server started here!');
+});
 
-app.listen(PORT, () => console.log('start server!!!'));
+// ✅ Sequelize DB Sync
+db.sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}).catch((err) => {
+  console.error('DB connection failed:', err);
+});
