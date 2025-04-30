@@ -9,6 +9,7 @@ require('dotenv').config();
 const db = require('./models');
 const authRoutes = require('./routes/auth.routes');
 const googleRoutes = require('./routes/google.routes');
+const adminRoutes = require('./routes/admin.route');
 
 require('./config/google');
 require('./config/jwt');
@@ -47,6 +48,7 @@ app.use(passport.session());
 // ✅ Routes
 app.use('/auth', authRoutes);
 app.use('/google', googleRoutes);
+app.use('/admin', adminRoutes);
 
 app.get('/', (req, res) => {
   res.send('Server started here!');
