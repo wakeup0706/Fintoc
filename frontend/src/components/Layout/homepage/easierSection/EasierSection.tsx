@@ -55,7 +55,7 @@ const EasierSection= () => {
           <h3 className="text-primary text-xl sm:text-2xl font-bold mb-6">
             Conoce todas las suscripciones que puedes gestionar
           </h3>
-          <div className="flex mt-5 flex-wrap justify-center justify-between items-center gap-10 grayscale">
+          <div className="flex mt-5 flex-wrap justify-between items-center gap-10 grayscale">
             <img src={Netflix} alt="Netflix" className="h-8" />
             <img src={Uber} alt="Uber" className="h-8" />
             <img src={Spotify} alt="Spotify" className="h-8" />
