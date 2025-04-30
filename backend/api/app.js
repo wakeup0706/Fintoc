@@ -16,8 +16,9 @@ require('./config/jwt');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+// app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
+app.use(cors());
 app.use(cookieSession({
   name: 'authSession',
   keys: [process.env.SESSION_KEY || 'secret'],
@@ -32,15 +33,10 @@ app.use(passport.session());
 app.use('/auth', authRoutes);
 app.use('/auth/google', googleRoutes);
 
-
-app.get("/", (req, res) => {
-    res.send("start server!");
-})
-
 db.sequelize.authenticate()
   .then(() => {
     console.log('Database connected');
   })
     .catch(err => console.error('DB connection failed:', err));
 
-app.listen(PORT, () => console.log('start server!'));
+app.listen(PORT, () => console.log('start server!!!'));
