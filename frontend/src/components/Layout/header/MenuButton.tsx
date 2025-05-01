@@ -1,13 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const MenuButton = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef(null);
+const MenuButton: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();
 
-  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const toggleMenu = () => {
+    setIsOpen((prev) => !prev);
+  };
 
-  const handleClickOutside = () => {
-    if (menuRef.current) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -25,32 +29,29 @@ const MenuButton = () => {
       >
         <div
           className={`w-[45px] h-1 rounded mb-2 bg-primary transition-all duration-500 ease-in-out ${
-            isOpen ? 'animate-stick-1-open' : 'animate-stick-1-close'
+            isOpen ? "animate-stick-1-open" : "animate-stick-1-close"
           }`}
         ></div>
-
         <div
           className={`w-[45px] h-1 rounded mb-2 bg-primary transition-all duration-500 ease-in-out ${
-            isOpen ? 'animate-stick-2-open' : 'animate-stick-2-close'
+            isOpen ? "animate-stick-2-open" : "animate-stick-2-close"
           }`}
         ></div>
-
         <div
           className={`w-[45px] h-1 rounded mb-0 bg-primary transition-all duration-500 ease-in-out ${
-            isOpen ? 'animate-stick-3-open' : 'animate-stick-3-close'
+            isOpen ? "animate-stick-3-open" : "animate-stick-3-close"
           }`}
         ></div>
       </div>
 
       {isOpen && (
         <div
-          className="absolute right-0 mt-[20px] w-48 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 transition-all transform opacity-0 scale-95"
+          className="absolute right-0 mt-5 w-48 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 transition-all transform"
           style={{
             transitionDuration: "300ms",
-            transform: isOpen ? "scale(1)" : "scale(0.95)",
-            opacity: isOpen ? 1 : 0,
+            transform: "scale(1)",
+            opacity: 1,
           }}
-          ref={menuRef}
         >
           <div className="py-1">
             <a
@@ -66,7 +67,12 @@ const MenuButton = () => {
               Aprende
             </a>
             <a
-              href="signup"
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/signup");
+                setIsOpen(false);
+              }}
               className="block px-4 py-3 text-xl text-ct-grey hover:bg-gray-100"
             >
               Registro

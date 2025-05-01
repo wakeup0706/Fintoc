@@ -61,6 +61,10 @@ module.exports = {
           '65%': { transform: 'translate(0, -93px)', animationTimingFunction: 'cubic-bezier(0,1,1,1)' },
           '100%': { width: '45px', transform: 'translate(0, 0px)' },
         },
+        'spin-reverse': {
+          from: { transform: 'rotate(360deg)' },
+          to: { transform: 'rotate(0deg)' },
+        },
       },
       animation: {
         "stick-1-open": "stick-1-open 0.6s ease-out forwards",
@@ -69,17 +73,9 @@ module.exports = {
         "stick-2-close": "stick-2-close 0.6s ease-out forwards",
         "stick-3-open": "stick-3-open 0.6s linear forwards",
         "stick-3-close": "stick-3-close 0.6s ease-out forwards",
-      },
-      animation: {
         'spin-slow': 'spin 10s linear infinite', // Slower spin
         'spin-reverse': 'spin-reverse 20s linear infinite',
       },
-      keyframes: {
-        'spin-reverse': {
-          from: { transform: 'rotate(360deg)' },
-          to: { transform: 'rotate(0deg)' },
-        },
-      }
     },
   },
   plugins: [],

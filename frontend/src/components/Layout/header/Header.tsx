@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import Logo from "../../../assets/logo.svg";
 import Menu from "./MenuButton"
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [menubutton, setCardWidth] = useState(() => {
       const width = window.innerWidth;
       return width > 769 ? true : false;
     });
+
+  const navigate = useNavigate();
 
   const getCardWidth = () => {
     const width = window.innerWidth;
@@ -36,7 +39,7 @@ const Header = () => {
         <nav className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-8">
           <a href="#" className="text-gray-700 hover:text-primary text-lg">Servicios</a>
           <a href="#" className="text-gray-700 hover:text-primary text-lg">Aprende</a>
-          <a href="#" className="text-primary font-semibold text-lg">Registro</a>
+          <a href="" onClick={() => navigate('/signup')} className="text-primary font-semibold text-lg">Registro</a>
         </nav>: <Menu />}
       </div>
     </header>
