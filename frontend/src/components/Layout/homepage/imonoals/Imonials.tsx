@@ -76,7 +76,7 @@ const ImonialSlider = () => {
           <button
             onClick={handleNext}
             className=" rounded-full px-3 py-2 transition"
-          > <img src={nextArrow} alt="nextArrow" className='w-10' /></button>
+          > <img src={nextArrow} alt="nextArrow" className='w-10 hover:animate-pulse' /></button>
         </div>
       </div>
     </section>

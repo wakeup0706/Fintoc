@@ -1,5 +1,6 @@
 import Profile_first from "../../../assets/profile_first.svg";
 import Descubre from "../../../assets/descubre.jpg";
+import Button from "../../common/Button";
 const TopSection = () => {
   return (
     <section className="bg-primary text-white rounded-xl mt-10 md:mt-24 pb-10 sm:pb-16 py-16 sm:px-6 md:px-12 max-w-full overflow-hidden px-4">
@@ -15,9 +16,7 @@ const TopSection = () => {
             Conecta tu cuenta bancaria o gmail y deja que Gestiona.io detecte automáticamente
             los servicios que se están cobrando cada mes.
           </p>
-          <button className="bg-white text-primary font-semibold px-6 py-2 sm:py-3 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transform transition duration-300">
-            Empieza gratis
-          </button>
+          <Button title="Empieza gratis" bgColor="white" px="6" py="2" otherStyle="sm:py-3"/>
         </div>
 
         <div className="w-full md:w-1/2 relative flex justify-center">

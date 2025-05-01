@@ -70,6 +70,16 @@ module.exports = {
         "stick-3-open": "stick-3-open 0.6s linear forwards",
         "stick-3-close": "stick-3-close 0.6s ease-out forwards",
       },
+      animation: {
+        'spin-slow': 'spin 10s linear infinite', // Slower spin
+        'spin-reverse': 'spin-reverse 20s linear infinite',
+      },
+      keyframes: {
+        'spin-reverse': {
+          from: { transform: 'rotate(360deg)' },
+          to: { transform: 'rotate(0deg)' },
+        },
+      }
     },
   },
   plugins: [],

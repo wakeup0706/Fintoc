@@ -1,15 +1,21 @@
-import Loop from "../../../../assets/loop.svg";
-import Detencion1 from "../../../../assets/detencion(1).svg";
-import Detencion2 from "../../../../assets/detencion(2).svg";
-import Detencion3 from "../../../../assets/detencion(3).svg";
-import Netflix from "../../../../assets/Netflix.svg";
-import Uber from "../../../../assets/Uber.svg";
-import Spotify from "../../../../assets/Spotify.svg";
-import SmartFit from "../../../../assets/SmartFit.svg";
-import WOM from "../../../../assets/Wom.svg";
-import MercadoLibre from "../../../../assets/MercadoLibre.svg";
+import Loop from "../../../../assets/loop.png";
+import InLoop from "../../../../assets/inloop.png";
+import Netflix from "../../../../assets/logos/Netflix.svg";
+import Uber from "../../../../assets/logos/Uber.svg";
+import Spotify from "../../../../assets/logos/Spotify.svg";
+import SmartFit from "../../../../assets/logos/SmartFit.svg";
+import WOM from "../../../../assets/logos/Wom.svg";
+import MercadoLibre from "../../../../assets/logos/MercadoLibre.svg";
+import Crunchyroll from "../../../../assets/logos/Crunchyroll.png";
+import Disney from "../../../../assets/logos/Disney.png";
+import Dropbox from "../../../../assets/logos/Dropbox.png";
+import HBOMax from "../../../../assets/logos/HBOMax.png";
+import Hulu from "../../../../assets/logos/Hulu.png";
 import Step from './Step';
 import Step_mark from '../../../../assets/5226951787821528076.jpg';
+import RtlSlider from "../../../common/SliderLogos";
+
+const sampleItems = [Netflix, Uber, Spotify, SmartFit, WOM, MercadoLibre, ];
 
 const EasierSection= () => {
   return (
@@ -47,21 +53,17 @@ const EasierSection= () => {
           </div>
 
           <div className="relative w-full md:w-1/2 flex justify-center">
-            <img src={Loop} alt="Netflix" className="w-96" />
+            <img src={InLoop} alt="Netflix" className="absolute max-w-96 h-full" />
+            <img src={Loop} alt="Netflix" className="w-96 animate-spin-reverse" />
           </div>
         </div>
 
-        <div className="mt-3">
+        <div className="mt-10 md:mt-3">
           <h3 className="text-primary text-xl sm:text-2xl font-bold mb-6">
             Conoce todas las suscripciones que puedes gestionar
           </h3>
-          <div className="flex mt-5 flex-wrap justify-between items-center gap-10 grayscale">
-            <img src={Netflix} alt="Netflix" className="h-8" />
-            <img src={Uber} alt="Uber" className="h-8" />
-            <img src={Spotify} alt="Spotify" className="h-8" />
-            <img src={SmartFit} alt="SmartFit" className="h-8" />
-            <img src={WOM} alt="WOM" className="h-8" />
-            <img src={MercadoLibre} alt="MercadoLibre" className="h-8" />
+          <div className="mt-5 grayscale -mx-8">
+            <RtlSlider items={sampleItems} speed={1} />
           </div>
         </div>
 

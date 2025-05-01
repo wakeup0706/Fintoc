@@ -1,5 +1,6 @@
 import { Check, X } from 'lucide-react';
 import ArrowIco from '../../../assets/icons/arrow1.svg';
+import Button from '../../common/Button';
 
 const features = [
   {
@@ -45,7 +46,7 @@ export default function PricingComparison() {
         <div className="bg-secondary rounded-2xl p-6 text-center w-full h-full md:w-1/3">
           <h3 className="text-2xl font-bold text-primary mb-2">Únete gratis</h3>
           <p className=" text-gray-700 mb-4 text-lg w-50 font-bold">Gestiona fácil, rápido y sin complicaciones.</p>
-          <button className="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">Gestionar Gratis</button>
+          <Button title="Gestionar Gratis" bgColor="primary" px="4" h="8" otherStyle="text-sm font-semibold"/>
         </div>
         <div className="bg-secondary rounded-2xl p-6 text-center h-full w-full md:w-1/3">
           <h3 className="text-2xl font-bold text-primary mb-2">Sé un Pro</h3>
@@ -59,10 +60,10 @@ export default function PricingComparison() {
               <p className="text-xl font-bold bg-white rounded-full px-2 text-ct-grey mb-4">$9.990</p>
             </div>
           </div>
-          <button className="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">Prueba gratis por 7 días</button>
+          <Button title="Prueba gratis por 7 días" bgColor="primary" px="4" h="8" otherStyle="text-sm font-semibold"/>
         </div>
       </div>
-      <p className="text-center text-primary font-semibold mb-6 text-xl sm:text-2xl max-w-[600px] mx-auto">Compara y elige el plan que más te conviene <img src={ArrowIco} alt="ArrowIco" className='w-6 sm:w-8 h-6 sm:h-8 float-right' /></p>
+      <p className="text-center text-primary font-semibold mb-6 text-xl sm:text-2xl max-w-[600px] mx-auto">Compara y elige el plan que más te conviene <img src={ArrowIco} alt="ArrowIco" className='w-6 sm:w-8 h-6 sm:h-8 float-right animate-bounce' /></p>
 
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
