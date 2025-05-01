@@ -63,7 +63,7 @@ const EasierSection= () => {
             Conoce todas las suscripciones que puedes gestionar
           </h3>
           <div className="mt-5 grayscale -mx-8">
-            <RtlSlider items={sampleItems} speed={1} />
+            <RtlSlider items={sampleItems} speed={0.5} />
           </div>
         </div>
 
