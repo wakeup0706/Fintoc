@@ -28,7 +28,12 @@ const TopSection = () => {
             placeholder="Correo electrónico*"
             className="max-w-[400px] w-full h-[50px] sm:h-[55px] bg-white rounded-[10px] sm:rounded-[15px] border-none my-[15px] px-4 sm:p-7 text-base sm:text-1xl"
           />
-          <Button title="Unirme a lista de espera" bgColor="primary" px="6" h="2" otherStyle="sm:py-3 font-semibold max-w-[400px] w-full"/>
+          <button
+          // onClick={handleSubmit(onSubmit)}
+          className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] max-w-[400px] w-full h-[50px] mt-6 sm:mt-[10px]"
+          >
+            Unirme a lista de espera
+          </button>
         </div>
       </div>
     </section>

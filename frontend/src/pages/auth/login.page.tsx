@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import HelpButton from "../../components/common/HelpButton";
 
 const loginSchema = object({
   email: string().min(1, "Email is required").email("Invalid email"),
@@ -127,7 +128,6 @@ const LoginPage = () => {
         >
           {requestLoading ? <LoadingSpinner /> : "Iniciar sesión"}
         </button>
-
 
         <div className="flex items-center w-full mt-2 sm:mt-4 mb-2 sm:mb-4">
           <div className="flex-1 border-t border-gray-300"></div>
