@@ -50,29 +50,32 @@ const RtlSlider: React.FC<RtlSliderProps> = ({ items, speed = 0.5 }) => {
 
   return (
     <div className="w-full overflow-hidden">
-      {/* Desktop: One-line scrolling slider */}
       <div className="hidden sm:block">
         <div
           ref={desktopTrackRef}
           className="flex whitespace-nowrap will-change-transform"
         >
-          {[...items, ...items].map((item, i) => (
-            <img src={item} alt={item} key={i} className="h-8 mx-8"/>
-          ))}
+          {[...items, ...items].map((item, i) =>
+            typeof item === "string" ? (
+              <img src={item} alt={`img-${i}`} key={i} className="h-8 mx-8" />
+            ) : null
+          )}
         </div>
       </div>
-
-      {/* Mobile: Two-line sliders */}
       <div className="block sm:hidden space-y-2">
         <div ref={mobileTrackRef1} className="flex whitespace-nowrap will-change-transform">
-          {[...mobileItems1, ...mobileItems1].map((item, i) => (
-            <img src={item} alt={item} key={i} className="h-6 mx-8"/>
-          ))}
+        {[...mobileItems1, ...mobileItems1].map((item, i) =>
+          typeof item === "string" ? (
+            <img src={item} alt={`img-${i}`} key={i} className="h-8 mx-8" />
+          ) : null
+        )}
         </div>
         <div ref={mobileTrackRef2} className="flex whitespace-nowrap will-change-transform">
-          {[...mobileItems2, ...mobileItems2].map((item, i) => (
-            <img src={item} alt={item} key={i} className="h-6 mx-8 mt-4"/>
-          ))}
+          {[...mobileItems2, ...mobileItems2].map((item, i) =>
+            typeof item === "string" ? (
+              <img src={item} alt={`img-${i}`} key={i} className="h-8 mx-8" />
+            ) : null
+          )}
         </div>
       </div>
     </div>
