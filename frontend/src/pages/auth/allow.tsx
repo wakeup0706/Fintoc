@@ -1,3 +1,4 @@
+import Faltan from "../../components/allow_layout/FalTan";
 import Footer from "../../components/allow_layout/footer/Footer";
 import Gestiona from "../../components/allow_layout/gestiona/Gestiona";
 import Header from "../../components/allow_layout/Header";
@@ -10,7 +11,7 @@ const AllowPage = () => {
       <Header />
       <TopSection />
       <Gestiona />
-      allow page
+      <Faltan />
       <Footer />
     </>
   );

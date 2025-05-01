@@ -21,9 +21,8 @@ const TopSection = () => {
     <section className="bg-primary text-white rounded-xl mt-10 md:mt-24 pb-10 sm:pb-16 py-16 sm:px-6 md:px-12 max-w-full overflow-hidden px-4">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 mb-10 sm:mb-0">
-          <p className="text-3xl lg:leading-normal sm:text-4xl font-extrabold mb-6 lg:text-5xl">
-            Descubre y <br className="hidden md:block" />
-            controla<br />
+          <p className="text-3xl lg:leading-normal sm:text-[32px] font-extrabold mb-6 lg:text-[38px]">
+            Descubre, administra y controla<br />
             <AnimatePresence mode="wait">
               <motion.span
                 key={texts[currentTextIndex]}
@@ -31,7 +30,7 @@ const TopSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 5 }}
                 transition={{ duration: 0.4 }}
-                className="text-2xl sm:text-2xl lg:text-4xl inline-block bg-[#AEE8FF] text-primary px-1 sm:px-2 py-2 rounded mt-2 min-w-[6ch] text-center"
+                className=" text-2xl sm:text-2xl lg:text-[30px] inline-block bg-[#AEE8FF] text-primary px-3 lg:py-2 sm:py-1 rounded mt-6 min-w-[6ch] text-center"
               >
                 {texts[currentTextIndex]}
               </motion.span>
@@ -59,7 +58,7 @@ const TopSection = () => {
             />
             <div className="absolute inset-1/2 max-w-md w-full">
               <img src={Descubre} alt="Descubre" className="rounded-br-[80px] -translate-y-1/2 -translate-x-1/2 rounded-tl-[80px] max-w-full h-auto" />
-              <div className="absolute -top-40 sm:-top-64 -left-48 sm:-left-64 w-16 h-16 sm:w-28 sm:h-28 border-[15px] sm:border-[22px] border-white rounded-full translate-x-6 translate-y-6"></div>
+              <div className="absolute -top-40 sm:-top-64 md:-top-52 lg:-top-64 -left-48 md:-left-56 sm:-left-64 lg:-left-64 w-16 h-16 sm:w-28 md:w-24 lg:w-28 md:h-24 sm:h-28 lg:h-28 border-[15px] sm:border-[22px] border-white rounded-full translate-x-6 translate-y-6"></div>
               <div className="absolute -bottom-28 sm:-bottom-48 left-16 sm:left-28 w-16 h-16 border-[14px] border-white rounded-full translate-x-6 translate-y-6"></div>
               <div className="absolute -bottom-32 left-44 w-28 h-28 border-[22px] border-white rounded-full"></div>
             </div>

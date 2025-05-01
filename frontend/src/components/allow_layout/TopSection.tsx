@@ -16,7 +16,7 @@ const TopSection = () => {
           />
         </div>
         <div className="text-center lg:text-left">
-          <p className="text-primary max-w-[400px] font-semibold mb-6 text-xl sm:text-2xl mx-auto">
+          <p className="text-primary max-w-[400px] font-semibold mb-6 text-xl sm:text-2xl mx-auto lg:mx-0">
             Gestiona.io detecta, organiza y optimiza tus gastos recurrentes automáticamente.
           </p>
           <p className="text-ct-grey font-semibold text-base sm:text-xl">
