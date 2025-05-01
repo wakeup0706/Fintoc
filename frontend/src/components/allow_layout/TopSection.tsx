@@ -16,13 +16,12 @@ const TopSection = () => {
           />
         </div>
         <div className="text-center lg:text-left">
-          <p className="text-primary max-w-[400px] font-semibold mb-6 text-2xl">
+          <p className="text-primary max-w-[400px] font-semibold mb-6 text-xl sm:text-2xl mx-auto">
             Gestiona.io detecta, organiza y optimiza tus gastos recurrentes automáticamente.
           </p>
-          <p className="text-ct-grey font-semibold text-xl">
+          <p className="text-ct-grey font-semibold text-base sm:text-xl">
             Únete a la lista de espera y entera del lanzamiento
           </p>
-
           <input
             type="email"
             placeholder="Correo electrónico*"

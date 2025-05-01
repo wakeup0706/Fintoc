@@ -6,7 +6,7 @@ import Button from "../../common/Button";
 import HelpButton from "../../common/HelpButton";
 
 const TopSection = () => {
-  const texts = ["suscripciones", "gastos", "cargos", "presupuesto"];
+  const texts = ["todas suscripciones", "todas gastos", "todas cargos", "todas presupuesto"];
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
   useEffect(() => {
@@ -21,9 +21,9 @@ const TopSection = () => {
     <section className="bg-primary text-white rounded-xl mt-10 md:mt-24 pb-10 sm:pb-16 py-16 sm:px-6 md:px-12 max-w-full overflow-hidden px-4">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 mb-10 sm:mb-0">
-          <p className="text-xl lg:leading-normal sm:text-2xl font-extrabold mb-6 lg:text-4xl">
+          <p className="text-3xl lg:leading-normal sm:text-4xl font-extrabold mb-6 lg:text-5xl">
             Descubre y <br className="hidden md:block" />
-            controla todas <br />
+            controla<br />
             <AnimatePresence mode="wait">
               <motion.span
                 key={texts[currentTextIndex]}
@@ -31,8 +31,8 @@ const TopSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 5 }}
                 transition={{ duration: 0.4 }}
-                className="text-2xl sm:text-4xl lg:text-5xl inline-block bg-[#AEE8FF] text-primary px-2 rounded mt-2 min-w-[12ch] text-center"
-              > 
+                className="text-2xl sm:text-2xl lg:text-4xl inline-block bg-[#AEE8FF] text-primary px-1 sm:px-2 py-2 rounded mt-2 min-w-[6ch] text-center"
+              >
                 {texts[currentTextIndex]}
               </motion.span>
             </AnimatePresence>
