@@ -1,0 +1,38 @@
+import Mobile2 from "../../assets/Smartphone2.png";
+import Button from "../common/Button";
+
+const TopSection = () => {
+  return (
+    <section className="pt-8 sm:pt-16 max-w-6xl px-8 mx-auto bg-secondary rounded-tl-[70px] rounded-br-[70px]">
+      <div className="text-center mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl text-ct-grey font-bold mb-4">Pronto podrás controlar todas<br className='hidden sm:block'/> tus suscripciones en un solo lugar.</h2>
+      </div>
+      <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-8 p-6 pb-0 rounded-3xl max-w-4xl mx-auto">
+        <div className="flex-1 flex items-center max-w-[300px] justify-center">
+          <img
+            src={Mobile2}
+            alt="App preview"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="text-center lg:text-left">
+          <p className="text-primary max-w-[400px] font-semibold mb-6 text-2xl">
+            Gestiona.io detecta, organiza y optimiza tus gastos recurrentes automáticamente.
+          </p>
+          <p className="text-ct-grey font-semibold text-xl">
+            Únete a la lista de espera y entera del lanzamiento
+          </p>
+
+          <input
+            type="email"
+            placeholder="Correo electrónico*"
+            className="max-w-[400px] w-full h-[50px] sm:h-[55px] bg-white rounded-[10px] sm:rounded-[15px] border-none my-[15px] px-4 sm:p-7 text-base sm:text-1xl"
+          />
+          <Button title="Unirme a lista de espera" bgColor="primary" px="6" h="2" otherStyle="sm:py-3 font-semibold max-w-[400px] w-full"/>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TopSection;

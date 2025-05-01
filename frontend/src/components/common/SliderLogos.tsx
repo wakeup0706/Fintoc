@@ -57,7 +57,7 @@ const RtlSlider: React.FC<RtlSliderProps> = ({ items, speed = 0.5 }) => {
           className="flex whitespace-nowrap will-change-transform"
         >
           {[...items, ...items].map((item, i) => (
-            <img src={item} alt={item} key={i} className="h-8 mx-4"/>
+            <img src={item} alt={item} key={i} className="h-8 mx-8"/>
           ))}
         </div>
       </div>
@@ -66,12 +66,12 @@ const RtlSlider: React.FC<RtlSliderProps> = ({ items, speed = 0.5 }) => {
       <div className="block sm:hidden space-y-2">
         <div ref={mobileTrackRef1} className="flex whitespace-nowrap will-change-transform">
           {[...mobileItems1, ...mobileItems1].map((item, i) => (
-            <img src={item} alt={item} key={i} className="h-6 mx-4"/>
+            <img src={item} alt={item} key={i} className="h-6 mx-8"/>
           ))}
         </div>
         <div ref={mobileTrackRef2} className="flex whitespace-nowrap will-change-transform">
           {[...mobileItems2, ...mobileItems2].map((item, i) => (
-            <img src={item} alt={item} key={i} className="h-6 mx-4 mt-4"/>
+            <img src={item} alt={item} key={i} className="h-6 mx-8 mt-4"/>
           ))}
         </div>
       </div>

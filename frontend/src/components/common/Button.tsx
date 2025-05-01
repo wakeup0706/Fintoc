@@ -24,8 +24,8 @@ const Button = ({ title, bgColor, h, px, otherStyle = "" }: ButtonProps) => {
   return (
     <button
       className={clsx(
-        `relative z-0 rounded-full border font-bold overflow-hidden items-center transition-all`,
-        `px-${px} h-${h}`,
+        `relative z-0 rounded-full border overflow-hidden items-center transition-all`,
+        `px-${px} h-${h} ${otherStyle}`,
         `[box-shadow:0px_4px_1px_#a3a3a3] active:translate-y-[2px] active:shadow-none`,
         {
           "bg-white text-primary hover:bg-primary hover:text-white active:text-white":
@@ -39,7 +39,6 @@ const Button = ({ title, bgColor, h, px, otherStyle = "" }: ButtonProps) => {
           "after:bg-white": isWhite,
           "after:bg-primary": !isWhite,
         },
-        otherStyle
       )}
     >
       {title}
