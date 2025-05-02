@@ -3,7 +3,7 @@ import Button from "../common/Button";
 
 const TopSection = () => {
   return (
-    <section className="pt-8 sm:pt-16 max-w-6xl px-8 mx-auto bg-secondary rounded-tl-[70px] rounded-br-[70px]">
+    <section className="pt-8 sm:pt-16 max-w-6xl px-4 sm:px-8 mx-auto bg-secondary rounded-tl-[70px] rounded-br-[70px]">
       <div className="text-center mb-4">
         <h2 className="text-2xl sm:text-3xl md:text-4xl text-ct-grey font-bold mb-4">Pronto podrás controlar todas<br className='hidden sm:block'/> tus suscripciones en un solo lugar.</h2>
       </div>
@@ -29,7 +29,7 @@ const TopSection = () => {
           />
           <button
           // onClick={handleSubmit(onSubmit)}
-          className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] max-w-[400px] w-full h-[50px] mt-6 sm:mt-[10px]"
+          className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] max-w-[400px] w-full h-[40px] sm:h-[50px] sm:mt-3 sm:mt-[10px]"
           >
             Unirme a lista de espera
           </button>
