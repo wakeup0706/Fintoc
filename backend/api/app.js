@@ -8,6 +8,7 @@ require('dotenv').config();
 const db = require('./models');
 const authRoutes = require('./routes/auth.routes');
 const googleRoutes = require('./routes/google.routes');
+const userRoutes = require('./routes/user.routes');
 
 require('./config/google');
 require('./config/jwt');
@@ -50,7 +51,7 @@ app.use(passport.session());
 // ✅ Routes
 app.use('/auth', authRoutes);
 app.use('/auth/google', googleRoutes);
-
+app.use('/api', userRoutes);
 // ✅ Root route
 app.get('/', (req, res) => {
   res.send('Server started here!');
