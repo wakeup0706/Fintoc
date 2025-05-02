@@ -154,7 +154,6 @@ const SignupPage = () => {
         >
           {requestLoading ? <LoadingSpinner /> : "Registrarse"}
         </button>
-
         <div className="flex items-center w-full mt-2 sm:mt-4 mb-2 sm:mb-4">
           <div className="flex-1 border-t border-gray-300"></div>
           <span className="px-4 text-ct-grey text-xl">o</span>
@@ -174,7 +173,7 @@ const SignupPage = () => {
         </p>
       </div>
       <div className="flex h-[140px] md:h-[200px] justify-center items-center bg-primary w-full text-white absolute bottom-0 z-0">
-        <div className="md:w-[1039.58px] pt-[25px] md:pt-[60px] w-full flex justify-center">
+        <div className="md:w-[1040px] pt-[25px] md:pt-[60px] w-full flex justify-center">
           <p className="text-1xl sm:text-xl font-bold text-white">¿Ya tienes cuenta? Inicia sesión aquí.</p>
         </div>
       </div>

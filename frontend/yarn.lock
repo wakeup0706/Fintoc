@@ -851,6 +851,7 @@ globals@^11.1.0:
   resolved "file:"
   dependencies:
     "@fintoc/fintoc-js" "^1.1.2"
+    "@heroui/button" "^2.2.19"
     "@hookform/resolvers" "^2.9.10"
     framer-motion "^12.9.4"
     google-github-oath2-reactjs "file:"
@@ -1614,9 +1615,9 @@ vite-plugin-vercel@^9.0.5:
     zod "^3.23.8"
 
 vite@^4.0.0, vite@^4.1.0-beta.0, "vite@^4.4 || ^5.0.2 || ^6":
-  version "4.5.13"
-  resolved "https://registry.npmjs.org/vite/-/vite-4.5.13.tgz"
-  integrity sha512-Hgp8IF/yZDzKsN1hQWOuQZbrKiaFsbQud+07jJ8h9m9PaHWkpvZ5u55Xw5yYjWRXwRQ4jwFlJvY7T7FUJG9MCA==
+  version "4.5.14"
+  resolved "https://registry.npmjs.org/vite/-/vite-4.5.14.tgz"
+  integrity sha512-+v57oAaoYNnO3hIu5Z/tJRZjq5aHM2zDve9YZ8HngVHbhk66RStobhb1sqPMIPEleV6cNKYK4eGrAbE9Ulbl2g==
   dependencies:
     esbuild "^0.18.10"
     postcss "^8.4.27"
