@@ -75,3 +75,28 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: 'Login failed', error: err.message });
   }
 };
+
+exports.sendPermissionRequest = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required.' });
+    }
+
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    // Update the 'allowed' field to true
+    user.allowed = true;
+    await user.save();
+
+    return res.status(200).json({ message: 'Permission granted successfully.' });
+  } catch (error) {
+    console.error('Permission update failed:', error);
+    return res.status(500).json({ message: 'Internal server error.' });
+  }
+};

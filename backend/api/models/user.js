@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
     email: {
       type: DataTypes.STRING,
       unique: true,
@@ -24,16 +30,22 @@ module.exports = (sequelize, DataTypes) => {
     },
     roleId: {
       type: DataTypes.INTEGER,
+      references: {
+        model: 'Roles', // This is the table we're referencing
+        key: 'id',
+      },
+      allowNull: false,
+    },
+    allowed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
     }
   });
 
   User.associate = function(models) {
-    // A User belongs to a Role
-    User.belongsTo(models.Role, {
-      foreignKey: 'roleId',
-      as: 'role',
-    });
+    // Make sure 'Role' is loaded before this
+    User.belongsTo(models.Role, { foreignKey: 'roleId', as: 'role' });
   };
 
   return User;

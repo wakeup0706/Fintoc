@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon api/app.js"
+    "start": "nodemon api/app.js",
+    "migrate": "npx sequelize-cli db:migrate --config api/config/config.js --migrations-path api/migrations --env development",
+    "migrate-pro": "npx sequelize-cli db:migrate --config api/config/config.js --migrations-path api/migrations --env production"
   },
   "author": "",
   "license": "ISC",
@@ -26,3 +28,4 @@
     "sequelize": "^6.37.7"
   }
 }
+

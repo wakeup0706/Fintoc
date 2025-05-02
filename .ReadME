@@ -1,0 +1,6 @@
+// npx sequelize-cli seed:generate --name demo-users --config api/config/config.js --seeders-path api/seeders
+// npx sequelize-cli db:seed:all --config api/config/config.js --seeders-path api/seeders --env production
+
+
+// npx sequelize-cli migration:generate --name add-allowed-to-users --config api/config/config.js --migrations-path api/migrations
+// npx sequelize-cli db:migrate --config api/config/config.js --migrations-path api/migrations --env production

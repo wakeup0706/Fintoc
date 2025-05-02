@@ -5,7 +5,6 @@ const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 require('dotenv').config();
-
 const db = require('./models');
 const authRoutes = require('./routes/auth.routes');
 const googleRoutes = require('./routes/google.routes');
@@ -57,7 +56,16 @@ app.get('/', (req, res) => {
   res.send('Server started here!');
 });
 
-// ✅ Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// ✅ Authenticate DB and Start server
+db.sequelize.authenticate()
+  .then(() => {
+    console.log('✅ Database connected successfully.');
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('❌ Unable to connect to the database:', err);
+    process.exit(1);
+  });
