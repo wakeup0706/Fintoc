@@ -5,7 +5,7 @@ const { use } = require('../routes/auth.routes');
 
 exports.register = async (req, res) => {
   const { email, password, first_name } = req.body;
-  
+
   try {
     // Check if user already exists
     const existing = await User.findOne({ where: { email } });
@@ -69,7 +69,7 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ id: user.id, email: user.email, first_name: user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
       expiresIn: '1d',
     });
-    console.log( 'here' );
+
     res.json({ token, user });
   } catch (err) {
     res.status(500).json({ message: 'Login failed', error: err.message });
