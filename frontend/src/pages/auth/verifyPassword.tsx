@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GoogleLogo from "../../assets/google.svg";
-import { signInWithGoogle } from "../../utils/getGoogleUrl";
 import { object, string, TypeOf } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,15 +9,11 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const loginSchema = object({
   email: string().min(1, "Email is required").email("Invalid email"),
-  password: string()
-    .min(1, "Password is required")
-    .min(8, "Must be at least 8 characters")
-    .max(32, "Must be under 32 characters"),
 });
 
 export type LoginInput = TypeOf<typeof loginSchema>;
 
-const LoginPage = () => {
+const VerifyPassword = () => {
   const navigate = useNavigate();
   const [requestLoading, setRequestLoading] = useState(false);
 
@@ -52,7 +46,7 @@ const LoginPage = () => {
       if (!res.ok) throw result;
 
       loginWithToken(result.token);
-      navigate('/profile');
+      navigate('/signin');
     } catch (error: any) {
       setRequestLoading(false);
       console.log("herer=>", requestLoading)
@@ -77,8 +71,8 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-[700px] flex flex-col justify-center items-center mb-[100px] border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-8 sm:py-3 bg-white z-20 relative sm:mt-[50px] sm:mb-[200px]">
-        <div className="flex justify-center items-center gap-4 sm:gap-6 mt-6">
+      <div className="w-full max-w-[700px] flex gap-0 sm:gap-4 flex-col justify-center items-center border rounded-[24px] sm:rounded-[49px] shadow-md px-4 sm:px-8 md:px-[80px] py-12 sm:py-20 bg-white z-20 relative sm:mt-[50px] sm:mb-[100px]">
+        <div className="flex justify-center items-center gap-4 sm:gap-6">
           <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]">
             <svg width="100%" height="100%" viewBox="0 0 154 156" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M153.201 28.5342C153.201 12.8016 140.404 0 124.672 0C108.94 0 96.1433 12.8016 96.1433 28.5342C96.1433 44.2668 108.942 57.0684 124.672 57.0684C128.323 57.0684 131.803 56.3537 135.016 55.0971C139.05 65.4837 145.023 88.0868 132.383 110.347C122.047 128.547 100.814 138.945 76.5557 138.769L76.5499 151.81C76.7372 151.81 78.2931 151.81 78.4804 151.81C107.309 151.81 131.072 139.063 143.721 116.785C160.352 87.496 150.809 58.4892 145.98 47.4398C150.458 42.3993 153.201 35.7881 153.201 28.5313V28.5342ZM109.182 28.5342C109.182 19.9921 116.132 13.0408 124.672 13.0408C133.212 13.0408 140.162 19.9921 140.162 28.5342C140.162 37.0763 133.215 44.0276 124.672 44.0276C116.129 44.0276 109.182 37.0792 109.182 28.5342Z" fill="#361BD0"/>
@@ -90,72 +84,29 @@ const LoginPage = () => {
           <p className="text-[2rem] sm:text-[2rem] font-bold text-[#3A3A3A]">gestiona</p>
         </div>
 
-        <p className="text-[1.5rem] font-bold text-primary mt-3 sm:mt-[30px] text-center">¡Que bueno verte de nuevo!</p>
+        <p className="text-[1.5rem] font-bold text-primary mt-3 sm:mt-[40px] text-center">Formulario de olvido de contraseña</p>
 
         <input
           type="email"
           placeholder="Correo electrónico*"
-          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[10px] sm:rounded-[15px] mt-[15px] px-4 sm:p-7 text-base sm:text-1xl"
+          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[32px] px-4 sm:p-7 text-base sm:text-1xl"
           {...register("email")}
         />
         {errors.email && (
-          <p className="text-red-500 text-sm sm:text-xl mt-2">Se requiere correo electrónico</p>
+          <p className="text-red-500 text-xl mt-2">Se requiere correo electrónico</p>
         )}
-
-        <input
-          type="password"
-          placeholder="Contraseña*"
-          className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[32px] px-4 sm:p-7 text-base sm:text-1xl"
-          {...register("password")}
-        />
-        {errors.password && (
-          <p className="text-red-500 text-sm sm:text-xl mt-2">Se requiere contraseña</p>
-        )}
-
-        <div className="flex flex-col sm:flex-row w-full gap-3 justify-between items-start sm:items-center mt-4 sm:mt-[20px]">
-          <label className="text-base sm:text-1xl font-bold flex items-center gap-2">
-            <input type="checkbox" className="w-4 h-4 sm:w-6 sm:h-6 accent-primary"/>
-            Mostrar Contraseña
-          </label>
-
-          <p className="text-ct-grey text-base sm:text-1xl">¿Olvidaste tu contraseña?</p>
-        </div>
 
         <button
           onClick={handleSubmit(onSubmit)}
-          className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[30px]"
+          className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[40px]"
         >
-          {requestLoading ? <LoadingSpinner /> : "Iniciar sesión"}
+          {requestLoading ? <LoadingSpinner /> : "enviar correo electrónico"}
         </button>
-
-        <div className="flex items-center w-full mt-2 sm:mt-4 mb-2 sm:mb-4">
-          <div className="flex-1 border-t border-gray-300"></div>
-          <span className="px-4 text-ct-grey text-base sm:text-xl">o</span>
-          <div className="flex-1 border-t border-gray-300"></div>
-        </div>
-
-        <button
-          onClick={signInWithGoogle}
-          className="flex items-center justify-center gap-4 border-2 border-grey-300 text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] sm:h-[50px] hover:bg-gray-50 transition-colors"
-        >
-          <img src={GoogleLogo} alt="Google Logo" className="w-6 h-6 sm:w-7 sm:h-7" />
-          Continuar con Google
-        </button>
-
-        <p className="text-ct-grey text-base sm:text-xl mt-3 sm:mt-[28px] mb-8 sm:mb-[15px] font-bold text-center">
-          ¿No tienes una cuenta? <span className="text-primary cursor-pointer hover:underline" onClick={() => navigate('/signup')}>Regístrate</span>
-        </p>
       </div>
 
       <div className="w-full bg-primary text-white py-1 sm:py-16 absolute bottom-0 left-0 z-10">
-        <div className="w-full max-w-[700px] mx-auto px-4 sm:px-0 mt-16 sm:mt-20">
+        <div className="w-full max-w-[700px] mx-auto px-4 sm:px-0 mt-32 sm:mt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3 sm:gap-0 pb-4">
-            <div className="flex flex-col gap-0 justify-center items-center">
-              <p className="text-base sm:text-xl font-bold text-white">¿Necesitas ayuda?</p>
-              <p className="text-base sm:text-xl text-[#AEE8FF] font-bold">Contáctanos</p>
-            </div>
-            <p className="text-base sm:text-xl font-bold text-white">Condiciones de uso</p>
-            <p className="text-base sm:text-xl font-bold text-white">Política de privacidad</p>
           </div>
         </div>
       </div>
@@ -163,5 +114,5 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default VerifyPassword;
 

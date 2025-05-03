@@ -61,7 +61,7 @@ const SignupPage = () => {
       if (!res.ok) throw result;
 
       loginWithToken(result.token);
-      navigate('/signin');
+      navigate('/allow');
     } catch (error: any) {
       setRequestLoading(false);
 

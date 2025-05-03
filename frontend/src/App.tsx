@@ -6,6 +6,8 @@ import Dashboard from "./pages/dashboard.page";
 import RegisterPage from "./pages/auth/register.page";
 import PrivateRoute from "./components/PrivateRoute";
 import AllowPage from "./pages/auth/allow";
+import VerifyPassword from "./pages/auth/verifyPassword";
+import ChangePassword from "./pages/auth/changePassword";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/signin" element={<LoginPage />} />
       <Route path="/signup" element={<RegisterPage />} />
+      <Route path="/forget" element={<VerifyPassword />} />
+      <Route path="/changepass" element={<ChangePassword />} />
       <Route path="/allow" element={<AllowPage />} />
 
       <Route element={<PrivateRoute />}>
