@@ -72,7 +72,6 @@ const AllowPage = () => {
    const onSubmit: SubmitHandler<LoginInput> = (values) => {
      loginUser(values);
    };
-
   return (
     <>
       <Header />

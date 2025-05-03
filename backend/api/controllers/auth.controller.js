@@ -1,11 +1,11 @@
 const { User, Role } = require('../models');
 const jwt = require('jsonwebtoken');
 const { hashPassword, verifyPassword } = require('../utils/hash');
-const { use } = require('../routes/auth.routes');
+const { sendResetEmail } = require('../utils/mailer');
 
 exports.register = async (req, res) => {
   const { email, password, first_name } = req.body;
-  
+
   try {
     // Check if user already exists
     const existing = await User.findOne({ where: { email } });
@@ -69,9 +69,74 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ id: user.id, email: user.email, first_name: user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
       expiresIn: '1d',
     });
-    console.log( 'here' );
+
     res.json({ token, user });
   } catch (err) {
     res.status(500).json({ message: 'Login failed', error: err.message });
+  }
+};
+
+exports.sendPermissionRequest = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required.' });
+    }
+
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    // Update the 'allowed' field to true
+    user.allowed = true;
+    await user.save();
+
+    return res.status(200).json({ message: 'Permission granted successfully.' });
+  } catch (error) {
+    console.error('Permission update failed:', error);
+    return res.status(500).json({ message: 'Internal server error.' });
+  }
+};
+
+exports.requestPasswordReset = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const token = jwt.sign(
+      { email },
+      process.env.RESET_PASSWORD_SECRET || 'reset-secret',
+      { expiresIn: '15m' }
+    );
+
+    const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+
+    await sendResetEmail(email, resetLink);
+
+    res.json({ message: 'Reset link sent to your email.' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error sending email', error: err.message });
+  }
+};
+
+exports.resetPassword = async (req, res) => {
+  const { token, password } = req.body;
+
+  try {
+    const decoded = jwt.verify(token, process.env.RESET_PASSWORD_SECRET || 'reset-secret');
+    const user = await User.findOne({ where: { email: decoded.email } });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    user.password = await hashPassword(password);
+    await user.save();
+
+    res.json({ message: 'Password has been reset successfully' });
+  } catch (err) {
+    res.status(400).json({ message: 'Invalid or expired token' });
   }
 };

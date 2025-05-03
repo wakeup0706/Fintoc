@@ -6,7 +6,7 @@ import Button from "../../common/Button";
 import HelpButton from "../../common/HelpButton";
 
 const TopSection = () => {
-  const texts = ["todas suscripciones", "todas gastos", "todas cargos", "todas presupuesto"];
+  const texts = ["Tus suscripciones", "Tus gastos", "Tus cargos", "Tu presupuesto"];
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
   useEffect(() => {
