@@ -15,8 +15,8 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/signin" element={<LoginPage />} />
       <Route path="/signup" element={<RegisterPage />} />
-      <Route path="/forget" element={<VerifyPassword />} />
-      <Route path="/changepass" element={<ChangePassword />} />
+      <Route path="/forgot-password" element={<VerifyPassword />} />
+      <Route path="/reset-password" element={<ChangePassword />} />
       <Route path="/allow" element={<AllowPage />} />
 
       <Route element={<PrivateRoute />}>

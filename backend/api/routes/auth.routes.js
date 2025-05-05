@@ -5,7 +5,7 @@ const { login, register, sendPermissionRequest, requestPasswordReset, resetPassw
 router.post('/register', register);
 router.post('/login', login);
 router.post('/send/permission', sendPermissionRequest)
-router.post('request/reset-password', requestPasswordReset);
-router.post('reset-password', resetPassword);
+router.post('/request/reset-password', requestPasswordReset);
+router.post('/reset-password', resetPassword);
 
 module.exports = router;

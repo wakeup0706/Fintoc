@@ -64,7 +64,11 @@ exports.login = async (req, res) => {
     if (!user) return res.status(400).json({ message: 'Invalid credentials' });
 
     const valid = await verifyPassword(password, user.password);
+
     if (!valid) return res.status(400).json({ message: 'Invalid credentials' });
+
+    if (!user.allowed) res.redirect(`http://localhost:3000/allow`);
+    if (user.google_id) res.status(400).json({ message: 'This account uses Gmail login' });
 
     const token = jwt.sign({ id: user.id, email: user.email, first_name: user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
       expiresIn: '1d',
@@ -105,8 +109,19 @@ exports.requestPasswordReset = async (req, res) => {
   const { email } = req.body;
 
   try {
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
     const user = await User.findOne({ where: { email } });
-    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.google_id) {
+      return res.status(400).json({ message: 'This account uses Google login' });
+    }
 
     const token = jwt.sign(
       { email },
@@ -114,13 +129,17 @@ exports.requestPasswordReset = async (req, res) => {
       { expiresIn: '15m' }
     );
 
-    const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+    const resetLink = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password?token=${token}`;
 
     await sendResetEmail(email, resetLink);
 
-    res.json({ message: 'Reset link sent to your email.' });
+    return res.status(200).json({ message: 'Password reset link sent to your email.' });
   } catch (err) {
-    res.status(500).json({ message: 'Error sending email', error: err.message });
+    console.error('Error in password reset:', err);
+    return res.status(500).json({
+      message: 'Failed to send password reset email.',
+      error: process.env.NODE_ENV === 'development' ? err.message : undefined,
+    });
   }
 };
 
