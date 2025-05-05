@@ -131,7 +131,10 @@ exports.requestPasswordReset = async (req, res) => {
 
     const resetLink = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password?token=${token}`;
 
-    await sendResetEmail(email, resetLink);
+    const { error } = await sendResetEmail(email, resetLink);
+    if (error) {
+      throw new Error(error.message || 'Email service failed');
+    }
 
     return res.status(200).json({ message: 'Password reset link sent to your email.' });
   } catch (err) {
