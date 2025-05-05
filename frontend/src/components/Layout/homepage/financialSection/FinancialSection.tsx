@@ -1,6 +1,5 @@
 import SmartPhon from "../../../../assets/Smartphone1.png"
 import PriceList from "./PriceList";
-
 import Spotify from "../../../../assets/icons/Spotify.svg";
 import Prime from "../../../../assets/icons/Prime.svg";
 import Office from "../../../../assets/icons/Office.svg";
@@ -19,7 +18,7 @@ const subscriptions = [
   { name: "Metlife", prop: "Mensual",  price: "$29.990", icon: Metlife },
 ];
 const subscriptions2 = [
-  { name: "Movistar", prop: "Mensual", price: "$15.990", icon: Movistar },
+  { name: "Movistar", prop: "Mensual", price: "$15.990", changedValue: "$12.990", icon: Movistar },
   { name: "Entel", prop: "Mensual", price: "$12.990", icon: Entel },
   { name: "VTR", prop: "Mensual", price: "$75.000", icon: VTR },
   { name: "WOM", prop: "Mensual", price: "$12.000", icon: WOM },

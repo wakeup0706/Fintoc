@@ -6,11 +6,6 @@ import Spotify from "../../../../assets/logos/Spotify.svg";
 import SmartFit from "../../../../assets/logos/SmartFit.svg";
 import WOM from "../../../../assets/logos/Wom.svg";
 import MercadoLibre from "../../../../assets/logos/MercadoLibre.svg";
-import Crunchyroll from "../../../../assets/logos/Crunchyroll.png";
-import Disney from "../../../../assets/logos/Disney.png";
-import Dropbox from "../../../../assets/logos/Dropbox.png";
-import HBOMax from "../../../../assets/logos/HBOMax.png";
-import Hulu from "../../../../assets/logos/Hulu.png";
 import Step from './Step';
 import Step_mark from '../../../../assets/5226951787821528076.jpg';
 import RtlSlider from "../../../common/SliderLogos";
@@ -25,7 +20,7 @@ const EasierSection= () => {
           Gestionar tus suscripciones y pagos<br/> ahora es mas fácil
         </h2>
         <p className="text-primary text-xl font-semibold mb-8 sm:mb-16 md:text-2xl">
-          Invertimos pagos por suscripciones
+          Administra, cancela y ahorra
         </p>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-3">

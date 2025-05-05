@@ -1,7 +1,7 @@
 import Mobile2 from "../../assets/Smartphone2.png";
 import LoadingSpinner from "../common/LoadingSpinner";
 
-const TopSection = ({isRequestLoading}:{isRequestLoading:boolean}) => {
+const TopSection = () => {
   return (
     <section className="pt-8 sm:pt-16 max-w-6xl px-4 sm:px-8 mx-auto bg-secondary rounded-tl-[70px] rounded-br-[70px]">
       <div className="text-center mb-4">
@@ -31,7 +31,8 @@ const TopSection = ({isRequestLoading}:{isRequestLoading:boolean}) => {
           // onClick={handleSubmit(onSubmit)}
           className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] max-w-[400px] w-full h-[40px] sm:h-[50px] mt-3 sm:mt-[10px]"
           >
-            {isRequestLoading ? <LoadingSpinner /> : "Unirme a lista de espera"}
+            {/* {isRequestLoading ? <LoadingSpinner /> : "Unirme a lista de espera"} */}
+            Unirme a lista de espera
           </button>
         </div>
       </div>

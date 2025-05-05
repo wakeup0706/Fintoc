@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Logo from "../../../assets/logo.svg";
-import Menu from "./MenuButton"
 import { useNavigate } from "react-router-dom";
+import { MenuButton } from "./MenuButton";
 
 const Header = () => {
   const [menubutton, setCardWidth] = useState(() => {
@@ -40,7 +40,7 @@ const Header = () => {
           <a href="#" className="text-gray-700 hover:text-primary text-lg">Servicios</a>
           <a href="#" className="text-gray-700 hover:text-primary text-lg">Aprende</a>
           <a href="" onClick={() => navigate('/signup')} className="text-primary font-semibold text-lg">Registro</a>
-        </nav>: <Menu />}
+        </nav>: <MenuButton />}
       </div>
     </header>
   );

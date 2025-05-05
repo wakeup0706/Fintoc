@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Profile_first from "../../../assets/profile_first.svg";
 import Descubre from "../../../assets/descubre.jpg";
-import Button from "../../common/Button";
 import HelpButton from "../../common/HelpButton";
 
 const TopSection = () => {
@@ -21,7 +20,7 @@ const TopSection = () => {
     <section className="bg-primary text-white rounded-xl mt-10 md:mt-24 pb-10 sm:pb-16 py-16 sm:px-6 md:px-12 max-w-full overflow-hidden px-4">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 mb-10 sm:mb-0">
-          <p className="text-3xl lg:leading-normal sm:text-[32px] font-extrabold mb-6 lg:text-[38px]">
+          <p className="text-[28px] lg:leading-normal sm:text-[30px] font-extrabold mb-6 lg:text-[36px]">
             Descubre, administra y controla<br />
             <AnimatePresence mode="wait">
               <motion.span
@@ -30,7 +29,7 @@ const TopSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 5 }}
                 transition={{ duration: 0.4 }}
-                className=" text-2xl sm:text-2xl lg:text-[30px] inline-block bg-[#AEE8FF] text-primary px-3 lg:py-2 sm:py-1 rounded mt-6 min-w-[6ch] text-center"
+                className=" text-[22px] lg:text-[28px] inline-block bg-[#AEE8FF] text-primary px-3 lg:py-2 sm:py-1 rounded mt-6 min-w-[6ch] text-center"
               >
                 {texts[currentTextIndex]}
               </motion.span>

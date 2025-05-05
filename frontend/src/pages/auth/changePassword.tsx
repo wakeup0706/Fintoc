@@ -7,7 +7,7 @@ import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 
-const loginSchema = object({
+const changePasswordSchema = object({
   password: string()
     .min(1, "Password is required")
     .min(8, "Must be at least 8 characters")
@@ -18,8 +18,6 @@ const loginSchema = object({
   message: "Passwords do not match",
 });
 
-export type LoginInput = TypeOf<typeof loginSchema>;
-
 const ChangePassword = () => {
   const navigate = useNavigate();
   const [requestLoading, setRequestLoading] = useState(false);
@@ -28,53 +26,13 @@ const ChangePassword = () => {
     loginWithToken,
   } = useAppStore.authStore.getState();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginInput>({
-    resolver: zodResolver(loginSchema),
-  });
-
-  const loginUser = async (data: LoginInput) => {
-    try {
-      setRequestLoading(true);
-      const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
-
-      const res = await fetch(`${endpoint}/auth/login`, {
-        method: "POST",
-        credentials: "include",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) throw result;
-
-      loginWithToken(result.token);
-      navigate('/profile');
-    } catch (error: any) {
-      setRequestLoading(false);
-      console.log("herer=>", requestLoading)
-      if (error?.error) {
-        error.error.forEach((e: any) =>
-          toast.error(e.message, { position: "top-right" })
-        );
-        return;
-      }
-
-      toast.error(error.message || "Something went wrong", {
-        position: "top-right",
-      });
-    } finally {
-      setRequestLoading(false);
-    }
-  };
-
-  const onSubmit: SubmitHandler<LoginInput> = (values) => {
-    loginUser(values);
-  };
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<LoginInput>({
+  //   resolver: zodResolver(loginSchema),
+  // });
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
@@ -97,24 +55,24 @@ const ChangePassword = () => {
           type="password"
           placeholder="Contraseña*"
           className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[24px] p-7 text-base sm:text-1xl"
-          {...register("password")}
+          // {...register("password")}
         />
-        {errors.password && (
+        {/* {errors.password && (
           <p className="text-red-500 text-xl mt-2">Se requiere contraseña</p>
-        )}
+        )} */}
 
         <input
           type="password"
           placeholder="Confirmar contraseña*"
           className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[24px] p-7 text-base sm:text-1xl"
-          {...register("confirmPassword")}
+          // {...register("confirmPassword")}
         />
-        {errors.confirmPassword && (
+        {/* {errors.confirmPassword && (
           <p className="text-red-500 text-xl mt-2">Confirme su contraseña</p>
-        )}
+        )} */}
 
         <button
-          onClick={handleSubmit(onSubmit)}
+          // onClick={handleSubmit(onSubmit)}
           className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[40px]"
         >
           {requestLoading ? <LoadingSpinner /> : "enviar correo electrónico"}
