@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { object, string, TypeOf } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import { jwtDecode } from "jwt-decode";
+import { useLocation } from "react-router-dom";
 
 const changePasswordSchema = object({
   password: string()
@@ -18,9 +20,27 @@ const changePasswordSchema = object({
   message: "Passwords do not match",
 });
 
+
 const ChangePassword = () => {
   const navigate = useNavigate();
+  const { search } = useLocation();
+
   const [requestLoading, setRequestLoading] = useState(false);
+
+  useEffect(() => {
+    // when login in with gmail....
+    const params = new URLSearchParams(search);
+    const emailToken = params.get("token");
+
+    if (emailToken) {
+      const decoded = jwtDecode(emailToken) as any;
+      const user = {
+        email: decoded.email,
+      };
+      console.log(user);
+    }
+
+  }, []);
 
   const {
     loginWithToken,

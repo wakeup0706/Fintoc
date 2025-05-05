@@ -15,35 +15,35 @@ exports.getProfile = async (req, res) => {
     } catch (err) {
       res.status(500).json({ message: 'Failed to fetch profile', error: err.message });
     }
-  };
+};
 
-  exports.updateProfile = async (req, res) => {
-    const { first_name, last_name, current_password, new_password } = req.body;
+exports.updateProfile = async (req, res) => {
+  const { first_name, last_name, current_password, new_password } = req.body;
 
-    try {
-      const user = await User.findByPk(req.user.id);
-      if (!user) return res.status(404).json({ message: 'User not found' });
+  try {
+    const user = await User.findByPk(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
 
-      if (new_password) {
-        if (!current_password) {
-          return res.status(400).json({ message: 'Current password is required to change password' });
-        }
-
-        const valid = await verifyPassword(current_password, user.password);
-        if (!valid) {
-          return res.status(400).json({ message: 'Current password is incorrect' });
-        }
-
-        user.password = await hashPassword(new_password);
+    if (new_password) {
+      if (!current_password) {
+        return res.status(400).json({ message: 'Current password is required to change password' });
       }
 
-      user.first_name = first_name || user.first_name;
-      user.last_name = last_name || user.last_name;
+      const valid = await verifyPassword(current_password, user.password);
+      if (!valid) {
+        return res.status(400).json({ message: 'Current password is incorrect' });
+      }
 
-      await user.save();
-
-      res.json({ message: 'Profile updated successfully' });
-    } catch (err) {
-      res.status(500).json({ message: 'Update failed', error: err.message });
+      user.password = await hashPassword(new_password);
     }
-  };
+
+    user.first_name = first_name || user.first_name;
+    user.last_name = last_name || user.last_name;
+
+    await user.save();
+
+    res.json({ message: 'Profile updated successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Update failed', error: err.message });
+  }
+};
