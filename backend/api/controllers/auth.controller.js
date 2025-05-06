@@ -125,7 +125,7 @@ exports.requestPasswordReset = async (req, res) => {
 
     const token = jwt.sign(
       { email },
-      process.env.RESET_PASSWORD_SECRET || 'reset-secret',
+      process.env.JWT_SECRET || 'reset-secret',
       { expiresIn: '15m' }
     );
 
