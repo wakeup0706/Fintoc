@@ -67,7 +67,7 @@ exports.login = async (req, res) => {
 
     if (!valid) return res.status(400).json({ message: 'Invalid credentials' });
 
-    if (!user.allowed) return res.redirect(`http://localhost:3000/allow`);
+    if (!user.allowed) return res.redirect(`https://fintoc-oa6c-beta.vercel.app/allow`);
     if (user.google_id) return res.status(400).json({ message: 'This account uses Gmail login' });
 
     const token = jwt.sign({ id: user.id, email: user.email, first_name: user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
@@ -129,7 +129,7 @@ exports.requestPasswordReset = async (req, res) => {
       { expiresIn: '15m' }
     );
 
-    const resetLink = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password?token=${token}`;
+    const resetLink = `https://fintoc-oa6c-beta.vercel.app/allow/reset-password?token=${token}`;
 
     const { error } = await sendResetEmail(email, resetLink);
     if (error) {
@@ -152,6 +152,7 @@ exports.resetPassword = async (req, res) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'reset-secret');
     const user = await User.findOne({ where: { email: decoded.email } });
+    console.log(user);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     user.password = await hashPassword(password);
