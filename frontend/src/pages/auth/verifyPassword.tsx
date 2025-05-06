@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { object, string, TypeOf } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -11,17 +11,46 @@ const verifyPasswordSchema = object({
   email: string().min(1, "Email is required").email("Invalid email"),
 });
 
+export type VerifyPassword = TypeOf<typeof verifyPasswordSchema>;
+
 const VerifyPassword = () => {
   const navigate = useNavigate();
   const [requestLoading, setRequestLoading] = useState(false);
   
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm<LoginInput>({
-  //   resolver: zodResolver(verifyPasswordSchema),
-  // });
+  const {
+    getUser,
+  } = useAppStore.authStore.getState();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<VerifyPassword>({
+    resolver: zodResolver(verifyPasswordSchema),
+  });
+
+  const verifyRequest = async (data:VerifyPassword) =>{
+    try{
+      setRequestLoading(true);
+      const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
+
+      const res = await fetch(`${endpoint}/auth/request/reset-password`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) throw result;
+      console.log(result);
+    }catch{}finally{}
+  }
+
+  const onSubmit: SubmitHandler<VerifyPassword> = (value) =>{
+    verifyRequest(value);
+  };
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
@@ -44,25 +73,18 @@ const VerifyPassword = () => {
           type="email"
           placeholder="Correo electrónico*"
           className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[32px] px-4 sm:p-7 text-base sm:text-1xl"
-          // {...register("email")}
+          {...register("email")}
         />
-        {/* {errors.email && (
+        {errors.email && (
           <p className="text-red-500 text-xl mt-2">Se requiere correo electrónico</p>
-        )} */}
+        )}
 
         <button
-          // onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit(onSubmit)}
           className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[40px]"
         >
           {requestLoading ? <LoadingSpinner /> : "enviar correo electrónico"}
         </button>
-      </div>
-
-      <div className="w-full bg-primary text-white py-1 sm:py-16 absolute bottom-0 left-0 z-10">
-        <div className="w-full max-w-[700px] mx-auto px-4 sm:px-0 mt-32 sm:mt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3 sm:gap-0 pb-4">
-          </div>
-        </div>
       </div>
     </div>
   );

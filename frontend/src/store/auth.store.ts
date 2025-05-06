@@ -17,9 +17,9 @@ export const authStore = create<AuthState>((set) => ({
       const decoded = jwtDecode(token) as any;
       const user = {
         id: decoded.id,
-        name: decoded.name,
+        first_name: decoded.first_name,
+        last_name: decoded.last_name,
         email: decoded.email,
-        role: decoded.role,
         photo: decoded.photo,
         provider: decoded.provider,
         verified: decoded.verified,
@@ -39,9 +39,9 @@ export const authStore = create<AuthState>((set) => ({
     const decoded = jwtDecode(token) as any;
     const user = {
       id: decoded.id,
-      name: decoded.name,
+      first_name: decoded.first_name,
+      last_name: decoded.last_name,
       email: decoded.email,
-      role: decoded.role,
       photo: decoded.photo,
       provider: decoded.provider,
       verified: decoded.verified,
