@@ -68,7 +68,7 @@ exports.login = async (req, res) => {
     if (!valid) return res.status(400).json({ message: 'Invalid credentials' });
 
     if (!user.allowed) {
-      return res.status(400).json({ message: 'You should get access permission', redirectUrl: 'https://fintoc-oa6c-beta.vercel.app/allow' });
+      return res.status(400).json({ message: 'You should get access permission', redirectUrl: `${process.env.FRONTEND_URL}/allow` });
     }
 
     if (user.google_id) {
@@ -136,7 +136,7 @@ exports.requestPasswordReset = async (req, res) => {
       { expiresIn: '15m' }
     );
 
-    const resetLink = `https://fintoc-oa6c-beta.vercel.app/allow/reset-password?token=${token}`;
+    const resetLink = `${process.env.FRONTEND_URL}/allow/reset-password?token=${token}`;
 
     const { error } = await sendResetEmail(email, resetLink);
     if (error) {

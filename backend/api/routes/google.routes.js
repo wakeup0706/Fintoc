@@ -10,7 +10,9 @@ router.get('/', passport.authenticate('google', {
 router.get('/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
   if (!req.user) return res.status(401).send('Authentication failed');
 
-  if(!req.user.allowed)  res.redirect(`https://fintoc-oa6c-beta.vercel.app/allow`);
+  if (!req.user.allowed) {
+    return res.redirect(`${process.env.FRONTEND_URL}/allow`);
+  }
 
   const token = jwt.sign({ id: req.user.id, email: req.user.email, first_name: req.user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
     expiresIn: '1d',
@@ -32,7 +34,7 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/log
   //   },
   // });
 
-  res.redirect(`https://fintoc-oa6c-beta.vercel.app/profile?token=${token}`);
+  return res.redirect(`${process.env.FRONTEND_URL}/dashboard?token=${token}`);
 });
 
 router.get('/login/success', (req, res) => {
