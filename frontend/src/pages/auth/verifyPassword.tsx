@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { object, string, TypeOf } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAppStore } from "../../store";
-import { toast } from "react-toastify";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const verifyPasswordSchema = object({
   email: string().min(1, "Email is required").email("Invalid email"),
@@ -14,12 +13,8 @@ const verifyPasswordSchema = object({
 export type VerifyPassword = TypeOf<typeof verifyPasswordSchema>;
 
 const VerifyPassword = () => {
-  const navigate = useNavigate();
   const [requestLoading, setRequestLoading] = useState(false);
-  
-  const {
-    getUser,
-  } = useAppStore.authStore.getState();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -44,8 +39,17 @@ const VerifyPassword = () => {
       const result = await res.json();
 
       if (!res.ok) throw result;
-      console.log(result);
-    }catch{}finally{}
+
+    }catch (error: any) {
+      if (error?.error) {
+        error.error.forEach((e: any) =>
+          toast.error(e.message, { position: "top-right" })
+        );
+        return;
+      }
+    }finally{
+      setRequestLoading(false);
+    }
   }
 
   const onSubmit: SubmitHandler<VerifyPassword> = (value) =>{
@@ -85,6 +89,10 @@ const VerifyPassword = () => {
         >
           {requestLoading ? <LoadingSpinner /> : "enviar correo electrónico"}
         </button>
+
+        <p className="text-ct-grey text-sm sm:text-lg mt-3 sm:mt-[28px] mb-2 sm:mb-[15px] font-bold text-center">
+          <span className="text-primary cursor-pointer hover:underline" onClick={() => navigate('/signin')}>volver a la página de inicio de sesión</span>
+        </p>
       </div>
     </div>
   );

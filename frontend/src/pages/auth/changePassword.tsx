@@ -20,39 +20,61 @@ const changePasswordSchema = object({
   message: "Passwords do not match",
 });
 
+export type RsetPassword = TypeOf<typeof changePasswordSchema>;
 
 const ChangePassword = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
 
   const [requestLoading, setRequestLoading] = useState(false);
+  const params = new URLSearchParams(search);
+  const emailToken = params.get("token");
 
-  useEffect(() => {
-    // when login in with gmail....
-    const params = new URLSearchParams(search);
-    const emailToken = params.get("token");
-
-    if (emailToken) {
-      const decoded = jwtDecode(emailToken) as any;
-      const user = {
-        email: decoded.email,
-      };
-      console.log(user);
-    }
-
-  }, []);
+  const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<RsetPassword>({
+      resolver: zodResolver(changePasswordSchema),
+    });
 
   const {
     loginWithToken,
   } = useAppStore.authStore.getState();
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm<LoginInput>({
-  //   resolver: zodResolver(loginSchema),
-  // });
+  const resetPassword = async (data:RsetPassword) =>{
+      try{
+        setRequestLoading(true);
+        const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
+  
+        const res = await fetch(`${endpoint}/auth/reset-password`, {
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify({...data, token:emailToken}),
+          headers: { "Content-Type": "application/json" },
+        });
+  
+        const result = await res.json();
+  
+        if (!res.ok) throw result;
+
+        toast.success(result.message, {position: "top-right"});
+
+      }catch (error: any) {
+        if (error?.error) {
+          error.error.forEach((e: any) =>
+            toast.error(e.message, { position: "top-right" })
+          );
+          return;
+        }
+      }finally{
+        setRequestLoading(false);
+      }
+    }
+  
+    const onSubmit: SubmitHandler<RsetPassword> = (value) =>{
+      resetPassword(value);
+    };
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
@@ -75,39 +97,34 @@ const ChangePassword = () => {
           type="password"
           placeholder="Contraseña*"
           className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[24px] p-7 text-base sm:text-1xl"
-          // {...register("password")}
+          {...register("password")}
         />
-        {/* {errors.password && (
+        {errors.password && (
           <p className="text-red-500 text-xl mt-2">Se requiere contraseña</p>
-        )} */}
+        )}
 
         <input
           type="password"
           placeholder="Confirmar contraseña*"
           className="w-full h-[60px] sm:h-[70px] bg-secondary rounded-[15px] sm:rounded-[15px] mt-4 sm:mt-[24px] p-7 text-base sm:text-1xl"
-          // {...register("confirmPassword")}
+          {...register("confirmPassword")}
         />
-        {/* {errors.confirmPassword && (
+        {errors.confirmPassword && (
           <p className="text-red-500 text-xl mt-2">Confirme su contraseña</p>
-        )} */}
+        )}
 
         <button
-          // onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit(onSubmit)}
           className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[40px]"
         >
           {requestLoading ? <LoadingSpinner /> : "enviar correo electrónico"}
         </button>
-      </div>
-
-      <div className="w-full bg-primary text-white py-1 sm:py-16 absolute bottom-0 left-0 z-10">
-        <div className="w-full max-w-[700px] mx-auto px-4 sm:px-0 mt-32 sm:mt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3 sm:gap-0 pb-4">
-          </div>
-        </div>
+        <p className="text-ct-grey text-sm sm:text-lg mt-3 sm:mt-[20px] mb-2 sm:mb-[15px] font-bold text-center">
+          <span className="text-primary cursor-pointer hover:underline" onClick={() => navigate('/signin')}>volver a la página de inicio de sesión</span>
+        </p>
       </div>
     </div>
   );
 };
 
 export default ChangePassword;
-

@@ -52,7 +52,7 @@ const LoginPage = () => {
       if (!res.ok) throw result;
 
       loginWithToken(result.token);
-      navigate('/profile');
+      navigate('/dashboard');
     } catch (error: any) {
       setRequestLoading(false);
       console.log("herer=>", requestLoading)
@@ -118,7 +118,7 @@ const LoginPage = () => {
             Mostrar Contraseña
           </label>
 
-          <p className="text-ct-grey text-base sm:text-sm">¿Olvidaste tu contraseña?</p>
+          <p className="text-ct-grey text-base sm:text-sm cursor-pointer hover:underline" onClick={() => navigate('/forgot-password')}>¿Olvidaste tu contraseña?</p>
         </div>
 
         <button
