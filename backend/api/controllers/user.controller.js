@@ -1,5 +1,6 @@
 const { User, Role } = require('../models');
 const { hashPassword, verifyPassword } = require('../utils/hash');
+const jwt = require('jsonwebtoken');
 
 exports.getProfile = async (req, res) => {
     try {
@@ -42,7 +43,11 @@ exports.updateProfile = async (req, res) => {
 
     await user.save();
 
-    res.json({ message: 'Profile updated successfully' });
+    const token = jwt.sign({ id: user.id, email: user.email, first_name: user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
+      expiresIn: '1d',
+    });
+
+    res.json({ message: 'Profile updated successfully', token: token});
   } catch (err) {
     res.status(500).json({ message: 'Update failed', error: err.message });
   }

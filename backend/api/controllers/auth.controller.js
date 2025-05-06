@@ -67,8 +67,8 @@ exports.login = async (req, res) => {
 
     if (!valid) return res.status(400).json({ message: 'Invalid credentials' });
 
-    if (!user.allowed) res.redirect(`http://localhost:3000/allow`);
-    if (user.google_id) res.status(400).json({ message: 'This account uses Gmail login' });
+    if (!user.allowed) return res.redirect(`http://localhost:3000/allow`);
+    if (user.google_id) return res.status(400).json({ message: 'This account uses Gmail login' });
 
     const token = jwt.sign({ id: user.id, email: user.email, first_name: user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {
       expiresIn: '1d',
