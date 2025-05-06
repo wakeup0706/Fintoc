@@ -183,13 +183,6 @@
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.24.2.tgz"
   integrity sha512-7VTgWzgMGvup6aSqDPLiW5zHaxYJGTO4OokMjIlrCtf+VpEL+cXKtCvg723iguPYI5oaUNdS+/V7OU2gvXVWEg==
 
-"@fintoc/fintoc-js@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/@fintoc/fintoc-js/-/fintoc-js-1.1.2.tgz"
-  integrity sha512-itF0aAf5qmAjPYOjjwtK3FZaPkc1jc2NN+ZDsBbq7P/ZKs9mC0XzKESVK1CXmhhzc5IUKBchqug+xliLlxMXHg==
-  optionalDependencies:
-    fsevents "^2.3.2"
-
 "@hookform/resolvers@^2.9.10":
   version "2.9.11"
   resolved "https://registry.npmjs.org/@hookform/resolvers/-/resolvers-2.9.11.tgz"
@@ -850,7 +843,6 @@ globals@^11.1.0:
   version "0.0.0"
   resolved "file:"
   dependencies:
-    "@fintoc/fintoc-js" "^1.1.2"
     "@hookform/resolvers" "^2.9.10"
     framer-motion "^12.9.4"
     google-github-oath2-reactjs "file:"
@@ -1614,9 +1606,7 @@ vite-plugin-vercel@^9.0.5:
     zod "^3.23.8"
 
 vite@^4.0.0, vite@^4.1.0-beta.0, "vite@^4.4 || ^5.0.2 || ^6":
-  version "4.5.14"
-  resolved "https://registry.npmjs.org/vite/-/vite-4.5.14.tgz"
-  integrity sha512-+v57oAaoYNnO3hIu5Z/tJRZjq5aHM2zDve9YZ8HngVHbhk66RStobhb1sqPMIPEleV6cNKYK4eGrAbE9Ulbl2g==
+  version "4.5.13"
   dependencies:
     esbuild "^0.18.10"
     postcss "^8.4.27"
