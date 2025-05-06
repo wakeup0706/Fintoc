@@ -1,14 +1,11 @@
-import { useEffect } from "react";
-import { useAppStore } from "../store";
+import React from 'react';
+import DashboardLayout from '../components/dashboard_layout/DashboardLayout';
 
 const DashboardPage = () => {
-
-  const { getUser } = useAppStore.authStore.getState();
-
   return (
-    <div>
-      <h1>Dashboard Page</h1>
-    </div>
+    <DashboardLayout>
+      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
+    </DashboardLayout>
   );
 };
 
