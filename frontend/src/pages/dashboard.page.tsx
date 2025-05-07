@@ -18,35 +18,6 @@ const DashboardPage = () => {
       <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
       <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
       <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
-      <h1 className="text-xl font-bold">Bien Día, Jacobo.</h1>
     </DashboardLayout>
   );
 };
