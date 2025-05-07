@@ -1,9 +1,7 @@
-import { useAppStore } from '../../store/appStore';
 import { Setting_Strocke, ChartPie_Strocke, Walle_Strocke, LogOut} from "../icons";
 import SiderbarMenu from '../common/SiderbarMenu';
 import SiderbarCuentas from '../common/SiderbarCuentas';
-import CustomButton from '../common/ButtonPlus';
-import HamburgerMenu from '../common/HamburgerMenu';
+import ButtonPlus from '../common/ButtonPlus';
 
 const cuenta = [
 	{cuenta:"xxxx-xxxx", Saldo:"$7.256"},
@@ -12,12 +10,9 @@ const cuenta = [
 
 const Sidebar = ({collapse}:{collapse:boolean}) => {
 
-	const toggleSidebar = useAppStore((state) => state.toggleSidebar);
-
   	return (
 		<aside className={`bg-primary text-white relative rounded-br-2xl transition-all duration-300 ${collapse ? '-left-[253px]' : 'left-0'}`}>
-			<button onClick={toggleSidebar} className='absolute -right-12 top-8'><HamburgerMenu /></button>
-			<div className='flex justify-between px-4 py-8 items-center'>
+			<div className='flex justify-between px-4 py-[17px] md:py-8 items-center'>
 				<h1 className="text-md place-conten font-medium">Hola, Jacobo</h1>
 				<div className='flex gap-2'>
 					<ChartPie_Strocke className={`w-7 h-7 cursor-pointer`}/> 
@@ -41,12 +36,12 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 			</div>
 			<SiderbarCuentas cuentas={cuenta} />
 			<div className='px-2 mt-10'>
-				<CustomButton text='Agregar cuenta' bgColor='white' />
-				<CustomButton text='Agregar Tarjeta de Crédito' bgColor='primary' />
+				<ButtonPlus text='Agregar cuenta' bgColor='white' />
+				<ButtonPlus text='Agregar Tarjeta de Crédito' bgColor='primary' />
 			</div>
 			<div className='absolute left-2 bottom-5 gap-5 flex items-center'>
 				<span>Cerrar Sesión</span>
-				<button onClick={toggleSidebar} className=''><LogOut className='w-6 h-6' /></button>
+				<button className=''><LogOut className='w-6 h-6' /></button>
 			</div>
 		</aside>
   	);
