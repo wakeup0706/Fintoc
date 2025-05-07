@@ -30,7 +30,7 @@ const Header = () => {
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-6xl md:mx-auto flex mx-6 flex-row items-center justify-between pt-4 pb-2 sm:pt-6 sm:pb-4 md:space-y-0">
 
-        <LogoComponent imgSize="[50px]" textSize='xl' />
+      <LogoComponent imgOther="w-12 h-12" textSize="xl" textOther="" />
 
         {menubutton?
         <nav className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-8">

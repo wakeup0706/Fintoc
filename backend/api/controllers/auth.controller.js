@@ -114,7 +114,7 @@ exports.sendPermissionRequest = async (req, res) => {
 
 exports.requestPasswordReset = async (req, res) => {
   const { email } = req.body;
-
+  console.log(email);
   try {
     if (!email) {
       return res.status(400).json({ message: 'Email is required' });
@@ -136,7 +136,7 @@ exports.requestPasswordReset = async (req, res) => {
       { expiresIn: '15m' }
     );
 
-    const resetLink = `${process.env.FRONTEND_URL}/allow/reset-password?token=${token}`;
+    const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
 
     const { error } = await sendResetEmail(email, resetLink);
     if (error) {
