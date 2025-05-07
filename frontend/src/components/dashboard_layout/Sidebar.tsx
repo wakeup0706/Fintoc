@@ -2,6 +2,7 @@ import { Setting_Strocke, ChartPie_Strocke, Walle_Strocke, LogOut} from "../icon
 import SiderbarMenu from '../common/SiderbarMenu';
 import SiderbarCuentas from '../common/SiderbarCuentas';
 import ButtonPlus from '../common/ButtonPlus';
+import { useEffect } from "react";
 
 const cuenta = [
 	{cuenta:"xxxx-xxxx", Saldo:"$7.256"},
@@ -11,7 +12,7 @@ const cuenta = [
 const Sidebar = ({collapse}:{collapse:boolean}) => {
 
   	return (
-		<aside className={`bg-primary text-white relative rounded-br-2xl transition-all duration-300 ${collapse ? '-left-[253px]' : 'left-0'}`}>
+		<aside className={`bg-primary text-white relative rounded-br-2xl transition-all duration-300 ${collapse ? '-left-[253px]' : 'left-0'} z-50`}>
 			<div className='flex justify-between px-4 py-[17px] md:py-8 items-center'>
 				<h1 className="text-md place-conten font-medium">Hola, Jacobo</h1>
 				<div className='flex gap-2'>
