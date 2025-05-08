@@ -1,7 +1,7 @@
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
   } from 'recharts';
-  
+
   const data = [
     { name: '', value: 55 },
     { name: 'JAN', value: 45 },
@@ -18,11 +18,11 @@ import {
     { name: 'DEC', value: 54 },
     { name: '', value: 38 },
   ];
-  
+
   const CustomLineChart = () => {
     return (
       <div className="rounded-xl overflow-hidden bg-[#2c2c2c] p-4">
-        <ResponsiveContainer width="100%" height={200}>
+        <ResponsiveContainer width="100%">
           <LineChart data={data}>
             <CartesianGrid vertical={false} strokeOpacity={0.1} />
             <XAxis dataKey="name" stroke="#fff" />
@@ -40,5 +40,5 @@ import {
       </div>
     );
   };
-  
+
   export default CustomLineChart;
