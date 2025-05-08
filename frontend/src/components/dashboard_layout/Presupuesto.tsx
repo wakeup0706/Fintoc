@@ -1,0 +1,31 @@
+const transactions = [
+  { category: "Ingreso", amount: "11.500" },
+  { category: "Cuenta y Suscripciones", amount: "1.000" },
+  { category: "Auto", amount: "2.000" },
+  { category: "Farmacia", amount: "700" },
+  { category: "Seguro", amount: "1.200" },
+  { category: "Vehículo", amount: "2.500" },
+  { category: "Salud", amount: "1.500" },
+  { category: "Importe", amount: "600" },
+];
+
+  const Presupuesto = () => {
+    return (
+      <div className="rounded-2xl bg-secondary w-full overflow-hidden">
+        <div className="bg-ct-grey py-3 text-white text-xl font-bold pl-8">Recientes</div>
+        <div className="p-4 grid grid-flow-col gap-8">
+          <div>
+            {transactions.map((tx, index) => (
+              <div key={index} className="bg-white rounded-full grid grid-cols-[70%_30%] my-3 items-center">
+                <div className="pl-8">{tx.category}</div>
+                <div><span className="bg-ct-grey text-white font-bold py-1.5 w-full text-center rounded-full inline-block">${tx.amount}</span></div>
+              </div>
+            ))}
+          </div>
+          <div></div>
+        </div>
+      </div>
+    );
+  };
+  
+  export default Presupuesto;

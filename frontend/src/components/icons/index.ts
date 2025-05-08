@@ -4,6 +4,8 @@ import { ReactComponent as ChartPie_Strocke } from "./ChartPie_Stroke.svg?react"
 import { ReactComponent as Walle_Strocke } from "./Walle_Stroke.svg?react";
 import { ReactComponent as Logo } from "./Logo.svg?react";
 import { ReactComponent as LogOut } from "./LogOut.svg?react";
+import { ReactComponent as ChileLogo } from "./ChileLogo.svg?react";
+import { ReactComponent as Premium } from "./Premium.svg?react";
 
 export {
   Setting_Strocke,
@@ -12,4 +14,6 @@ export {
   Walle_Strocke,
   Logo,
   LogOut,
+  ChileLogo,
+  Premium,
 };
