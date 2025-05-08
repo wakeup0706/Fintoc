@@ -1,3 +1,5 @@
+// import PieChart from "./PieChart";
+
 const transactions = [
   { category: "Ingreso", amount: "11.500" },
   { category: "Cuenta y Suscripciones", amount: "1.000" },
@@ -6,7 +8,7 @@ const transactions = [
   { category: "Seguro", amount: "1.200" },
   { category: "Vehículo", amount: "2.500" },
   { category: "Salud", amount: "1.500" },
-  { category: "Importe", amount: "600" },
+  { category: "Importe", amount: "600" }, 
 ];
 
   const Presupuesto = () => {
@@ -22,7 +24,7 @@ const transactions = [
               </div>
             ))}
           </div>
-          <div></div>
+          {/* <PieChart /> */}
         </div>
       </div>
     );

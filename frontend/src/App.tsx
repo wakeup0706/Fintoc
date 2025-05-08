@@ -18,10 +18,10 @@ function App() {
       <Route path="/forgot-password" element={<VerifyPassword />} />
       <Route path="/reset-password" element={<ChangePassword />} />
       <Route path="/allow" element={<AllowPage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
 
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
     </Routes>
   );
