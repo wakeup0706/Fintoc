@@ -39,7 +39,7 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 				<ButtonPlus text='Agregar cuenta' bgColor='white' />
 				<ButtonPlus text='Agregar Tarjeta de Crédito' bgColor='primary' />
 			</div>
-			<div className='absolute left-2 bottom-5 gap-5 flex items-center'>
+			<div className='absolute left-6 bottom-8 gap-5 flex items-center'>
 				<span>Cerrar Sesión</span>
 				<button className=''><LogOut className='w-6 h-6' /></button>
 			</div>
