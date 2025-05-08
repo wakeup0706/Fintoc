@@ -1,6 +1,5 @@
 import Sidebar from './Sidebar';
 import { useAppStore } from '../../store/appStore';
-import { useEffect } from 'react';
 
 const SidebarWrapper = () => {
 
