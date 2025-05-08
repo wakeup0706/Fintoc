@@ -5,6 +5,7 @@ import ProximoCobros from '../components/dashboard_layout/ProximoCobros';
 import CustomLineChart from '../components/dashboard_layout/LineChart';
 import { Premium } from '../components/icons';
 import Presupuesto from '../components/dashboard_layout/Presupuesto';
+import GptButton from '../components/common/GptButton';
 
 const DashboardPage = () => {
   return (
@@ -32,10 +33,11 @@ const DashboardPage = () => {
         <div className='flex justify-between items-center px-8'>
           <div className='md:text-2xl text-ct-grey font-semibold'>Presupuesto Abril</div>
         </div>
-        <div className='p-5 pr-0'>
+        <div className='p-5 pr-0 pb-0'>
           <Presupuesto />
         </div>
       </div>
+      <GptButton />
     </DashboardLayout>
   );
 };

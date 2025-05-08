@@ -6,6 +6,7 @@ import { ReactComponent as Logo } from "./Logo.svg?react";
 import { ReactComponent as LogOut } from "./LogOut.svg?react";
 import { ReactComponent as ChileLogo } from "./ChileLogo.svg?react";
 import { ReactComponent as Premium } from "./Premium.svg?react";
+import { ReactComponent as GptIcon } from "./GptButton.svg?react";
 
 export {
   Setting_Strocke,
@@ -16,4 +17,5 @@ export {
   LogOut,
   ChileLogo,
   Premium,
+  GptIcon,
 };

@@ -1,15 +1,10 @@
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-
-// Import the variable-pie module
 import VariablePie from 'highcharts/modules/variable-pie';
-
-// Initialize the variable-pie module
 if (typeof VariablePie === 'function') {
   VariablePie(Highcharts);
 }
 
-// Chart options
 const options = {
   chart: {
     type: 'variablepie',
@@ -31,11 +26,10 @@ const options = {
       zMin: 0,
       name: 'countries',
       data: [
-        { name: 'Spain', y: 505370, z: 92.9 },
-        { name: 'France', y: 551500, z: 118.7 },
-        { name: 'Poland', y: 312685, z: 124.6 },
-        { name: 'UK', y: 243610, z: 101.5 },
-        { name: 'Italy', y: 301230, z: 120 },
+        { name: '30%', y: 30, z: 92.9 },
+        { name: '15%', y: 15, z: 118.7 },
+        { name: '45%', y: 45, z: 124.6 },
+        { name: '50%', y: 50, z: 101.5 },
       ],
     },
   ],
