@@ -21,7 +21,7 @@ import {
 
   const CustomLineChart = () => {
     return (
-      <div className="rounded-xl overflow-hidden bg-[#2c2c2c] p-4">
+      <div className="rounded-xl overflow-hidden bg-[#2c2c2c] p-4 min-h-[313px]">
         <ResponsiveContainer width="100%">
           <LineChart data={data}>
             <CartesianGrid vertical={false} strokeOpacity={0.1} />
