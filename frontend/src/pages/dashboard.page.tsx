@@ -15,7 +15,7 @@ const DashboardPage = () => {
           <div className='md:text-xl text-ct-grey font-semibold'>Buen Día,<span>Jacobo</span>.</div>
           <div className=' rounded-full text-lg font-medium gap-2 items-center flex text-white bg-primary px-4 py-2'><Premium />Hazte Premium</div>
         </div>
-        <div className='grid-cols-[70%_30%] justify-between grid gap-5 p-5'>
+        <div className='justify-between grid grid-cols-1 md:grid-cols-[70%_30%] gap-5 p-5'>
           <CustomLineChart />
           <AddAccount />
         </div>
@@ -24,7 +24,7 @@ const DashboardPage = () => {
         <div className='flex justify-between w-[70%] items-center px-8'>
           <div className='md:text-2xl text-ct-grey font-semibold'>Gastos</div>
         </div>
-        <div className='grid-cols-[70%_30%] justify-between grid gap-5 p-5'>
+        <div className='justify-between grid grid-cols-1 md:grid-cols-[70%_30%] gap-5 p-5'>
           <Gastos_Recientes />
           <ProximoCobros />
         </div>

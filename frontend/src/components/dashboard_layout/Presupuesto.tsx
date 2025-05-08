@@ -7,13 +7,14 @@ const transactions = [
   { category: "Farmacia", amount: "700" },
   { category: "Seguro", amount: "1.200" },
   { category: "Vehículo", amount: "2.500" },
+  { category: "Salud", amount: "1.500" },
+  { category: "Importe", amount: "600" },
 ];
 
   const Presupuesto = () => {
     return (
       <div className="rounded-2xl bg-secondary w-full overflow-hidden">
         <div className="bg-ct-grey py-3 text-white text-xl font-bold pl-8">Recientes</div>
-
         <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
           <div className="h-full flex flex-col">
             {transactions.map((tx, index) => (

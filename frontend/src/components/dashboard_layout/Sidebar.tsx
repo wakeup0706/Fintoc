@@ -11,7 +11,7 @@ const cuenta = [
 const Sidebar = ({collapse}:{collapse:boolean}) => {
 
   	return (
-		<aside className={`min-w-80 bg-primary text-white relative rounded-br-2xl transition-all duration-300 ${collapse ? '-left-[253px]' : 'left-0'} z-50`}>
+		<aside className={`min-w-80 bg-primary text-white relative rounded-br-2xl transition-all duration-300 ${collapse ? '-left-80' : 'left-0'} z-50`}>
 			<div className='flex justify-between px-4 py-[17px] md:py-8 items-center'>
 				<h1 className="text-md place-conten font-medium">Hola, Jacobo</h1>
 				<div className='flex gap-2'>
@@ -39,7 +39,7 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 				<ButtonPlus text='Agregar cuenta' bgColor='white' />
 				<ButtonPlus text='Agregar Tarjeta de Crédito' bgColor='primary' />
 			</div>
-			<div className='absolute left-2 bottom-5 gap-5 flex items-center'>
+			<div className='absolute left-6 bottom-8 gap-5 flex items-center'>
 				<span>Cerrar Sesión</span>
 				<button className=''><LogOut className='w-6 h-6' /></button>
 			</div>
