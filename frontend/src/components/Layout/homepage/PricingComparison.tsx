@@ -4,36 +4,73 @@ import HelpButton from '../../common/HelpButton';
 
 const features = [
   {
-    title: 'Detección de Pagos recurrentes. Celular, Creditos etc.',
+    title: 'Vinculación de una cuenta bancaria o tarjeta',
     free: true,
     pro: true,
-    freeDescription: 'Identificamos automáticamente todas tus suscripciones y pagos periódicos, como servicios, arriendos, membresías o cuentas.',
-    proDescription: 'Identificamos automáticamente todas tus suscripciones y pagos periódicos, como servicios, arriendos, membresías o cuentas.'
+    freeDescription: 'Vincula una cuenta bancaria y gestiona tus suscripciones y gastos de forma automatica',
+    proDescription: 'Vincula una cuenta bancaria y gestiona tus suscripciones y gastos de forma automatica'
   },
   {
-    title: 'Notificaciones ilimitadas por cada suscripción.',
+    title: 'Detección de Suscripciones, creditos y gastos recurrentes',
+    free: true,
+    pro: true,
+    freeDescription: 'Identificamos automaticamente todas tus suscripciones y pagos recurrentes, como servicios, arriendos, membresias o cuentas.',
+    proDescription: 'Identificamos automaticamente todas tus suscripciones y pagos recurrentes, como servicios, arriendos, membresias o cuentas.'
+  },
+  {
+    title: 'Vinculación de varias cuentas y tarjetas',
     free: false,
     pro: true,
-    proDescription: 'Te avisamos con antelación antes de que un pago automático sea cobrado. Así evitas sorpresas y mantienes el control.'
+    proDescription: 'Conecta 2 o más cuentas y manten el control total de tus gastos, suscripciones y presupuesto.'
   },
   {
-    title: 'Cancelación automática de servicios',
+    title: 'Notificaciones Ilimitadas por suscripción',
     free: false,
     pro: true,
-    proDescription: 'Gestionas las bajas de servicios por ti, sin tener que pasar por procesos largos o confusos. Sólo eliges y listo.'
+    proDescription: 'Te notificamos con antelación antes de que un pago automatico sea cobrado. Asi evitas sorpresas y mantienes el control'
   },
   {
-    title: 'Score financiero personalizado',
+    title: 'Cancelación Automatica de servicios',
+    free: false,
+    pro: true,
+    proDescription: 'Cancela suscripciones que no uses, o recibe apoyo de nuestro equipo para gestionar la baja de forma práctica y expedita'
+  },
+  {
+    title: 'Panel completo con etiquetas personalizadas',
+    free: false,
+    pro: true,
+    proDescription: 'Visualiza en tiempo real tus suscripciones, servicios, gastos recurrentes, saldos y tu presupuesto de gasto. Todo en un solo lugar'
+  },
+  {
+    title: 'Informe de Gastos Mensuales',
+    free: false,
+    pro: true,
+    proDescription: 'Mantén el orden de tus gastos, obten informes en tiempo real de los gastos frecuentes que realizas'
+  },
+  {
+    title: 'Presupuesto Mensual por categorías.',
+    free: false,
+    pro: true,
+    proDescription: 'Ordena tus finanzas y elabora un presupuesto mensual de tus gastos fijos, ahorra e invierte.'
+  },
+  {
+    title: 'Alertas de cobro y gastos',
+    free: false,
+    pro: true,
+    proDescription: 'Recibe alertas inteligentes sobre cobros duplicados o aumentos inesperados.'
+  },
+  {
+    title: 'Score Financiero Personalizado',
     free: false,
     pro: true,
     proDescription: 'Obtén una puntuación mensual de salud financiera basada en tus hábitos de gasto. Ideal para entender y mejorar tu perfil económico.'
   },
   {
-    title: 'Reporte mensual en PDF',
+    title: 'Reporte mensual en PDF de Gastos.',
     free: false,
     pro: true,
     proDescription: 'Recibe un resumen descargable y ordenado de tus movimientos, ideal para presupuestos, impuestos o control personal.'
-  }
+  },
 ];
 
 export default function PricingComparison() {
