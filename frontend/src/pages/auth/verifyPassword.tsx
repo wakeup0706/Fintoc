@@ -39,7 +39,7 @@ const VerifyPassword = () => {
       const result = await res.json();
 
       if (!res.ok) throw result;
-
+      toast.success("El correo electrónico fue enviado correctamente.", { position: "top-right" })
     }catch (error: any) {
       if (error?.error) {
         error.error.forEach((e: any) =>
