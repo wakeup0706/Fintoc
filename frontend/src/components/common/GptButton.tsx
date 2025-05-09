@@ -2,7 +2,7 @@ import { GptIcon } from "../icons";
 
 export default function GptButton() {
   return (
-    <div className="fixed bottom-3 right-12 group flex flex-row-reverse items-center pr-5 -mt-3">
+    <div className="fixed bottom-3 right-5 sm:right-20 group flex flex-row-reverse items-center -mt-3">
       <div
         className="absolute right-16 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300 bg-blue-200 text-primary font-semibold py-1 px-4 rounded-full shadow"
       >
