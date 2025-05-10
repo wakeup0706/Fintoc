@@ -1,7 +1,9 @@
-import { Setting_Strocke, ChartPie_Strocke, Walle_Strocke, LogOut} from "../icons";
+import { Walle_Strocke, LogOut} from "../icons";
 import SiderbarMenu from '../common/SiderbarMenu';
 import SiderbarCuentas from '../common/SiderbarCuentas';
 import ButtonPlus from '../common/ButtonPlus';
+import { NotificationPopover } from "../common/NotificationPopover";
+import { SettingPopover } from "../common/SettingPopover";
 
 const cuenta = [
 	{cuenta:"xxxx-xxxx", Saldo:"$7.256"},
@@ -14,9 +16,9 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 		<aside className={`min-w-80 bg-primary text-white relative rounded-br-2xl transition-all duration-300 ${collapse ? '-left-80' : 'left-0'} z-50`}>
 			<div className='flex justify-between px-4 py-[17px] md:py-8 items-center'>
 				<h1 className="text-xl place-conten font-medium">Hola, Jacobo</h1>
-				<div className='flex gap-2'>
-					<ChartPie_Strocke className={`w-7 h-7 cursor-pointer`}/> 
-					<Setting_Strocke className={`w-7 h-7 cursor-pointer`} />
+				<div className='flex gap-1'>
+					<NotificationPopover />
+					<SettingPopover />
 				</div>
 			</div>
 			<nav className='bg-secondary px-4 pt-6 pb-9'>
