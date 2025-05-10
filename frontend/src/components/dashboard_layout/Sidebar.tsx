@@ -4,17 +4,26 @@ import SiderbarCuentas from '../common/SiderbarCuentas';
 import ButtonPlus from '../common/ButtonPlus';
 import { NotificationPopover } from "../common/NotificationPopover";
 import { SettingPopover } from "../common/SettingPopover";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { menuButton } from "../../store/appStore";
 
 const cuenta = [
 	{cuenta:"xxxx-xxxx", Saldo:"$7.256"},
 	{cuenta:"xxxx-xxxx", Saldo:"$1.724"}
 ]
 
-const menuButtons =["Dashboard", "Suscripciones", "Gastos", "Saldos", "Presupuestos"];
+const menuButtons =[
+	{text : "Dashboard", url: "/Dashboard"},
+	{text : "Suscripciones", url: "/subscription"},
+	{text : "Gastos", url: "/expense"},
+	{text : "Saldos", url: "/balances"},
+	{text : "Presupuestos", url: "/budget"},
+];
 
 const Sidebar = ({collapse}:{collapse:boolean}) => {
-	const [activeIndex, setActiveIndex] = useState(0);
+
+	const navigator = useNavigate();
+	const { setActiveIndex, activeIndex } = menuButton((state) => state);
 
   	return (
 		<aside   className={`min-w-80 text-white relative transition-all duration-300 ${collapse ? '-left-80' : 'left-0'} z-50 bg-gradient-main`}>
@@ -27,12 +36,12 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 			</div>
 			<nav className='bg-secondary px-4 pt-6 pb-9'>
 				<ul className="space-y-4">
-					{menuButtons.map((text, index) => (
+					{menuButtons.map((val, index) => (
 						<li key={index}>
 						<SiderbarMenu
-							text={text}
+							text={val.text}
 							active={activeIndex === index}
-							onClick={() => setActiveIndex(index)}
+							onClick={() => {setActiveIndex(index); navigator(val.url)}}
 						/>
 						</li>
 					))}

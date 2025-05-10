@@ -13,6 +13,9 @@ import { ReactComponent as Premium_primary } from "./Premium_primary.svg?react";
 import { ReactComponent as LogOut_primary } from "./LogOut_primary.svg?react";
 import { ReactComponent as Vector } from "./Vector.svg?react";
 import { ReactComponent as Hands } from "./Hands.svg?react";
+import { ReactComponent as Plus_white } from "./Plus_white.svg?react";
+import { ReactComponent as Visible } from "./Visible.svg?react";
+import { ReactComponent as Download } from "./Download.svg?react";
 
 
 export {
@@ -31,4 +34,7 @@ export {
   LogOut_primary,
   Vector,
   Hands,
+  Plus_white,
+  Visible,
+  Download,
 };
