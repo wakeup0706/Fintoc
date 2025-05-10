@@ -29,5 +29,5 @@ const transactions = [
       </div>
     );
   };
-  
+
   export default Gastos_Recientes;

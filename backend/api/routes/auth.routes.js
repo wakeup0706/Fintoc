@@ -9,3 +9,4 @@ router.post('/request/reset-password', requestPasswordReset);
 router.post('/reset-password', resetPassword);
 
 module.exports = router;
+

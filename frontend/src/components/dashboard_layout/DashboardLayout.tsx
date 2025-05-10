@@ -7,7 +7,7 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
-  
+
   const collapsed = useAppStore((state) => state.collapsed);
 
   return (
@@ -15,7 +15,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       <SidebarWrapper />
       <div className={`flex-1 transition-all duration-300 flex flex-col overflow-hidden -ml-80 ${collapsed ? 'md:-ml-80' : 'md:ml-0'}`}>
         <Topbar />
-        <main className={`transition-all duration-300 overflow-y-auto my-6 md:mx-10`}>
+        <main className={`transition-all duration-300 overflow-y-auto`}>
           {children}
         </main>
       </div>

@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AllowPage from "./pages/auth/allow";
 import VerifyPassword from "./pages/auth/verifyPassword";
 import ChangePassword from "./pages/auth/changePassword";
+import SubscriptionPage from "./pages/subscription";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/reset-password" element={<ChangePassword />} />
       <Route path="/allow" element={<AllowPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/subscription" element={<SubscriptionPage />} />
 
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />

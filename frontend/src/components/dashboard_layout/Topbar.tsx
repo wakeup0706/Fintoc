@@ -11,8 +11,8 @@ const Topbar: React.FC = () => {
 
   return (
     <div className="rounded-br-md items-center py-2 md:py-5 shadow-md">
-      <div className={`px-4 md:px-10 mx-auto flex justify-between transition-all duration-300`}>
-        <div className='gap-4 md:gap-8 flex'>
+      <div className={`px-4 md:px-16 mx-auto flex justify-between transition-all duration-300`}>
+        <div className='gap-4 md:gap-8 flex items-center'>
           <button onClick={toggleSidebar}><HamburgerMenu /></button>
           <LogoComponent textSize='xl' imgOther='w-[35px] md:w-[50px]' textOther='text-[16px]' />
         </div>
