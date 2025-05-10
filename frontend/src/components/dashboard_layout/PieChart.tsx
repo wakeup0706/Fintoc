@@ -89,7 +89,7 @@ const VariablePieChart = () => {
   <div className='bg-white p-4'>
     <HighchartsReact highcharts={Highcharts} options={options} />
     <p className='border-t-2 border-ct-grey text-center sm:mx-20 py-1 sm:py-3'>$7.500 x Gastos</p>
-    <button className="mx-auto bg-primary text-white font-semibold px-12 py-2 mb-3 rounded-full hover:bg-purple-800 transition block">Ver todo el presupuesto</button>
+    <button className="mx-auto bg-primary text-white font-semibold px-12 py-2 mb-3 rounded-full hover:bg-hoverColor transition block">Ver todo el presupuesto</button>
   </div>
   );
 };

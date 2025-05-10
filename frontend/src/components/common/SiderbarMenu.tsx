@@ -1,8 +1,21 @@
-const SiderbarMenu = ({bgColor, text}:{bgColor:string, text:string}) => {
+type SidebarMenuProps = {
+  text: string;
+  active: boolean;
+  onClick?: () => void;
+};
+
+const SiderbarMenu = ({ text, active, onClick }: SidebarMenuProps) => {
+  const baseClass = "rounded-full px-4 py-2 border-2 text-sm font-semibold w-full";
+  const activeClass = "bg-primary text-white border-primary";
+  const inactiveClass = "bg-white text-primary border-primary hover:bg-secondary";
+
   return (
-    <div className={`rounded-2xl cursor-pointer border-2 border-primary px-3 pt-[5px] pb-[3px] font-md bg-${bgColor} text-${ bgColor=='white' ? 'primary' : 'white' }`}>
+    <button
+      onClick={onClick}
+      className={`${baseClass} ${active ? activeClass : inactiveClass}`}
+    >
       {text}
-    </div>
+    </button>
   );
 };
 

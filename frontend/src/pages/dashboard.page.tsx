@@ -12,9 +12,9 @@ const DashboardPage = () => {
     <DashboardLayout>
       <div className='max-w-[1100px] mx-auto mt-12'>
           <div>
-            <div className='flex justify-between w-full sm:w-[70%] sm:items-center px-8 flex-col sm:flex-row gap-1'>
+            <div className='flex justify-between w-full sm:w-[70%] sm:items-center pl-8 pr-3 flex-col sm:flex-row gap-1'>
               <div className='md:text-xl text-ct-grey font-semibold'>Buen Día,<span>Jacobo</span>.</div>
-              <button className=" text-sm cursor-pointer sm:text-lg bg-primary text-white font-semibold px-8 py-1 mb-0 sm:mb-1 flex rounded-full hover:bg-purple-800 transition"><Premium /> Hazte Premium</button>
+              <button className=" text-sm cursor-pointer sm:text-lg bg-primary text-white font-semibold px-8 py-1 mb-0 sm:mb-1 flex rounded-full hover:bg-hoverColor transition"><Premium /> Hazte Premium</button>
             </div>
             <div className='justify-between grid grid-cols-1 md:grid-cols-[70%_30%] gap-5 p-5 pt-3'>
               <CustomLineChart />

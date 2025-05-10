@@ -25,7 +25,7 @@ const transactions = [
             </div>
           ))}
         </div>
-        <button className="mx-auto bg-primary text-white font-semibold px-8 py-2 mb-3 rounded-full hover:bg-purple-800 transition block">Vincular Cuenta</button>
+        <button className="mx-auto bg-primary text-white font-semibold px-8 py-2 mb-3 rounded-full hover:bg-hoverColor transition block">Vincular Cuenta</button>
       </div>
     );
   };
