@@ -9,6 +9,8 @@ import AllowPage from "./pages/auth/allow";
 import VerifyPassword from "./pages/auth/verifyPassword";
 import ChangePassword from "./pages/auth/changePassword";
 import SubscriptionPage from "./pages/subscription";
+import AllsubscriptionPages from "./pages/subscription.all.page";
+import HistoryPage from "./pages/history.page";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
       <Route path="/allow" element={<AllowPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/subscription" element={<SubscriptionPage />} />
+      <Route path="/subscription-all" element={<AllsubscriptionPages />} />
+      <Route path="/history-expensive" element={<HistoryPage />} />
 
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />
