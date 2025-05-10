@@ -10,7 +10,7 @@ import GptButton from '../components/common/GptButton';
 const DashboardPage = () => {
   return (
     <DashboardLayout>
-      <div className='max-w-[1100px] mx-auto mt-12'>
+      <div className='max-w-[1100px] mx-auto mt-20'>
           <div>
             <div className='flex justify-between w-full sm:w-[70%] sm:items-center px-8 flex-col sm:flex-row gap-1'>
               <div className='md:text-xl text-ct-grey font-semibold'>Buen Día,<span>Jacobo</span>.</div>
