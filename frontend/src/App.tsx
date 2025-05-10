@@ -26,7 +26,7 @@ function App() {
       <Route path="/allow" element={<AllowPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/subscription" element={<SubscriptionPage />} />
-            <Route path="/subscription-all" element={<AllsubscriptionPages />} />
+      <Route path="/subscription-all" element={<AllsubscriptionPages />} />
       <Route path="/history-expensive" element={<HistoryPage />} />
       <Route path="/expense" element={<ExpensePage />} />
       <Route path="/balances" element={<BalancesPage />} />

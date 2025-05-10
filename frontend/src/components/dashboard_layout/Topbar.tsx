@@ -16,7 +16,7 @@ const Topbar: React.FC = () => {
           <button onClick={toggleSidebar}><HamburgerMenu /></button>
           <LogoComponent textSize='xl' imgOther='w-[35px] md:w-[50px]' textOther='text-[16px]' />
         </div>
-        <button onClick={()=>alert("home")}><Home_Strocke className="w-6 h-6" /></button>
+        <button className='rounded-full px-3 hover:bg-gray-100'><Home_Strocke className="w-6 h-6" /></button>
       </div>
     </div>
   );
