@@ -11,6 +11,7 @@ import { ReactComponent as Perfil } from "./Perfil_Stroke.svg?react";
 import { ReactComponent as Link } from "./Link_Stroke.svg?react";
 import { ReactComponent as Premium_primary } from "./Premium_primary.svg?react";
 import { ReactComponent as LogOut_primary } from "./LogOut_primary.svg?react";
+import { ReactComponent as Vector } from "./Vector.svg?react";
 
 export {
   Setting_Strocke,
@@ -26,4 +27,5 @@ export {
   Link,
   Premium_primary,
   LogOut_primary,
+  Vector,
 };

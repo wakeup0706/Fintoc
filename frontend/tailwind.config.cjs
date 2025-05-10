@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         'primary': '#371DCD',
         'secondary': '#EFEFEF',
+        'secondary-100': 'light-gray',
         'ct-grey': '#3A3A3A',
         'ct-dark-600': '#222',
         'ct-dark-200': '#e5e7eb',
@@ -26,8 +27,11 @@ module.exports = {
         },
       },
       animation: {
-        'spin-slow': 'spin 10s linear infinite', // Slower spin
+        'spin-slow': 'spin 10s linear infinite',
         'spin-reverse': 'spin-reverse 20s linear infinite',
+      },
+      backgroundImage: {
+        'gradient-main': 'linear-gradient(to bottom right, #361BD0, #2680CD)',
       },
     },
   },

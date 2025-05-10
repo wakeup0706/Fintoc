@@ -1,6 +1,6 @@
 const SiderbarCuentas = ({cuentas}:{cuentas:any[]}) => {
   return (
-    <div className='bg-primary px-4'>
+    <div className='bg-transparent px-4'>
       <div className='text-white items-center justify-between flex pt-3 border-b-[1px]'>
         <span className='font-medium'>Cuenta</span>
         <span className='font-medium'>Saldo</span>
