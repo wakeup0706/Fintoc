@@ -13,7 +13,7 @@ const TopSection = () => {
         </div>
 
         <div className='w-full sm:col-span-7 col-span-12 px-4 sm:px-0'>
-            <div className='flex flex-col gap-3 bg-gradient-main rounded-3xl px-4 py-4 sm:px-20'>
+            <div className='flex flex-col gap-3 bg-gradient-main rounded-3xl px-4 py-4 sm:px-16'>
                 <p className='text-[#0D99FF] sm:text-right text-center text-[16px] w-full sm:text-2xl font-bold'>¿Deseas bajar tus cobros de servicios?</p>
                 <p className='text-white sm:text-right text-center text-[16px] w-full sm:text-xl font-bold'>Nuestros expertos pueden negociar </p>
                 <p className='text-white sm:text-right text-center text-[16px] w-full sm:text-xl font-bold'>por ti a un mejor precio. </p>
