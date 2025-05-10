@@ -4,17 +4,21 @@ import SiderbarCuentas from '../common/SiderbarCuentas';
 import ButtonPlus from '../common/ButtonPlus';
 import { NotificationPopover } from "../common/NotificationPopover";
 import { SettingPopover } from "../common/SettingPopover";
+import { useState } from "react";
 
 const cuenta = [
 	{cuenta:"xxxx-xxxx", Saldo:"$7.256"},
 	{cuenta:"xxxx-xxxx", Saldo:"$1.724"}
 ]
 
+const menuButtons =["Dashboard", "Suscripciones", "Gastos", "Saldos", "Presupuestos"];
+
 const Sidebar = ({collapse}:{collapse:boolean}) => {
+	const [activeIndex, setActiveIndex] = useState(0);
 
   	return (
 		<aside   className={`min-w-80 text-white relative transition-all duration-300 ${collapse ? '-left-80' : 'left-0'} z-50 bg-gradient-main`}>
-			<div className='flex justify-between px-4 py-[17px] md:py-6 items-center'>
+			<div className='flex justify-between px-4 py-[9px] md:py-6 items-center'>
 				<h1 className="text-xl place-conten font-medium">Hola, Jacobo</h1>
 				<div className='flex gap-1'>
 					<NotificationPopover />
@@ -23,12 +27,16 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 			</div>
 			<nav className='bg-secondary px-4 pt-6 pb-9'>
 				<ul className="space-y-4">
-					<li><SiderbarMenu bgColor='primary' text='Dashboard' /></li>
-					<li><SiderbarMenu bgColor='white' text='Suscripciones' /></li>
-					<li><SiderbarMenu bgColor='white' text='Gastos' /></li>
-					<li><SiderbarMenu bgColor='white' text='Saldos' /></li>
-					<li><SiderbarMenu bgColor='white' text='Presupuestos' /></li>
-				</ul>
+					{menuButtons.map((text, index) => (
+						<li key={index}>
+						<SiderbarMenu
+							text={text}
+							active={activeIndex === index}
+							onClick={() => setActiveIndex(index)}
+						/>
+						</li>
+					))}
+					</ul>
 			</nav>
 			<div className='bg-white px-4 rounded-t-xl -mt-[10px]'>
 				<div className='text-primary items-center justify-between flex py-2'>

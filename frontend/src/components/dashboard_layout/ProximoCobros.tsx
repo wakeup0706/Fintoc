@@ -21,7 +21,7 @@ const ProximoCobros_data = [
             </div>
           ))}
         </div>
-        <button className="mx-auto bg-white text-primary font-semibold px-8 py-2 mb-3 rounded-full hover:bg-purple-800 transition block">Ver Más</button>
+        <button className="mx-auto bg-white text-primary font-semibold px-8 py-2 mb-3 border-2 border-white rounded-full hover:bg-secondary transition block">Ver Más</button>
       </div>
     );
   };
