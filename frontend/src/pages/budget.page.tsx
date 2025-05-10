@@ -4,6 +4,7 @@ import MonthTable from '../components/budget_layout/Table';
 import SpendingBudget from '../components/budget_layout/SpendingBudget';
 import BudgetSummary from '../components/budget_layout/BudgetSummary';
 import { Link } from 'react-router-dom';
+import FixPagenation from '../components/common/FixPagenation';
 
 const BudgetPage = () => {
   return (
@@ -23,14 +24,7 @@ const BudgetPage = () => {
           <BudgetSummary />
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row max-w-[420px] gap-3 mx-auto justify-between items-center sm:mt-12 mt-6 text-center">
-        <Link to='/' className="text-primary underline">
-          Términos y Condiciones
-        </Link>
-        <Link to='/' className="text-primary underline">
-          Políticas de Privacidad
-        </Link>
-      </div>
+      <FixPagenation />
       <GptButton />
     </DashboardLayout>
   );

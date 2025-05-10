@@ -7,6 +7,7 @@ import TopSection from '../components/expensedetails_layout.tsx/Topsection';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import NextSubscriptionTable from '../components/expensedetails_layout.tsx/NextTable';
 import NextDayChart from '../components/expensedetails_layout.tsx/NextDayChart';
+import FixPagenation from '../components/common/FixPagenation';
 
 const ExpensePage = () => {
   const [activeTab, setActiveTab] = useState("current");
@@ -28,6 +29,7 @@ const ExpensePage = () => {
           </>
         )}
       </div>
+      <FixPagenation />
     </DashboardLayout>
   );
 };

@@ -31,7 +31,7 @@ function App() {
       <Route path="/expense" element={<ExpensePage />} />
       <Route path="/balances" element={<BalancesPage />} />
       <Route path="/budget" element={<BudgetPage />} />
-
+      
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />
       </Route>
