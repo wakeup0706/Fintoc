@@ -4,10 +4,10 @@ const TopSection = () => {
   return (
     <div className='w-full grid grid-cols-12 gap-8'>
         <div className='w-full sm:col-span-5 col-span-12 flex gap-4 px-4 sm:px-0'>
-            <button className='bg-primary py-3 rounded-full w-full text-white text-[15px] sm:text-xl max-h-[50px] font-bold'>
+            <button className='bg-primary py-3 rounded-full w-full text-white text-[15px] sm:text-xl max-h-[50px]'>
 							Próximos Cobros
 						</button>
-						<button className='bg-secondary py-3 rounded-full w-full text-primary text-[15px] sm:text-xl max-h-[50px] font-bold hover:bg-secondary-100'>
+						<button className='bg-secondary py-3 rounded-full w-full text-primary text-[15px] sm:text-xl max-h-[50px] hover:bg-secondary-100'>
 							Ver Todo
             </button>
         </div>

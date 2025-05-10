@@ -20,8 +20,8 @@ const transactions = [
 
             {transactions.length > 0 ?
               (transactions.map((tx, index) => (
-                <div className="flex justify-between items-center">
-                  <div key={index} className="bg-white rounded-full grid grid-cols-[3fr_3fr_2fr] my-2 items-center flex-1">
+                <div className="flex justify-between items-center" key={index}>
+                  <div className="bg-white rounded-full grid grid-cols-[3fr_3fr_2fr] my-2 items-center flex-1">
                     <div className="pl-4">{tx.bank}</div>
                     <div>{tx.account}</div>
                     <div className=" text-center"><span className="bg-ct-grey text-white font-bold py-1.5 w-full rounded-full inline-block">${tx.balance}</span></div>

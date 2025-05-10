@@ -4,10 +4,10 @@ const TopSection = () => {
   return (
     <div className='w-full flex justify-between sm:px-0 px-4'>
         <div className='flex gap-2'>
-            <button className='bg-primary py-3 px-3 rounded-full w-full text-white text-[14px] sm:text-[17px] max-h-[50px] font-bold'>
+            <button className='bg-primary py-3 px-6 rounded-full w-full text-white text-[14px] sm:text-[17px] max-h-[50px]'>
                 Histórico
             </button>
-            <button className='bg-secondary py-3 px-3 rounded-full w-full text-primary text-[14px] sm:text-[17px] max-h-[50px] font-bold hover:bg-secondary-100'>
+            <button className='bg-secondary py-3 px-6 rounded-full w-full text-primary text-[14px] sm:text-[17px] max-h-[50px] hover:bg-secondary-100'>
                 Este Mes
             </button>
         </div>

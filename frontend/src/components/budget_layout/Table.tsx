@@ -19,8 +19,8 @@ const transactions = [
 
             {
               transactions.map((tx, index) => (
-                <div className="flex justify-between items-center">
-                  <div key={index} className="bg-white rounded-full grid grid-cols-[3fr_2fr_2fr_2fr_1fr] my-3 items-center flex-1">
+                <div className="flex justify-between items-center" key={index}>
+                  <div  className="bg-white rounded-full grid grid-cols-[3fr_2fr_2fr_2fr_1fr] my-3 items-center flex-1">
                     <div className="py-1.5 min-w-32 pl-4">{tx.name}</div>
                     <div>{tx.currency}</div>
                     <div>${tx.Spent}</div>
