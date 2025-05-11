@@ -57,6 +57,7 @@ const LoginPage = () => {
       setRequestLoading(false);
       console.log("herer=>", requestLoading)
       if (error?.error) {
+        navigate('/allow');
         error.error.forEach((e: any) =>
           toast.error(e.message, { position: "top-right" })
         );
