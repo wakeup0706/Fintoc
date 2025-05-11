@@ -75,7 +75,7 @@ const TopSection = () => {
             />
             <button
               type="submit"
-              className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] max-w-[400px] w-full h-[40px] sm:h-[50px] mt-3 sm:mt-[10px]"
+              className={`${requestLoading ? "bg-disableColor" : "bg-primary"} relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] max-w-[400px] w-full h-[40px] sm:h-[50px] mt-3 sm:mt-[10px]`}
               disabled={requestLoading}
             >
               {requestLoading ? 'Cargando...' : 'Unirme a lista de espera'}

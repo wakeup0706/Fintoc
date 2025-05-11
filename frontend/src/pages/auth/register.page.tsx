@@ -150,7 +150,8 @@ const SignupPage = () => {
 
         <button
           onClick={handleSubmit(onSubmit)}
-          className="bg-primary text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[42px] sm:h-[48px] mt-6 sm:mt-[24px]"
+          className={`${requestLoading ? 'bg-disableColor' : 'bg-primary'} text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[42px] sm:h-[48px] mt-6 sm:mt-[24px]`}
+          disabled={requestLoading}
         >
           {requestLoading ? <LoadingSpinner /> : "Registrarse"}
         </button>
@@ -163,6 +164,7 @@ const SignupPage = () => {
         <button
           onClick={signInWithGoogle}
           className="flex items-center justify-center gap-4 border-2 border-grey-300 text-base font-bold rounded-[27px] sm:rounded-[54px] w-full h-[42px] sm:h-[48px] hover:bg-gray-50 transition-colors"
+          disabled={requestLoading}
         >
           <img src={GoogleLogo} alt="Google Logo" className="w-7 h-7" />
           Continuar con Google

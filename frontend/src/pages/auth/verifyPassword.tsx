@@ -85,7 +85,8 @@ const VerifyPassword = () => {
 
         <button
           onClick={handleSubmit(onSubmit)}
-          className="bg-primary relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[40px]"
+          className={`${requestLoading ? "bg-disableColor" : "bg-primary"} relative text-white text-base sm:text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-8 sm:mt-[40px]`}
+          disabled={requestLoading}
         >
           {requestLoading ? <LoadingSpinner /> : "enviar correo electrónico"}
         </button>
