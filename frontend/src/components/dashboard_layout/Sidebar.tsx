@@ -23,15 +23,17 @@ const menuButtons =[
 
 const Sidebar = ({collapse}:{collapse:boolean}) => {
 
-	const { authUser } = useAppStore.authStore.getState();
+	const { authUser, logout } = useAppStore.authStore.getState();
 
 	const navigator = useNavigate();
 	const { setActiveIndex, activeIndex } = menuButton((state) => state);
 
-	const logout = async () =>{
-		await localStorage.removeItem("auth_token");
-		navigator("/");
-	}
+	const handleSettingClick = (action: string) => {
+		console.log("Setting action:", action);
+		if (action === "logout") {
+			logout();
+		}
+	};
 
   	return (
 		<aside   className={`min-w-80 text-white relative transition-all duration-300 ${collapse ? '-left-80' : 'left-0'} z-50 bg-gradient-main`}>
@@ -39,7 +41,7 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 				<h1 className="text-xl place-conten font-medium">Hola, <span>{authUser?.first_name}</span></h1>
 				<div className='flex gap-1'>
 					<NotificationPopover />
-					<SettingPopover />
+					<SettingPopover onClick={handleSettingClick} />
 				</div>
 			</div>
 			<nav className='bg-secondary px-4 pt-6 pb-9'>
