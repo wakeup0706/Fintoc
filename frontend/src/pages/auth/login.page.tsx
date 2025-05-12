@@ -55,16 +55,15 @@ const LoginPage = () => {
       navigate('/dashboard');
     } catch (error: any) {
       setRequestLoading(false);
-      console.log("herer=>", requestLoading)
-      if (error?.error) {
-        navigate('/allow');
-        error.error.forEach((e: any) =>
-          toast.error(e.message, { position: "top-right" })
+        if (error?.error) {
+          error.error.forEach((e: any) =>
+            toast.error(e.message, { position: "top-right" })
         );
+        navigate('/allow');
         return;
       }
 
-      toast.error(error.message || "Something went wrong", {
+      toast.error(error.message || "Algo salió mal", {
         position: "top-right",
       });
     } finally {

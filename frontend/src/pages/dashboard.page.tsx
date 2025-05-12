@@ -6,14 +6,18 @@ import CustomLineChart from '../components/dashboard_layout/LineChart';
 import { Premium } from '../components/icons';
 import Presupuesto from '../components/dashboard_layout/Presupuesto';
 import GptButton from '../components/common/GptButton';
+import { useAppStore } from "../store";
 
 const DashboardPage = () => {
+
+  const { authUser } = useAppStore.authStore.getState();
+
   return (
     <DashboardLayout>
       <div className='max-w-[1100px] mx-auto mt-20'>
           <div>
             <div className='flex justify-between w-full sm:w-[70%] sm:items-center pl-5 pr-3 flex-col sm:flex-row gap-1'>
-              <div className='md:text-xl text-ct-grey font-semibold'>Buen Día,<span>Jacobo</span>.</div>
+              <div className='md:text-xl text-ct-grey font-semibold'>Buen Día,<span>{authUser?.first_name}</span>.</div>
               <button className="text-sm cursor-pointer sm:text-lg bg-primary text-white items-center gap-2 px-8 py-1 mb-0 sm:mb-1 flex rounded-full hover:bg-hoverColor transition">
                 <Premium /> Hazte Premium
               </button>

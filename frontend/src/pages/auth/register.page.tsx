@@ -64,17 +64,13 @@ const SignupPage = () => {
       navigate('/allow');
     } catch (error: any) {
       setRequestLoading(false);
-
       if (error?.error) {
         error.error.forEach((e: any) =>
           toast.error(e.message, { position: "top-right" })
         );
         return;
       }
-
-      toast.error(error.message || "Something went wrong", {
-        position: "top-right",
-      });
+      toast.error(error.message || "Algo salió mal", {position: "top-right"});
     } finally {
       setRequestLoading(false);
     }
