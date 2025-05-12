@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { object, string, TypeOf } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { jwtDecode } from "jwt-decode";
@@ -38,10 +37,6 @@ const ChangePassword = () => {
       resolver: zodResolver(changePasswordSchema),
     });
 
-  const {
-    loginWithToken,
-  } = useAppStore.authStore.getState();
-
   const resetPassword = async (data:RsetPassword) =>{
       try{
         setRequestLoading(true);
@@ -59,7 +54,7 @@ const ChangePassword = () => {
         if (!res.ok) throw result;
 
         toast.success(result.message, {position: "top-right"});
-
+        navigate("/signin");
       }catch (error: any) {
         if (error?.error) {
           error.error.forEach((e: any) =>
