@@ -1,0 +1,35 @@
+GET https://developers.belvo.com/_mock/apis/belvoopenapispec/api/recurring-expenses/0d3ffb69-f83b-456e-ad8e-208d0998d71d/?fields=string&omit=string; HTTP/1.1
+Authorization: Basic NmM4Y2I2OTItOTg3Zi00MTVjLTg5N2UtODJmMmJhMzAzN2JkOlpSVmx4UyNqWW9aRzNOa0NBakxIMkZzU3hCRHlXQllCQHJvM0FzdVViUUh3OURTdDN0V09za25odU1XWmdGUF8=
+
+####
+GET https://developers.belvo.com/_mock/apis/belvoopenapispec/api/recurring-expenses/?link=8848bd0c-9c7e-4f53-a732-ec896b11d4c4&fields=string&8page=9&omit=string; HTTP/1.1
+Authorization: Basic NmM4Y2I2OTItOTg3Zi00MTVjLTg5N2UtODJmMmJhMzAzN2JkOlpSVmx4UyNqWW9aRzNOa0NBakxIMkZzU3hCRHlXQllCQHJvM0FzdVViUUh3OURTdDN0V09za25odU1XWmdGUF8=
+
+####
+POST https://sandbox.belvo.com/api/links
+Authorization: Basic NmM4Y2I2OTItOTg3Zi00MTVjLTg5N2UtODJmMmJhMzAzN2JkOlpSVmx4UyNqWW9aRzNOa0NBakxIMkZzU3hCRHlXQllCQHJvM0FzdVViUUh3OURTdDN0V09za25odU1XWmdGUF8=
+Content-Type: application/json
+
+{
+  "institution": "user_full",
+  "username": "pass_full",
+  "type": "sandbox"
+}
+
+
+### Fetch Transactions
+POST https://sandbox.belvo.com/api/transactions/
+Authorization: Basic NmM4Y2I2OTItOTg3Zi00MTVjLTg5N2UtODJmMmJhMzAzN2JkOlpSVmx4UyNqWW9aRzNOa0NBakxIMkZzU3hCRHlXQllCQHJvM0FzdVViUUh3OURTdDN0V09za25odU1XWmdGUF8=
+Content-Type: application/json
+
+{
+  "link": "d3cce455-d5ed-460e-844d-5f9fc4d95da5",
+  "date_from": "2023-05-01",
+  "date_to": "2025-05-10",
+   "token": "1234ab",
+  "save_data": true
+}
+
+### Get Recurring Expenses
+GET https://sandbox.belvo.com/api/recurring-expenses/?link=5da84de6-76a2-42a0-b18b-9aea76acaafb
+Authorization: Basic NmM4Y2I2OTItOTg3Zi00MTVjLTg5N2UtODJmMmJhMzAzN2JkOlpSVmx4UyNqWW9aRzNOa0NBakxIMkZzU3hCRHlXQllCQHJvM0FzdVViUUh3OURTdDN0V09za25odU1XWmdGUF8=

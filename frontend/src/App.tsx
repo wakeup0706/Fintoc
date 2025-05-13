@@ -24,16 +24,16 @@ function App() {
       <Route path="/forgot-password" element={<VerifyPassword />} />
       <Route path="/reset-password" element={<ChangePassword />} />
       <Route path="/allow" element={<AllowPage />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/subscription" element={<SubscriptionPage />} />
-      <Route path="/subscription-all" element={<AllsubscriptionPages />} />
-      <Route path="/history-expensive" element={<HistoryPage />} />
-      <Route path="/expense" element={<ExpensePage />} />
-      <Route path="/balances" element={<BalancesPage />} />
-      <Route path="/budget" element={<BudgetPage />} />
-      
+
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/subscription" element={<SubscriptionPage />} />
+        <Route path="/subscription-all" element={<AllsubscriptionPages />} />
+        <Route path="/history-expensive" element={<HistoryPage />} />
+        <Route path="/expense" element={<ExpensePage />} />
+        <Route path="/balances" element={<BalancesPage />} />
+        <Route path="/budget" element={<BudgetPage />} />
       </Route>
     </Routes>
   );

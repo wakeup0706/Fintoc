@@ -13,7 +13,7 @@ const cuenta = [
 ]
 
 const menuButtons =[
-	{text : "Dashboard", url: "/Dashboard"},
+	{text : "dashboard", url: "/dashboard"},
 	{text : "Suscripciones", url: "/subscription"},
 	{text : "Gastos", url: "/expense"},
 	{text : "Saldos", url: "/balances"},
@@ -55,8 +55,8 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 			</div>
 			<SiderbarCuentas cuentas={cuenta} />
 			<div className='px-2 mt-10 flex flex-col gap-5'>
-				<ButtonPlus text='Agregar cuenta' bgColor='white' />
-				<ButtonPlus text='Agregar Tarjeta de Crédito' bgColor='transparent' />
+				<ButtonPlus text='Agregar cuenta' bgColor='white' onClick={() => console.log('Agregar Tarjeta de Crédito clicked')}/>
+				<ButtonPlus text='Agregar Tarjeta de Crédito' bgColor='transparent' onClick={() => console.log('Agregar Tarjeta de Crédito clicked')} />
 			</div>
 			<div className=' absolute left-20 bottom-8 gap-5 flex items-center'>
 				<span>Cerrar Sesión</span>
