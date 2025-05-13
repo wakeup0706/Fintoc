@@ -6,6 +6,7 @@ import { NotificationPopover } from "../common/NotificationPopover";
 import { SettingPopover } from "../common/SettingPopover";
 import { useNavigate } from "react-router-dom";
 import { menuButton } from "../../store/appStore";
+import { useAppStore } from "../../store";
 
 const cuenta = [
 	{cuenta:"xxxx-xxxx", Saldo:"$7.256"},
@@ -22,16 +23,25 @@ const menuButtons =[
 
 const Sidebar = ({collapse}:{collapse:boolean}) => {
 
+	const { authUser, logout } = useAppStore.authStore.getState();
+
 	const navigator = useNavigate();
 	const { setActiveIndex, activeIndex } = menuButton((state) => state);
+
+	const handleSettingClick = (action: string) => {
+		console.log("Setting action:", action);
+		if (action === "logout") {
+			logout();
+		}
+	};
 
   	return (
 		<aside   className={`min-w-80 text-white relative transition-all duration-300 ${collapse ? '-left-80' : 'left-0'} z-50 bg-gradient-main`}>
 			<div className='flex justify-between px-4 py-[9px] md:py-6 items-center'>
-				<h1 className="text-xl place-conten font-medium">Hola, Jacobo</h1>
+				<h1 className="text-xl place-conten font-medium">Hola, <span>{authUser?.first_name}</span></h1>
 				<div className='flex gap-1'>
 					<NotificationPopover />
-					<SettingPopover />
+					<SettingPopover onClick={handleSettingClick} />
 				</div>
 			</div>
 			<nav className='bg-secondary px-4 pt-6 pb-9'>
@@ -60,7 +70,7 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 			</div>
 			<div className=' absolute left-20 bottom-8 gap-5 flex items-center'>
 				<span>Cerrar Sesión</span>
-				<button className=''><LogOut className='w-6 h-6' /></button>
+				<button onClick={logout}><LogOut className='w-6 h-6' /></button>
 			</div>
 		</aside>
   	);

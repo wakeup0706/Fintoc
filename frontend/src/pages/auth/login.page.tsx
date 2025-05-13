@@ -55,15 +55,15 @@ const LoginPage = () => {
       navigate('/dashboard');
     } catch (error: any) {
       setRequestLoading(false);
-      console.log("herer=>", requestLoading)
-      if (error?.error) {
-        error.error.forEach((e: any) =>
-          toast.error(e.message, { position: "top-right" })
+        if (error?.error) {
+          error.error.forEach((e: any) =>
+            toast.error(e.message, { position: "top-right" })
         );
+        navigate('/allow');
         return;
       }
 
-      toast.error(error.message || "Something went wrong", {
+      toast.error(error.message || "Algo salió mal", {
         position: "top-right",
       });
     } finally {
@@ -123,7 +123,8 @@ const LoginPage = () => {
 
         <button
           onClick={handleSubmit(onSubmit)}
-          className="bg-primary relative text-white text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-6 sm:mt-[24px]"
+          className={`${requestLoading ? 'bg-disableColor' : 'bg-primary'} relative text-white text-lg font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] mt-6 sm:mt-[24px]`}
+          disabled={requestLoading}
         >
           {requestLoading ? <LoadingSpinner /> : "Iniciar sesión"}
         </button>
@@ -137,6 +138,7 @@ const LoginPage = () => {
         <button
           onClick={signInWithGoogle}
           className="flex items-center justify-center gap-4 border-2 border-grey-300 text-base font-bold rounded-[27px] sm:rounded-[54px] w-full h-[50px] sm:h-[50px] hover:bg-gray-50 transition-colors"
+          disabled={requestLoading}
         >
           <img src={GoogleLogo} alt="Google Logo" className="w-6 h-6 sm:w-7 sm:h-7" />
           Continuar con Google
