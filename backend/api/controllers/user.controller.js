@@ -1,4 +1,4 @@
-const { User, Role } = require('../models');
+const { User, Role, Bank, Subscription } = require('../models');
 const { hashPassword, verifyPassword } = require('../utils/hash');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
@@ -63,8 +63,8 @@ exports.updateProfile = async (req, res) => {
 
 exports.registerLinkAndRetrieveAccounts = async (req, res) => {
    try {
-     console.log(process.env.BELVO_SECRET_KEY);
-    await client.connect();
+     await client.connect();
+     console.log('internal error?');
     const widgetOptions = {
       widget: {
         branding: {
@@ -91,12 +91,39 @@ exports.getSubscriptionInformation = async (req, res) => {
   const BELVO_SECRET_ID = process.env.BELVO_PUBLIC_KEY;
   const BELVO_SECRET_PASSWORD = process.env.BELVO_SECRET_KEY;
   const linkId = req.query.link;
+  const institutionName = req.query.institutionName;
+  const user = req.user;
 
   if (!linkId) {
     return res.status(400).json({ error: "Missing 'link' parameter" });
   }
 
+  let bankRecord;
+
+  try {
+    bankRecord = await Bank.findOne({
+      where: {
+        userId: user.id,
+        institutionName: institutionName
+      }
+    });
+
+    if (bankRecord) {
+      await bankRecord.update({ linkId: linkId });
+    } else {
+      bankRecord = await Bank.create({
+        userId: user.id,
+        institutionName: institutionName,
+        linkId: linkId
+      });
+    }
+  } catch (err) {
+    console.error("Bank save/update failed:", err.message);
+    // Still continue
+  }
+
   const authHeader = Buffer.from(`${BELVO_SECRET_ID}:${BELVO_SECRET_PASSWORD}`).toString("base64");
+  console.log(authHeader);
   const headers = {
     Authorization: `Basic ${authHeader}`,
     "Content-Type": "application/json"
@@ -114,11 +141,10 @@ exports.getSubscriptionInformation = async (req, res) => {
           const lastTransaction = item.transactions?.[0] || null;
           const totalSpent = item.transactions?.reduce((sum, tx) => sum + tx.amount, 0) || 0;
 
-          allResults.push({
-            id: item.id,
+          const subData = {
             subscription_name: item.name,
-            last_amount_spent: lastTransaction?.amount || null,
-            last_payment_date: lastTransaction?.value_date || null,
+            last_amount_spent: lastTransaction?.amount || 0,
+            last_payment_date: lastTransaction?.value_date || new Date(),
             frequency: item.frequency,
             average_amount: item.average_transaction_amount,
             median_amount: item.median_transaction_amount,
@@ -126,11 +152,28 @@ exports.getSubscriptionInformation = async (req, res) => {
             days_since_last_payment: item.days_since_last_transaction,
             category: item.category,
             payment_type: item.payment_type,
-            account_name: item.account?.name || null,
-            account_number: item.account?.number || null,
-            account_balance_current: item.account?.balance?.current || null,
-            currency: item.account?.currency || null
+            account_name: item.account?.name || '',
+            account_number: item.account?.number || '',
+            account_balance_current: item.account?.balance?.current || 0,
+            currency: item.account?.currency || '',
+            bankId: bankRecord?.id
+          };
+
+          // Save or update the subscription
+          const existing = await Subscription.findOne({
+            where: {
+              subscription_name: subData.subscription_name,
+              bankId: subData.bankId
+            }
           });
+
+          if (existing) {
+            await existing.update(subData);
+          } else {
+            await Subscription.create(subData);
+          }
+
+          allResults.push(subData);
         }
       }
 
@@ -143,7 +186,5 @@ exports.getSubscriptionInformation = async (req, res) => {
     return res.status(500).json({ error: "Failed to fetch subscription information" });
   }
 };
-
-
 
 

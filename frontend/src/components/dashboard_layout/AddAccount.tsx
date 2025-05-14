@@ -62,7 +62,7 @@ const AddAccount = () => {
       const token = getUser(); // assuming getUser() returns the token
       const { data } = await axios.get(`${endpoint}/api/belvo/link`, {
         headers: {
-           "Content-Type": "application/json",
+          "Content-Type": "application/json",
           authorization: `Bearer ${token}`
         },
         withCredentials: true // if you want to include cookies as well
@@ -81,7 +81,7 @@ const AddAccount = () => {
           console.log("Belvo success:", link, institution);
 
           try {
-            const response = await fetch(`${endpoint}/api/recurring-expenses/information?link=${link}`, {
+            const response = await fetch(`${endpoint}/api/recurring-expenses/information?link=${link}?institutionName=${institution}`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
