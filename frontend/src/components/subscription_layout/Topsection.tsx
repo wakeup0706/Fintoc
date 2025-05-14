@@ -1,13 +1,26 @@
 import { Vector } from "../icons";
 
-const TopSection = () => {
+const TopSection = ({ activeTab, setActiveTab }: { activeTab: string; setActiveTab: (tab: string) => void }) => {
   return (
     <div className='w-full grid grid-cols-12 gap-8'>
         <div className='w-full sm:col-span-5 col-span-12 flex gap-4 px-4 sm:px-0'>
-            <button className='bg-primary py-3 rounded-full w-full text-white text-[15px] sm:text-xl max-h-[50px]'>
+            <button
+            onClick={() => setActiveTab("current")}
+            className={`py-2 px-4 h-10 rounded-full text-[15px] sm:text-xl ${
+            activeTab === "current"
+              ? "bg-primary text-white hover:bg-hoverColor"
+              : "bg-secondary text-primary hover:text-hoverColor"
+            }`}>
                 Próximos Cobros
             </button>
-            <button className='bg-secondary py-3 rounded-full w-full text-primary text-[15px] sm:text-xl max-h-[50px] hover:bg-secondary-100'>
+            <button
+            onClick={() => setActiveTab("previous")}
+            className={`py-2 px-4 h-10 rounded-full text-[15px] sm:text-xl ${
+            activeTab === "previous"
+              ? "bg-primary text-white hover:bg-hoverColor"
+              : "bg-secondary text-primary hover:text-hoverColor"
+            }`}
+            >
                 Ver Todo
             </button>
         </div>
