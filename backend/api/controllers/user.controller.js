@@ -188,3 +188,6 @@ exports.getSubscriptionInformation = async (req, res) => {
 };
 
 
+exports.getSubscriptionInformationByGmail = async (req, res) => {
+  res.json('okay');
+}

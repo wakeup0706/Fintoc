@@ -37,6 +37,10 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/log
   return res.redirect(`${process.env.FRONTEND_URL}/dashboard?token=${token}`);
 });
 
+router.get('/gmail-subscription/callback', (req, res) => {
+  console.log('subscription');
+});
+
 router.get('/login/success', (req, res) => {
   if (req.user) {
     res.status(200).json({
