@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
     // Check if user already exists
     const existing = await User.findOne({ where: { email } });
     if (existing) {
-      return res.status(400).json({ message: 'Email already in use' });
+      return res.status(400).json({ message: 'Correo electrónico ya en uso' });
     }
 
     // Hash password
@@ -19,7 +19,7 @@ exports.register = async (req, res) => {
     // Get default role
     const defaultRole = await Role.findOne({ where: { name: 'user' } });
     if (!defaultRole) {
-      return res.status(500).json({ message: 'Default role not found' });
+      return res.status(500).json({ message: 'No se encontró el rol predeterminado' });
     }
     // Create new user
     const newUser = await User.create({
@@ -48,7 +48,7 @@ exports.register = async (req, res) => {
 
     res.json({ token, user: userWithRole });
   } catch (err) {
-    res.status(500).json({ message: 'Error registering user', error: err.message });
+    res.status(500).json({ message: 'Error al registrar el usuario', error: err.message });
   }
 };
 
@@ -61,18 +61,18 @@ exports.login = async (req, res) => {
       include: { model: Role, as: 'role' }
     });
 
-    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!user) return res.status(400).json({ message: 'Credenciales inválidas' });
 
     const valid = await verifyPassword(password, user.password);
 
-    if (!valid) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!valid) return res.status(400).json({ message: 'Credenciales inválidas' });
 
     if (!user.allowed) {
-      return res.status(400).json({ message: 'You should get access permission', redirectUrl: `${process.env.FRONTEND_URL}/allow` });
+      return res.status(400).json({ message: 'Deberías obtener permiso de acceso', redirectUrl: `${process.env.FRONTEND_URL}/allow` });
     }
 
     if (user.google_id) {
-      return res.status(400).json({ message: 'This account uses Gmail login' });
+      return res.status(400).json({ message: 'Esta cuenta utiliza el inicio de sesión de Gmail' });
     }
 
     const token = jwt.sign(
@@ -92,23 +92,23 @@ exports.sendPermissionRequest = async (req, res) => {
     const { email } = req.body;
 
     if (!email) {
-      return res.status(400).json({ message: 'Email is required.' });
+      return res.status(400).json({ message: 'Se requiere correo electrónico.' });
     }
 
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
+      return res.status(404).json({ message: 'Usuario no encontrado.' });
     }
 
     // Update the 'allowed' field to true
     user.allowed = true;
     await user.save();
 
-    return res.status(200).json({ message: 'Permission granted successfully.' });
+    return res.status(200).json({ message: 'Permiso concedido exitosamente.' });
   } catch (error) {
-    console.error('Permission update failed:', error);
-    return res.status(500).json({ message: 'Internal server error.' });
+    console.error('Error en la actualización del permiso:', error);
+    return res.status(500).json({ message: 'Error Interno del Servidor.' });
   }
 };
 
@@ -117,17 +117,17 @@ exports.requestPasswordReset = async (req, res) => {
   console.log(email);
   try {
     if (!email) {
-      return res.status(400).json({ message: 'Email is required' });
+      return res.status(400).json({ message: 'Se requiere correo electrónico' });
     }
 
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: 'Usuario no encontrado' });
     }
 
     if (user.google_id) {
-      return res.status(400).json({ message: 'This account uses Google login' });
+      return res.status(400).json({ message: 'Esta cuenta utiliza el inicio de sesión de Google' });
     }
 
     const token = jwt.sign(
@@ -143,11 +143,11 @@ exports.requestPasswordReset = async (req, res) => {
       throw new Error(error.message || 'Email service failed');
     }
 
-    return res.status(200).json({ message: 'Password reset link sent to your email.' });
+    return res.status(200).json({ message: 'Enlace de restablecimiento de contraseña enviado a su correo electrónico.' });
   } catch (err) {
-    console.error('Error in password reset:', err);
+    console.error('Error al restablecer contraseña:', err);
     return res.status(500).json({
-      message: 'Failed to send password reset email.',
+      message: 'Error al enviar el correo electrónico de restablecimiento de contraseña.',
       error: process.env.NODE_ENV === 'development' ? err.message : undefined,
     });
   }
@@ -165,8 +165,8 @@ exports.resetPassword = async (req, res) => {
     user.password = await hashPassword(password);
     await user.save();
 
-    res.json({ message: 'Password has been reset successfully' });
+    res.json({ message: 'La contraseña se ha restablecido correctamente' });
   } catch (err) {
-    res.status(400).json({ message: 'Invalid or expired token' });
+    res.status(400).json({ message: 'Token inválido o caducado' });
   }
 };
