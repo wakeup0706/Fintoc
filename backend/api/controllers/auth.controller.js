@@ -1,7 +1,7 @@
 const { User, Role } = require('../models');
 const jwt = require('jsonwebtoken');
 const { hashPassword, verifyPassword } = require('../utils/hash');
-const { sendResetEmail } = require('../utils/mailer');
+const { sendResetEmail, sendPermissionEmail } = require('../utils/mailer');
 
 exports.register = async (req, res) => {
   const { email, password, first_name } = req.body;
@@ -104,6 +104,11 @@ exports.sendPermissionRequest = async (req, res) => {
     // Update the 'allowed' field to true
     user.allowed = true;
     await user.save();
+
+    const { error } = await sendPermissionEmail(email);
+    if (error) {
+      throw new Error(error.message || 'Email service failed');
+    }
 
     return res.status(200).json({ message: 'Permiso concedido exitosamente.' });
   } catch (error) {
