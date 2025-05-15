@@ -14,6 +14,8 @@ import HistoryPage from "./pages/history.page";
 import BudgetPage from "./pages/budget.page";
 import BalancesPage from "./pages/balances.page";
 import ExpensePage from "./pages/expensedetails.page";
+import TermsPage from "./pages/terms.page";
+import PrivacypolicyPage from "./pages/privacypolicy.page";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
       <Route path="/forgot-password" element={<VerifyPassword />} />
       <Route path="/reset-password" element={<ChangePassword />} />
       <Route path="/allow" element={<AllowPage />} />
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/privacy-policy" element={<PrivacypolicyPage />} />
 
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />} />

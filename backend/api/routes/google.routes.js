@@ -17,7 +17,7 @@ router.get('/', passport.authenticate('google', {
 router.get('/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
   if (!req.user) return res.status(401).send('Authentication failed');
 
-  if (!req.user.allowed) {
+  if (!req.user.allowed || req.user.allowed === null ) {
     return res.redirect(`${process.env.FRONTEND_URL}/allow`);
   }
 
