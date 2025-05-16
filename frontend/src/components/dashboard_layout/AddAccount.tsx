@@ -81,7 +81,7 @@ const AddAccount = () => {
           console.log("Belvo success:", link, institution);
 
           try {
-            const response = await fetch(`${endpoint}/api/recurring-expenses/information?link=${link}?institutionName=${institution}`, {
+            const response = await fetch(`${endpoint}/api/recurring-expenses/information?link=${link}&institutionName=${institution}`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",

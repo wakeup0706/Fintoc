@@ -63,8 +63,8 @@ exports.updateProfile = async (req, res) => {
 
 exports.registerLinkAndRetrieveAccounts = async (req, res) => {
    try {
-     await client.connect();
-     console.log('internal error?');
+    await client.connect();
+    console.log('internal error?');
     const widgetOptions = {
       widget: {
         branding: {
@@ -97,6 +97,8 @@ exports.getSubscriptionInformation = async (req, res) => {
   if (!linkId) {
     return res.status(400).json({ error: "Missing 'link' parameter" });
   }
+  console.log("institutionName:", institutionName);
+  console.log("linkId:", linkId);
 
   let bankRecord;
 
@@ -110,31 +112,35 @@ exports.getSubscriptionInformation = async (req, res) => {
 
     if (bankRecord) {
       await bankRecord.update({ linkId: linkId });
+      // return bankRecord;
     } else {
       bankRecord = await Bank.create({
         userId: user.id,
         institutionName: institutionName,
-        linkId: linkId
+        linkId: linkId,
       });
+      // return bankRecord;
     }
   } catch (err) {
     console.error("Bank save/update failed:", err.message);
-    // Still continue
   }
 
   const authHeader = Buffer.from(`${BELVO_SECRET_ID}:${BELVO_SECRET_PASSWORD}`).toString("base64");
-  console.log(authHeader);
+  console.log('authHeader', authHeader);
+
   const headers = {
     Authorization: `Basic ${authHeader}`,
     "Content-Type": "application/json"
   };
 
   let allResults = [];
-  let nextUrl = `${BELVO_API_URL}/recurring-expenses/?link=${linkId}`;
+  let nextUrl = `${BELVO_API_URL}/recurring-expenses/?link=${linkId}&institution=${institutionName}`;
+  console.log('nextUrl:', nextUrl);
 
   try {
     while (nextUrl) {
       const response = await axios.get(nextUrl, { headers });
+      console.log('response.data:',response.data);
 
       if (response.data?.results?.length) {
         for (const item of response.data.results) {
@@ -168,25 +174,23 @@ exports.getSubscriptionInformation = async (req, res) => {
           });
 
           if (existing) {
+            console.log("subData",subData);
             await existing.update(subData);
           } else {
+            console.log('subData-NOW:',subData);
             await Subscription.create(subData);
           }
 
           allResults.push(subData);
         }
       }
-
       nextUrl = response.data.next || null;
     }
-
     return res.status(200).json(allResults);
-  } catch (error) {
-    console.error("Error fetching recurring expenses:", error.response?.data || error.message);
-    return res.status(500).json({ error: "Failed to fetch subscription information" });
-  }
+  } catch(e) {
+    console.log("error:", e);
+  } 
 };
-
 
 exports.getSubscriptionInformationByGmail = async (req, res) => {
   res.json('okay');

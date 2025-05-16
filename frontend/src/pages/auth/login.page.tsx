@@ -59,7 +59,7 @@ const LoginPage = () => {
           error.error.forEach((e: any) =>
             toast.error(e.message, { position: "top-right" })
         );
-        navigate('/allow');
+        navigate('/permition');
         return;
       }
 

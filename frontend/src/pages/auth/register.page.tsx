@@ -61,7 +61,7 @@ const SignupPage = () => {
       if (!res.ok) throw result;
 
       loginWithToken(result.token);
-      navigate('/allow');
+      navigate('/permition');
     } catch (error: any) {
       setRequestLoading(false);
       if (error?.error) {
