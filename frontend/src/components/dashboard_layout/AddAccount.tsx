@@ -112,6 +112,15 @@ const AddAccount = () => {
     }
   };
 
+  const connectGmail = () => {
+    const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
+
+    const redirectUrl = `${endpoint}/auth/google/connect/google-email`;
+    window.location.href = redirectUrl;
+  };
+
+
+
   return (
     <div className="bg-primary p-4 rounded-l-2xl w-full">
       <div id="belvo"></div>
@@ -129,7 +138,7 @@ const AddAccount = () => {
         <ButtonPluse
           bgColor="primary"
           text="Correo electrónico"
-          onClick={() => alert("Correo electrónico")}
+          onClick={connectGmail}
         />
         <ButtonPluse
           bgColor="primary"

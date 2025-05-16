@@ -2,6 +2,13 @@ const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
+const { google } = require("googleapis");
+
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_SUBSCRIPTION_REDIRECT_URI
+);
 
 router.get('/', passport.authenticate('google', {
   scope: ['profile', 'email'],
@@ -10,7 +17,7 @@ router.get('/', passport.authenticate('google', {
 router.get('/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
   if (!req.user) return res.status(401).send('Authentication failed');
 
-  if (!req.user.allowed) {
+  if (!req.user.allowed || req.user.allowed === null ) {
     return res.redirect(`${process.env.FRONTEND_URL}/allow`);
   }
 
@@ -37,7 +44,16 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/log
   return res.redirect(`${process.env.FRONTEND_URL}/dashboard?token=${token}`);
 });
 
-router.get('/gmail-subscription/callback', (req, res) => {
+router.get('/connect/google-email', (req, res) => {
+  const authUrl = oauth2Client.generateAuthUrl({
+    access_type: "offline",
+    prompt: "consent",
+    scope: ["https://www.googleapis.com/auth/gmail.readonly"],
+  });
+  res.redirect(authUrl);
+});
+
+router.get('/subscription/callback', (req, res) => {
   console.log('subscription');
 });
 
