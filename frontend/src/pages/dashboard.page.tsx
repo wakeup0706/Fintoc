@@ -7,6 +7,7 @@ import { Premium } from '../components/icons';
 import Presupuesto from '../components/dashboard_layout/Presupuesto';
 import GptButton from '../components/common/GptButton';
 import { useAppStore } from "../store";
+import FixPagenation from '../components/common/FixPagenation';
 
 const DashboardPage = () => {
 
@@ -46,7 +47,7 @@ const DashboardPage = () => {
               <Presupuesto />
             </div>
           </div>
-
+          <FixPagenation />
           <GptButton />
         </div>
     </DashboardLayout>

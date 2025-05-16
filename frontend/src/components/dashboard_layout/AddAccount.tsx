@@ -37,6 +37,19 @@ const AddAccount = () => {
   }, []);
 
   console.log(countryName, countryCode);
+
+  //  const getGeoInfo = () => {
+  //   axios
+  //     .get("https://ipapi.co/json/")
+  //     .then((response) => {
+  //       setCountryCode(response.data.country_code);
+  //       setCountryName(response.data.country_name);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://cdn.belvo.io/belvo-widget-1-stable.js";
