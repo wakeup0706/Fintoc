@@ -11,7 +11,6 @@ import { Premium } from '../components/icons';
 import { useAppStore } from "../store";
 import axios from "axios";
 import FullScreenLoader from '../components/common/Loading';
-import { set } from 'zod';
 
 const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 

@@ -21,10 +21,6 @@ const AddAccount = () => {
   const [countryCode, setCountryCode] = useState("");
   const [countryName, setCountryName] = useState("");
 
-   const {
-    getUser,
-  } = useAppStore.authStore.getState();
-
   useEffect(() => {
     if (typeof navigator !== "undefined" && navigator.language) {
       const locale = navigator.language; // e.g., "en-US"
@@ -56,74 +52,6 @@ const AddAccount = () => {
 
     document.body.appendChild(script);
   }, []);
-
-  const handleBankAccountClick = async () => {
-    try {
-      setLoading(true);
-      setError("");
-
-      const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
-      const token = getUser(); // assuming getUser() returns the token
-      const { data } = await axios.get(`${endpoint}/api/belvo/link`, {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`
-        },
-        withCredentials: true // if you want to include cookies as well
-      });
-      const access_token = data.access;
-
-      if (!window.belvoSDK) {
-        setError("Belvo SDK not loaded.");
-        return;
-      }
-
-      const widget = window.belvoSDK.createWidget(access_token, {
-        locale: "es",
-        access_mode: "recurrent",
-        callback: async (link: any, institution: any) => {
-          console.log("Belvo success:", link, institution);
-
-          try {
-            const response = await fetch(`${endpoint}/api/recurring-expenses/information?link=${link}?institutionName=${institution}`, {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${token}`
-              },
-            });
-
-            const data = await response.json();
-            console.log("📦 Subscription info:", data);
-          } catch (apiError) {
-            console.error("❌ Failed to fetch subscription info:", apiError);
-          }
-        },
-        onEvent: (event: any) => {
-          console.log("Belvo event:", event);
-        },
-        onExit: (data: any) => {
-          console.log("Belvo exit:", data);
-        },
-      });
-
-      widget.build();
-    } catch (err) {
-      console.error(err);
-      setError("Error initializing Belvo widget.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const connectGmail = () => {
-    const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
-
-    const redirectUrl = `${endpoint}/auth/google/connect/google-email`;
-    window.location.href = redirectUrl;
-  };
-
-
 
   return (
     <div className="bg-primary p-4 rounded-l-2xl w-full">
