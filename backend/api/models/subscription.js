@@ -3,71 +3,46 @@ module.exports = (sequelize, DataTypes) => {
     subscription_name: {
       type: DataTypes.STRING,
       allowNull: false,
+      field: 'subscription_name'
     },
-    last_amount_spent: {
-      type: DataTypes.DECIMAL(10, 2),
+    amount: {
+      type: DataTypes.FLOAT,
       allowNull: false,
-    },
-    last_payment_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      field: 'amount'
     },
     frequency: {
       type: DataTypes.STRING,
       allowNull: false,
+      field: 'frequency'
     },
-    average_amount: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    median_amount: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    total_spent_amount: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    days_since_last_payment: {
+    days_since_last_transaction: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
+      field: 'days_since_last_transaction'
     },
     category: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      field: 'category'
     },
     payment_type: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      field: 'payment_type'
     },
-    account_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    account_number: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    account_balance_current: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    currency: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    balance_available: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      field: 'balance_available'
     },
     bankId: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'Banks',
-        key: 'id',
-      },
+      field: 'bankId'
     },
   });
 
-  // Associations
-  Subscription.associate = (models) => {
+  Subscription.associate = function (models) {
     Subscription.belongsTo(models.Bank, {
       foreignKey: 'bankId',
       as: 'bank',

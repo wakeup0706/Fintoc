@@ -1,4 +1,4 @@
-GET https://developers.belvo.com/_mock/apis/belvoopenapispec/api/recurring-expenses/0d3ffb69-f83b-456e-ad8e-208d0998d71d/?fields=string&omit=string; HTTP/1.1
+GET https://developers.belvo.com/_mock/apis/belvoopenapispec/api/transactions/?link=55f5eeb7-18d5-4dca-937e-3fd8ab04b3f1 HTTP/1.1
 Authorization: Basic NmM4Y2I2OTItOTg3Zi00MTVjLTg5N2UtODJmMmJhMzAzN2JkOlpSVmx4UyNqWW9aRzNOa0NBakxIMkZzU3hCRHlXQllCQHJvM0FzdVViUUh3OURTdDN0V09za25odU1XWmdGUF8=
 
 ####
@@ -15,7 +15,6 @@ Content-Type: application/json
   "username": "pass_full",
   "type": "sandbox"
 }
-
 
 ### Fetch Transactions
 POST https://sandbox.belvo.com/api/transactions/

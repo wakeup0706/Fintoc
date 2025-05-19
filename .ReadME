@@ -4,3 +4,4 @@
 
 // npx sequelize-cli migration:generate --name add-allowed-to-users --config api/config/config.js --migrations-path api/migrations
 // npx sequelize-cli db:migrate --config api/config/config.js --migrations-path api/migrations --env production
+// npx sequelize-cli db:migrate:undo --config api/config/config.js --migrations-path api/migrations

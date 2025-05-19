@@ -1,88 +1,68 @@
+'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Subscriptions', {
       id: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        defaultValue: Sequelize.UUIDV4
       },
       subscription_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
-      last_amount_spent: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
-      last_payment_date: {
-        type: Sequelize.DATE,
-        allowNull: false
+      amount: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
       },
       frequency: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
-      average_amount: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
-      median_amount: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
-      total_spent_amount: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
-      days_since_last_payment: {
+      days_since_last_transaction: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true,
       },
       category: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true,
       },
       payment_type: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true,
       },
-      account_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      account_number: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      account_balance_current: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
-      currency: {
-        type: Sequelize.STRING,
-        allowNull: false
+      balance_available: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
       },
       bankId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'Banks', // Assuming you have a 'Banks' table
-          key: 'id'
+          model: 'Banks',
+          key: 'id',
         },
-        allowNull: false
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         type: Sequelize.DATE,
-        allowNull: false
-      }
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
     await queryInterface.dropTable('Subscriptions');
   }
 };
+
+

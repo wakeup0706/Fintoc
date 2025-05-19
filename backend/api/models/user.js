@@ -1,20 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true
-    },
     email: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
+      unique: true,
     },
     google_id: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: true,
+      unique: true,
     },
     first_name: {
       type: DataTypes.STRING,
@@ -30,22 +24,25 @@ module.exports = (sequelize, DataTypes) => {
     },
     roleId: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'Roles', // This is the table we're referencing
-        key: 'id',
-      },
       allowNull: false,
     },
     allowed: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
       allowNull: false,
-    }
+      defaultValue: false,
+    },
   });
 
   User.associate = function(models) {
-    // Make sure 'Role' is loaded before this
-    User.belongsTo(models.Role, { foreignKey: 'roleId', as: 'role' });
+    User.belongsTo(models.Role, {
+      foreignKey: 'roleId',
+      as: 'role',
+    });
+
+    User.hasMany(models.Bank, {
+      foreignKey: 'userId',
+      as: 'banks',
+    });
   };
 
   return User;

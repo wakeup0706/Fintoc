@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Banks', {
@@ -5,7 +7,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+      },
+      institution_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       link: {
         type: Sequelize.STRING,
@@ -15,27 +21,26 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users',  // Assuming you have a Users table
-          key: 'id'
+          model: 'Users',
+          key: 'id',
         },
+        onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-      },
-      institutionName: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
     await queryInterface.dropTable('Banks');
   }
 };

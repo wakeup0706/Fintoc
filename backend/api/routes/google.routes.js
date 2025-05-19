@@ -3,6 +3,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const { google } = require("googleapis");
+const { extractEmailText, extractAmount, extractFrequency, extractName, guessCategory } = require('../controllers/google.controller');
 
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
@@ -53,8 +54,67 @@ router.get('/connect/google-email', (req, res) => {
   res.redirect(authUrl);
 });
 
-router.get('/subscription/callback', (req, res) => {
-  console.log('subscription');
+router.get('/subscription/callback', async (req, res) => {
+  try {
+    const code = req.query.code;
+    if (!code) {
+      return res.status(401).json({ message: 'Missing auth code' });
+    }
+
+    const { tokens } = await oauth2Client.getToken(code);
+    oauth2Client.setCredentials(tokens);
+
+    const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+
+    const { data } = await gmail.users.messages.list({
+      userId: 'me',
+      maxResults: 20,
+      q: 'has:list-unsubscribe',
+    });
+
+    const messages = data.messages || [];
+    const subscriptions = [];
+
+    for (const msg of messages) {
+      const fullMsg = await gmail.users.messages.get({
+        userId: 'me',
+        id: msg.id,
+        format: 'full',
+      });
+
+      const headers = fullMsg.data.payload?.headers || [];
+      const subject = headers.find(h => h.name === 'Subject')?.value || '';
+      const from = headers.find(h => h.name === 'From')?.value || '';
+      const date = headers.find(h => h.name === 'Date')?.value || '';
+
+      // Extract body text from payload
+      const body = extractEmailText(fullMsg.data.payload);
+
+      // Parse structured info
+      const amount = extractAmount(body);
+      const frequency = extractFrequency(body);
+      const category = guessCategory(from, subject, body);
+      const subscriptionName = extractName(from, subject);
+
+      subscriptions.push({
+        subscriptionName,
+        amount,
+        date,
+        category,
+        frequency,
+        rawFrom: from,
+        rawSubject: subject,
+      });
+
+      // TODO: Save each to DB here
+      // await SubscriptionModel.create({ ... });
+    }
+    console.log('Subscriptions:', subscriptions);
+    return res.status(200).json(subscriptions);
+  } catch (error) {
+    console.error('Failed to fetch subscriptions:', error);
+    return res.status(500).json({ message: 'Error fetching subscription data' });
+  }
 });
 
 router.get('/login/success', (req, res) => {
@@ -82,3 +142,4 @@ router.get('/logout', (req, res) => {
 });
 
 module.exports = router;
+

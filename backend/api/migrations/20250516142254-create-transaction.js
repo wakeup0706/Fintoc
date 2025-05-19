@@ -1,48 +1,39 @@
+'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Transactions', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      email: {
-        type: Sequelize.STRING,
-        unique: true,
-        allowNull: false,
-      },
-      google_id: {
-        type: Sequelize.STRING,
-        unique: true,
-        allowNull: true,
-      },
-      first_name: {
+      description: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      last_name: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      amount: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false,
       },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      date: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
-      roleId: {
+      category: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      bankId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Roles',
+          model: 'Banks',
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
-      },
-      allowed: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-        allowNull: false,
+        onDelete: 'CASCADE',
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -53,11 +44,11 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      }
+      },
     });
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Transactions');
   }
 };

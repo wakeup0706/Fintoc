@@ -1,53 +1,43 @@
 import React from "react";
 
-const TermsPage = () => {
+const PrivacypolicyPage = () => {
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Terms and Conditions</h1>
-      <section style={{ marginBottom: "20px" }}>
-        <h2>Introduction</h2>
+    <div className="p-5 font-sans">
+      <h1 className="text-center text-2xl font-bold mb-5">Privacy Policy</h1>
+      <section className="mb-5">
+        <h2 className="text-xl font-semibold mb-2">Introduction</h2>
         <p>
-          Welcome to our Terms and Conditions page. These terms outline the rules and regulations
-          for the use of our services. By accessing or using our services, you agree to comply with
-          these terms.
+          Welcome to our Privacy Policy page. Your privacy is critically important to us. This
+          document explains how we collect, use, and protect your personal information.
         </p>
       </section>
-      <section style={{ marginBottom: "20px" }}>
-        <h2>Use of Services</h2>
+      <section className="mb-5">
+        <h2 className="text-xl font-semibold mb-2">Information We Collect</h2>
         <p>
-          You agree to use our services only for lawful purposes and in a way that does not infringe
-          the rights of others. Unauthorized use of our services may result in termination of your
-          access.
+          We collect various types of information, including but not limited to your name, email
+          address, and usage data. This helps us improve our services and provide a better user
+          experience.
         </p>
       </section>
-      <section style={{ marginBottom: "20px" }}>
-        <h2>Intellectual Property</h2>
+      <section className="mb-5">
+        <h2 className="text-xl font-semibold mb-2">How We Use Your Information</h2>
         <p>
-          All content, trademarks, and intellectual property on this site are owned by Management
-          Banks or its licensors. You may not use, reproduce, or distribute any content without
-          prior written permission.
+          The information we collect is used to provide and improve our services, communicate with
+          you, and ensure compliance with legal obligations.
         </p>
       </section>
-      <section style={{ marginBottom: "20px" }}>
-        <h2>Limitation of Liability</h2>
+      <section className="mb-5">
+        <h2 className="text-xl font-semibold mb-2">Your Rights</h2>
         <p>
-          We are not liable for any damages arising from the use or inability to use our services.
-          This includes, but is not limited to, direct, indirect, incidental, or consequential
-          damages.
+          You have the right to access, modify, or delete your personal information. If you have
+          any concerns, please contact us at support@example.com.
         </p>
       </section>
-      <section style={{ marginBottom: "20px" }}>
-        <h2>Changes to Terms</h2>
-        <p>
-          We reserve the right to update or modify these terms at any time. Continued use of our
-          services after changes are made constitutes your acceptance of the updated terms.
-        </p>
-      </section>
-      <footer style={{ textAlign: "center", marginTop: "20px" }}>
+      <footer className="text-center mt-5">
         <p>&copy; {new Date().getFullYear()} Management Banks. All rights reserved.</p>
       </footer>
     </div>
   );
 };
 
-export default TermsPage;
+export default PrivacypolicyPage;
