@@ -68,7 +68,7 @@ exports.login = async (req, res) => {
     if (!valid) return res.status(400).json({ message: 'Credenciales inválidas' });
 
     if (!user.allowed) {
-      return res.status(400).json({ message: 'Deberías obtener permiso de acceso', redirectUrl: `${process.env.FRONTEND_URL}/allow` });
+      return res.status(400).json({ message: 'Deberías obtener permiso de acceso', redirectUrl: `${process.env.FRONTEND_URL}/permission` });
     }
 
     if (user.google_id) {

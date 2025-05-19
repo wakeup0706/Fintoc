@@ -19,7 +19,7 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/log
   if (!req.user) return res.status(401).send('Authentication failed');
 
   if (!req.user.allowed || req.user.allowed === null ) {
-    return res.redirect(`${process.env.FRONTEND_URL}/allow`);
+    return res.redirect(`${process.env.FRONTEND_URL}/permission`);
   }
 
   const token = jwt.sign({ id: req.user.id, email: req.user.email, first_name: req.user.first_name }, process.env.JWT_SECRET || 'your-secret-key', {

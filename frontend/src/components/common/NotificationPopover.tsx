@@ -45,7 +45,7 @@ export const NotificationPopover: React.FC = () => {
     <div className="relative inline-block">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="p-2 rounded-full hover:bg-gray-200 transition"
+        className="p-2 rounded-full hover:bg-[#a7bbe0] transition"
         aria-label="Toggle notifications"
       >
         <ChartPie_Strocke className={`w-7 h-7 cursor-pointer`}/>

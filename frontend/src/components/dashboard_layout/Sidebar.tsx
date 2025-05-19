@@ -36,7 +36,7 @@ const Sidebar = ({collapse}:{collapse:boolean}) => {
 	};
 
   	return (
-		<aside   className={`min-w-80 text-white relative transition-all duration-300 ${collapse ? '-left-80' : 'left-0'} z-50 bg-gradient-main`}>
+		<aside className={`min-w-80 text-white relative transition-all duration-300 ${collapse ? '-left-80' : 'left-0'} z-50 bg-gradient-main`}>
 			<div className='flex justify-between px-4 py-[9px] md:py-6 items-center'>
 				<h1 className="text-xl place-conten font-medium">Hola, <span>{authUser?.first_name}</span></h1>
 				<div className='flex gap-1'>
