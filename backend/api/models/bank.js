@@ -1,8 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Bank = sequelize.define('Bank', {
-    linkId: {
+    link: {
       type: DataTypes.STRING,
       allowNull: false,
+      field: 'link',  // <-- This maps the model attribute to the DB column
     },
     institutionName: {
       type: DataTypes.STRING,
