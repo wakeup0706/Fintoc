@@ -110,7 +110,7 @@ router.get('/subscription/callback', async (req, res) => {
       // await SubscriptionModel.create({ ... });
     }
     console.log('Subscriptions:', subscriptions);
-    return res.status(200).json(subscriptions);
+    return res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
   } catch (error) {
     console.error('Failed to fetch subscriptions:', error);
     return res.status(500).json({ message: 'Error fetching subscription data' });
