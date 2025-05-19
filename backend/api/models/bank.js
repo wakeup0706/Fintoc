@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Bank = sequelize.define('Bank', {
-    link: {
+    linkId: {
       type: DataTypes.STRING,
       allowNull: false,
     },

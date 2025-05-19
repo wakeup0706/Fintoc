@@ -5,7 +5,7 @@ import ProfilePage from "./pages/profile.page";
 import Dashboard from "./pages/dashboard.page";
 import RegisterPage from "./pages/auth/register.page";
 import PrivateRoute from "./components/PrivateRoute";
-import AllowPage from "./pages/auth/allow";
+import AllowPage from "./pages/auth/permition";
 import VerifyPassword from "./pages/auth/verifyPassword";
 import ChangePassword from "./pages/auth/changePassword";
 import SubscriptionPage from "./pages/subscription.page";
@@ -25,7 +25,7 @@ function App() {
       <Route path="/signup" element={<RegisterPage />} />
       <Route path="/forgot-password" element={<VerifyPassword />} />
       <Route path="/reset-password" element={<ChangePassword />} />
-      <Route path="/allow" element={<AllowPage />} />
+      <Route path="/permition" element={<AllowPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy-policy" element={<PrivacypolicyPage />} />
 
