@@ -70,46 +70,53 @@ router.get('/subscription/callback', async (req, res) => {
       userId: 'me',
       maxResults: 20,
       q: 'has:list-unsubscribe',
+      labelIds: ['INBOX'],
     });
 
     const messages = data.messages || [];
     const subscriptions = [];
 
-    for (const msg of messages) {
-      const fullMsg = await gmail.users.messages.get({
-        userId: 'me',
-        id: msg.id,
-        format: 'full',
-      });
+    const fullMessages = await Promise.all(
+      messages.map(async (msg) => {
+        try {
+          const { data: fullMsg } = await gmail.users.messages.get({
+            userId: 'me',
+            id: msg.id,
+            format: 'full',
+          });
 
-      const headers = fullMsg.data.payload?.headers || [];
-      const subject = headers.find(h => h.name === 'Subject')?.value || '';
-      const from = headers.find(h => h.name === 'From')?.value || '';
-      const date = headers.find(h => h.name === 'Date')?.value || '';
+          const headers = fullMsg.payload?.headers || [];
+          const subject = headers.find(h => h.name === 'Subject')?.value || '';
+          const from = headers.find(h => h.name === 'From')?.value || '';
+          const date = headers.find(h => h.name === 'Date')?.value || '';
 
-      // Extract body text from payload
-      const body = extractEmailText(fullMsg.data.payload);
+          const body = extractEmailText(fullMsg.payload);
 
-      // Parse structured info
-      const amount = extractAmount(body);
-      const frequency = extractFrequency(body);
-      const category = guessCategory(from, subject, body);
-      const subscriptionName = extractName(from, subject);
+          const amount = extractAmount(body);
+          const frequency = extractFrequency(body);
+          const category = guessCategory(from, subject, body);
+          const subscriptionName = extractName(from, subject);
 
-      subscriptions.push({
-        subscriptionName,
-        amount,
-        date,
-        category,
-        frequency,
-        rawFrom: from,
-        rawSubject: subject,
-      });
+          subscriptions.push({
+            subscriptionName,
+            amount,
+            date,
+            category,
+            frequency,
+            rawFrom: from,
+            rawSubject: subject,
+          });
+        } catch (err) {
+          console.error(`Failed to fetch or process message ${msg.id}:`, err);
+        }
+      })
+    );
 
-      // TODO: Save each to DB here
-      // await SubscriptionModel.create({ ... });
-    }
+    // TODO: Save all subscriptions to DB here
+    // await SubscriptionModel.insertMany(subscriptions);
+
     console.log('Subscriptions:', subscriptions);
+
     return res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
   } catch (error) {
     console.error('Failed to fetch subscriptions:', error);

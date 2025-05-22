@@ -4,9 +4,14 @@ const axios = require('axios');
 const jwt = require('jsonwebtoken');
 var belvo = require("belvo").default;
 
+
+const BELVO_API_URL = process.env.BELVO_API_URL || "https://developers.belvo.com/_mock/apis/belvoopenapispec/api";
+const BELVO_SECRET_ID = process.env.BELVO_PUBLIC_KEY;
+const BELVO_SECRET_PASSWORD = process.env.BELVO_SECRET_KEY;
+
 const client = new belvo(
-  process.env.BELVO_PUBLIC_KEY,
-  process.env.BELVO_SECRET_KEY,
+  BELVO_SECRET_ID,
+  BELVO_SECRET_PASSWORD,
   'sandbox' // Ensure the environment is correct (sandbox or production)
 );
 
@@ -69,7 +74,7 @@ exports.registerLinkAndRetrieveAccounts = async (req, res) => {
       widget: {
         branding: {
           company_name: "ACME Loans",
-          company_logo: "https://yourdomain.com/logo.svg", // Must be HTTPS
+          company_logo: "https://fintoc-oa6c-beta.vercel.app/logo.svg", // Must be HTTPS
           company_color: "#007BFF",
           company_benefit_header: "Faster approvals",
           company_benefit_content: "Connecting your bank account speeds up approval.",
@@ -85,10 +90,6 @@ exports.registerLinkAndRetrieveAccounts = async (req, res) => {
     res.status(500).json({ error: "Failed to create widget token" });
   }
 };
-
-const BELVO_API_URL = process.env.BELVO_API_URL || "https://developers.belvo.com/_mock/apis/belvoopenapispec/api";
-const BELVO_SECRET_ID = process.env.BELVO_PUBLIC_KEY;
-const BELVO_SECRET_PASSWORD = process.env.BELVO_SECRET_KEY;
 
 const authHeader = Buffer.from(`${BELVO_SECRET_ID}:${BELVO_SECRET_PASSWORD}`).toString("base64");
 const headers = {

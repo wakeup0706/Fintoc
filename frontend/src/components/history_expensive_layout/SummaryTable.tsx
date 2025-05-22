@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const data = [
   { name: "Ingresos", amount: "1.500.000" },
   { name: "Suscripciones y servicios", amount: "250.00" },
@@ -5,6 +7,11 @@ const data = [
 ];
 
 const SummaryTable = () => {
+  const navigate = useNavigate();
+
+  const navigateToPages = (page: string) => {
+    navigate(page);
+  }
   return (
     <div className="sm:px-0 px-4">
       <div className="rounded-2xl bg-secondary w-full overflow-hidden mt-12">
@@ -12,7 +19,7 @@ const SummaryTable = () => {
           <button className="bg-primary py-3 px-3 rounded-full w-full text-white text-[14px] sm:text-[15px] font-bold">
             Histórico
           </button>
-          <button className="bg-ct-grey py-3 px-3 rounded-full w-full text-white text-[14px] sm:text-[15px] font-bold hover:bg-secondary-100">
+          <button className="bg-ct-grey py-3 px-3 rounded-full w-full text-white text-[14px] sm:text-[15px] font-bold hover:bg-secondary-100" onClick={() => navigateToPages('/expense')}>
             Este Mes
           </button>
         </div>

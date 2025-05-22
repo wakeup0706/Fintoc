@@ -38,7 +38,7 @@ export const SettingPopover: React.FC<SettingProps> = ({ onClick }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-[270px] bg-white rounded-xl p-5 z-50 overflow-hidden shadow-stone-950 shadow-lg"
+            className="mt-2 w-[270px] bg-white rounded-xl p-5 z-50 overflow-hidden shadow-stone-950 shadow-lg"
           >
             <div className="max-h-96 overflow-y-auto">
               <button className="text-primary font-semibold w-full flex items-center justify-between px-[6px] py-1 rounded-full text-sm border-2 border-primary pr-5">
@@ -54,7 +54,7 @@ export const SettingPopover: React.FC<SettingProps> = ({ onClick }) => {
                 <Premium_primary className="text-xl" />
               </button>
             </div>
-            <div className="flex gap-5 items-center text-primary font-semibold mt-5">
+            <div className="flex gap-5 items-center text-primary font-semibold">
               <span>Cerrar Sesión</span>
               <button onClick={() => onClick?.("logout")}>
                 <LogOut_primary className="w-5 h-5" />

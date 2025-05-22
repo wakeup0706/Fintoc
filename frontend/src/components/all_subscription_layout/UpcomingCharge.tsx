@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-import { Hands } from "../icons";
 
 const UpcomingCharge = () => {
   return (
@@ -11,15 +9,6 @@ const UpcomingCharge = () => {
           <button className='rounded-full sm:px-7 px-5 py-1 bg-secondary hover:bg-white text-primary  sm:text-xl text-[14px]'>
             Cancelar Suscripción
           </button>
-      </div>
-
-      <div className="flex flex-col sm:flex-row max-w-[460px] gap-3 mx-auto justify-between items-center sm:mt-12 mt-6 text-center">
-        <Link to='/' className="text-primary underline">
-          Términos y Condiciones
-        </Link>
-        <Link to='/' className="text-primary underline">
-          Políticas de Privacidad
-        </Link>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ type AppState = {
   collapsed: boolean;
   toggleSidebar: () => void;
   setCollapsed: (value: boolean) => void;
+  mobileToggleSidebar: () => void; // <-- Add this line
 };
 
 type ActiveIndex = {
@@ -13,11 +14,12 @@ type ActiveIndex = {
 
 
 // Create a helper to determine if it's mobile
-const isMobile = () => typeof window !== 'undefined' && window.innerWidth <= 768;
+const isMobile = () => typeof window !== 'undefined' && window.innerWidth <= 500;
 
 export const useAppStore = create<AppState>((set) => ({
   collapsed: typeof window !== 'undefined' ? isMobile() : false,
   toggleSidebar: () => set((state) => ({ collapsed: !state.collapsed })),
+  mobileToggleSidebar: () => set((state) => isMobile() ? { collapsed: !state.collapsed } : { collapsed: false }),
   setCollapsed: (value) => set({ collapsed: value }),
 }));
 
